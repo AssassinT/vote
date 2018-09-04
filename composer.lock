@@ -1391,6 +1391,7 @@
         },
         {
             "name": "symfony/css-selector",
+<<<<<<< HEAD
             "version": "v3.4.15",
             "source": {
                 "type": "git",
@@ -1401,6 +1402,18 @@
                 "type": "zip",
                 "url": "https://api.github.com/repos/symfony/css-selector/zipball/edda5a6155000ff8c3a3f85ee5c421af93cca416",
                 "reference": "edda5a6155000ff8c3a3f85ee5c421af93cca416",
+=======
+            "version": "v3.4.12",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/symfony/css-selector.git",
+                "reference": "d2ce52290b648ae33b5301d09bc14ee378612914"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/symfony/css-selector/zipball/d2ce52290b648ae33b5301d09bc14ee378612914",
+                "reference": "d2ce52290b648ae33b5301d09bc14ee378612914",
+>>>>>>> cccc0d92c60eae5df9634d559d37b9500f4076ce
                 "shasum": ""
             },
             "require": {
@@ -1440,7 +1453,11 @@
             ],
             "description": "Symfony CssSelector Component",
             "homepage": "https://symfony.com",
+<<<<<<< HEAD
             "time": "2018-07-26T09:06:28+00:00"
+=======
+            "time": "2018-05-16T12:49:49+00:00"
+>>>>>>> cccc0d92c60eae5df9634d559d37b9500f4076ce
         },
         {
             "name": "symfony/debug",
@@ -1500,6 +1517,7 @@
         },
         {
             "name": "symfony/event-dispatcher",
+<<<<<<< HEAD
             "version": "v3.4.15",
             "source": {
                 "type": "git",
@@ -1510,6 +1528,18 @@
                 "type": "zip",
                 "url": "https://api.github.com/repos/symfony/event-dispatcher/zipball/b2e1f19280c09a42dc64c0b72b80fe44dd6e88fb",
                 "reference": "b2e1f19280c09a42dc64c0b72b80fe44dd6e88fb",
+=======
+            "version": "v3.4.12",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/symfony/event-dispatcher.git",
+                "reference": "fdd5abcebd1061ec647089c6c41a07ed60af09f8"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/symfony/event-dispatcher/zipball/fdd5abcebd1061ec647089c6c41a07ed60af09f8",
+                "reference": "fdd5abcebd1061ec647089c6c41a07ed60af09f8",
+>>>>>>> cccc0d92c60eae5df9634d559d37b9500f4076ce
                 "shasum": ""
             },
             "require": {
@@ -1559,7 +1589,11 @@
             ],
             "description": "Symfony EventDispatcher Component",
             "homepage": "https://symfony.com",
+<<<<<<< HEAD
             "time": "2018-07-26T09:06:28+00:00"
+=======
+            "time": "2018-04-06T07:35:25+00:00"
+>>>>>>> cccc0d92c60eae5df9634d559d37b9500f4076ce
         },
         {
             "name": "symfony/finder",
@@ -2057,6 +2091,7 @@
         },
         {
             "name": "symfony/translation",
+<<<<<<< HEAD
             "version": "v3.4.15",
             "source": {
                 "type": "git",
@@ -2067,6 +2102,18 @@
                 "type": "zip",
                 "url": "https://api.github.com/repos/symfony/translation/zipball/9749930bfc825139aadd2d28461ddbaed6577862",
                 "reference": "9749930bfc825139aadd2d28461ddbaed6577862",
+=======
+            "version": "v3.4.12",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/symfony/translation.git",
+                "reference": "7047f725e35eab768137c677f8c38e4a2a8e38fb"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/symfony/translation/zipball/7047f725e35eab768137c677f8c38e4a2a8e38fb",
+                "reference": "7047f725e35eab768137c677f8c38e4a2a8e38fb",
+>>>>>>> cccc0d92c60eae5df9634d559d37b9500f4076ce
                 "shasum": ""
             },
             "require": {
@@ -2121,7 +2168,11 @@
             ],
             "description": "Symfony Translation Component",
             "homepage": "https://symfony.com",
+<<<<<<< HEAD
             "time": "2018-07-26T11:19:56+00:00"
+=======
+            "time": "2018-05-21T10:06:52+00:00"
+>>>>>>> cccc0d92c60eae5df9634d559d37b9500f4076ce
         },
         {
             "name": "symfony/var-dumper",
