@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\AD;
 use Illuminate\Http\Request;
 
 class ADController extends Controller
@@ -13,7 +14,10 @@ class ADController extends Controller
      */
     public function index()
     {
-        //
+        $a_ds = AD::orderBy('id','desc')
+            ->where('a_d_name','like', '%'.request()->keywords.'%')
+            ->get();
+        return view('admin.a_d.index', ['a_ds'=>$a_ds]);
     }
 
     /**
@@ -23,7 +27,7 @@ class ADController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.a_d.create');
     }
 
     /**
@@ -34,7 +38,22 @@ class ADController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $a_d = new AD;
+
+        $a_d -> a_d_name = $request->a_d_name;
+        $a_d -> a_d_url = $request->a_d_url;
+        $a_d -> position = $request->position;
+
+        if ($request->hasFile('a_d_pic')) {
+            $a_d->a_d_pic = '/'.$request->a_d_pic->store('uploads/'.date('Ymd'));
+        }
+
+        if($a_d -> save()){
+            return redirect('/a_d')->with('success', '添加成功');
+        }else{
+            return back()->with('error','添加失败');
+        }
+
     }
 
     /**
@@ -56,7 +75,9 @@ class ADController extends Controller
      */
     public function edit($id)
     {
-        //
+       $a_d = AD::findOrFail($id);
+
+        return view('admin.a_d.edit', ['a_d'=>$a_d]);
     }
 
     /**
@@ -68,7 +89,19 @@ class ADController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $a_d = AD::findOrFail($id);
+        $a_d -> a_d_name = $request->a_d_name;
+        $a_d -> a_d_url = $request->a_d_url;
+        $a_d -> position = $request->position;
+
+        if ($request->hasFile('a_d_pic')) {
+            $a_d->a_d_pic = '/'.$request->a_d_pic->store('uploads/'.date('Ymd'));
+        }
+
+        if($a_d -> save()){
+            return redirect('/a_d')->with('success','更新成功');
+        }else{
+            return back()->with('error','更新失败');
     }
 
     /**
@@ -79,6 +112,11 @@ class ADController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $a_d = AD::findOrFail($id);
+        if($a_d->delete()){
+            return back()->with('success','删除成功');
+        }else{
+            return back()->with('error','删除失败!');
+        }
     }
 }
