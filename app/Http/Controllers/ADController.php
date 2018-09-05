@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\AD;
+use App\aD;
 use Illuminate\Http\Request;
 
 class ADController extends Controller
@@ -14,7 +14,7 @@ class ADController extends Controller
      */
     public function index()
     {
-        $a_ds = AD::orderBy('id','desc')
+        $a_ds = aD::orderBy('id','desc')
             ->where('a_d_name','like', '%'.request()->keywords.'%')
             ->get();
         return view('admin.a_d.index', ['a_ds'=>$a_ds]);
@@ -38,14 +38,14 @@ class ADController extends Controller
      */
     public function store(Request $request)
     {
-        $a_d = new AD;
+        $a_d = new aD;
 
         $a_d -> a_d_name = $request->a_d_name;
         $a_d -> a_d_url = $request->a_d_url;
         $a_d -> position = $request->position;
 
         if ($request->hasFile('a_d_pic')) {
-            $a_d->a_d_pic = '/'.$request->a_d_pic->store('uploads/'.date('Ymd'));
+            $a_d->a_d_pic = '/uploads/'.$request->a_d_pic->store('admin/'.date('Ymd'));
         }
 
         if($a_d -> save()){
@@ -75,7 +75,7 @@ class ADController extends Controller
      */
     public function edit($id)
     {
-       $a_d = AD::findOrFail($id);
+       $a_d = aD::findOrFail($id);
 
         return view('admin.a_d.edit', ['a_d'=>$a_d]);
     }
@@ -89,13 +89,13 @@ class ADController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $a_d = AD::findOrFail($id);
+        $a_d = aD::findOrFail($id);
         $a_d -> a_d_name = $request->a_d_name;
         $a_d -> a_d_url = $request->a_d_url;
         $a_d -> position = $request->position;
 
         if ($request->hasFile('a_d_pic')) {
-            $a_d->a_d_pic = '/'.$request->a_d_pic->store('uploads/'.date('Ymd'));
+            $a_d->a_d_pic = '/uploads/'.$request->a_d_pic->store('admin/'.date('Ymd'));
         }
 
         if($a_d -> save()){
@@ -103,6 +103,7 @@ class ADController extends Controller
         }else{
             return back()->with('error','更新失败');
     }
+}
 
     /**
      * Remove the specified resource from storage.
@@ -112,7 +113,7 @@ class ADController extends Controller
      */
     public function destroy($id)
     {
-        $a_d = AD::findOrFail($id);
+        $a_d = aD::findOrFail($id);
         if($a_d->delete()){
             return back()->with('success','删除成功');
         }else{
@@ -120,3 +121,4 @@ class ADController extends Controller
         }
     }
 }
+
