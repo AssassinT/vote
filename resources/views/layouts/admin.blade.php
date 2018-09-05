@@ -17,6 +17,7 @@
     <link rel="stylesheet" href="/admin/static/assets/css/admin.css">
     <link rel="stylesheet" href="/admin/static/assets/css/app.css">
     <script src="/admin/static/assets/js/echarts.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
     <style>
         #tishi1{
                                 width:97%;
