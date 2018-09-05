@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\User;
+use App\Proposal;
 use Illuminate\Http\Request;
 
 class ProposalController extends Controller
@@ -13,7 +15,12 @@ class ProposalController extends Controller
      */
     public function index()
     {
-        //
+        // 显示建议列表
+        $proposals = Proposal::orderBy('id','asc')
+            ->where('proposal_name','like','%'.request()->keywords.'%')
+            ->get();
+            // dd($proposals);
+        return view('admin.proposal.index',compact('proposals'));
     }
 
     /**
@@ -23,7 +30,7 @@ class ProposalController extends Controller
      */
     public function create()
     {
-        //
+        
     }
 
     /**
@@ -34,7 +41,7 @@ class ProposalController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        
     }
 
     /**
@@ -56,7 +63,9 @@ class ProposalController extends Controller
      */
     public function edit($id)
     {
-        //
+        //修改数据模板
+        $proposal = Proposal::findOrFail($id);
+        return view('admin.proposal.edit',compact('proposal'));
     }
 
     /**
@@ -68,7 +77,15 @@ class ProposalController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        //插入数据
+        $proposal = Proposal::findOrFail($id);
+        $proposal -> proposal_name = $request->proposal_name;
+        $proposal -> proposal_content = $request->proposal_content;
+        if($proposal -> save()){
+            return redirect('/proposal')->with('true', '添加成功');
+        }else{
+            return back()->with('false','添加失败');
+        }
     }
 
     /**
@@ -79,6 +96,14 @@ class ProposalController extends Controller
      */
     public function destroy($id)
     {
-        //
+        //删除建议数据
+        $proposal = Proposal::findOrFail($id);
+
+        if($proposal->delete()){
+            return back()->with('true','删除成功');
+        }else{
+            return back()->with('false','删除失败!');
+        }
+
     }
 }

@@ -1,6 +1,4 @@
 @extends('layouts.admin') 
-@section('title') 友情链接添加 @endsection 
-@section('title','友情链接添加') 
 
 @section('content')
 <hr>
