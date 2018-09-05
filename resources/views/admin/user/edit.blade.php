@@ -33,7 +33,7 @@
                         <label for="user-weibo" class="am-u-sm-3 am-form-label">头像 / pic</label>
                         <div class="am-u-sm-9">
                             <input type="file" name="head_pic" id="user-weibo" >
-                            <img src="{{$user['head_pic']}}" width="100" alt="">
+                            <img  id="touxiang" src="{{$user['head_pic']}}" width="100" alt="">
                         </div>
                     </div>
                     <div class="am-form-group">
@@ -62,4 +62,22 @@
         </div>
     </div>
 </div>
+<script>
+$(function () {
+        $("#user-weibo").change(function () {
+            var fil = this.files;
+            for (var i = 0; i < fil.length; i++) {
+                reads(fil[i]);
+            }
+        });
+    });
+    
+    function reads(fil){
+        var reader = new FileReader();
+        reader.readAsDataURL(fil);
+        reader.onload = function(){
+            $('#touxiang').attr("src",reader.result);
+        };
+    };
+</script>
 @endsection
