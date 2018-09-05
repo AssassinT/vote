@@ -87,7 +87,19 @@ class GiftController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $gifts = Gift::findOrFail($id);
+        $gifts -> gift_name = $request -> gift_name;
+        $gifts -> price = $request -> price;
+
+        if($request->hasFile('gift_pic')){
+            $gifts->gift_pic = '/uploads/'.$request->gift_pic->store('admin/'.date('Ymd'));
+        }
+
+         if($gifts-> save()){
+            return redirect('/gift')->with('true', '更新成功');
+        }else{
+            return back()->with('false','更新失败');
+        }  
     }
 
     /**
