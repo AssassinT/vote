@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Gift;
 
 class GiftController extends Controller
 {
@@ -13,7 +14,8 @@ class GiftController extends Controller
      */
     public function index()
     {
-        //
+        $gifts = Gift::all();   
+        return view('/admin/gift/index',compact('gifts'));
     }
 
     /**
@@ -23,7 +25,8 @@ class GiftController extends Controller
      */
     public function create()
     {
-        //
+        return view('/admin/gift/create');
+        
     }
 
     /**
@@ -34,7 +37,22 @@ class GiftController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        //插入数据
+        $gifts = new Gift;
+        $gifts -> gift_name = $request -> gift_name;
+        $gifts -> price = $request -> price;
+
+        //文件上传
+        //检测是否有文件上传
+        if ($request->hasFile('gift_pic')) {
+            $gifts->gift_pic = '/uploads/'.$request->gift_pic->store('admin/'.date('Ymd'));
+        }
+        //插入
+        if($gifts->save()){
+                return redirect('/gift')->with('true','添加成功');
+        }else{
+            return back()->with('false','添加失败!');
+        }
     }
 
     /**
