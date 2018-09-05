@@ -101,8 +101,7 @@ class UserController extends Controller
     public function update(Request $request, $id)
     {
         //
-        var_dump($request->user_phone);
-        exit;
+        
         $user = User::findorfail($id);
         // 更新
         $user -> user_name = $request->user_name;
@@ -111,7 +110,7 @@ class UserController extends Controller
         $user -> has_vip = $request->has_vip;
         $user -> integral = $request->integral;
         $user -> has_admin = $request->has_admin;
-        dd((int)$request->user_phone);
+       
          // 检测文件是否上传
         if($request->hasfile('head_pic')){
            $user->head_pic = '/uploads/'.$request->head_pic->store('admin/'.date('Ymd'));
