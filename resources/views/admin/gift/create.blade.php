@@ -49,4 +49,23 @@
                 </div>
 
             </div>
+
+<script>
+    $(function () {
+        $("#file").change(function () {
+            var fil = this.files;
+            for (var i = 0; i < fil.length; i++) {
+                reads(fil[i]);
+            }
+        });
+    });
+    
+    function reads(fil){
+        var reader = new FileReader();
+        reader.readAsDataURL(fil);
+        reader.onload = function(){
+            $('#file').after("<img width='60' src='"+reader.result+"'>");
+        };
+    };
+</script>
 @endsection
