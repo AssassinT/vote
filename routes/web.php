@@ -11,9 +11,6 @@
 |
 */
 
-Route::get('/admin/index', function () {
-    return view('/admin/admin');
-});
 
 Route::get('/', function () {
     return view('welcome');
