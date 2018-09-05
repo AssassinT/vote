@@ -21,14 +21,17 @@
                             <input type="text" name="a_d_name" class="tpl-form-input" id="user-name" placeholder="">
                         </div>
                     </div>
+
+
+
                     <div class="am-form-group">
                         <label for="user-phone" class="am-u-sm-3 am-form-label">广告位置</label>
                         <div class="am-u-sm-9">
                             <select data-am-selected="{searchBox: 4}" name="position" style="display: none;">
-                                <option name="position" value="one">首页右侧栏</option>
-                                <option name="position" value="two">首页左侧栏</option>
-                                <option name="position" value="three">投票界面右侧栏</option>
-                                <option name="position" value="four">添加界面右侧栏</option>
+                                <option name="position" value="1">首页右侧栏</option>
+                                <option name="position" value="2">首页左侧栏</option>
+                                <option name="position" value="3">投票界面右侧栏</option>
+                                <option name="position" value="4">添加界面右侧栏</option>
                             </select>
                         </div>
                     </div>
@@ -47,6 +50,7 @@
                                 <button type="button" class="am-btn am-btn-danger am-btn-sm">
                                     <i class="am-icon-cloud-upload"></i> 添加封面图片</button>
                                 <input id="doc-form-file" type="file" name="a_d_pic">
+                                
                             </div>
                         </div>
                     </div>
