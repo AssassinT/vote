@@ -15,6 +15,10 @@ Route::get('/admin/index', function () {
     return view('/admin/admin');
 });
 
+Route::get('/', function () {
+    return view('/welcome');
+});
+
 Route::get('/admin/index','AdminController@index');//后台首页
 
 
