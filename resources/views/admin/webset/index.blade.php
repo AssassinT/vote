@@ -13,9 +13,10 @@
                         <div class="am-form-group">
                             <label for="user-name" class="am-u-sm-3 am-form-label">网站开关</label>
                             <div class="am-u-sm-9">
-                                <input type="radio" id="user-name" name="has_off" value="0" checked>
+
+                                <input type="radio" id="user-name" name="has_off" {{$websets['has_off']==0 ? 'checked' : ''}} value="0" >
                                 <small>开</small>&nbsp;&nbsp;
-                                <input type="radio"  name="has_off" value="1">
+                                <input type="radio"  name="has_off" value="1" {{$websets['has_off']==1 ? 'checked' : ''}}>
                                 <small>关</small>                                
                             </div>
                         </div>
@@ -76,7 +77,7 @@
                                     <button type="button" class="am-btn am-btn-danger am-btn-sm">
                                         <i class="am-icon-cloud-upload"></i> 添加网站Logo</button>
                                     <input id="doc-form-file" type="file" name="web_pic">
-                                    <img src="{{$websets ? $websets -> web_pic: '' }}" alt="" width="60" >
+                                    <img id='qrcode' src="{{$websets ? $websets -> web_pic: '' }}" alt="" width="60" >
                                     
                                 </div>
                             </div>
@@ -89,8 +90,8 @@
                                     </div>
                                     <button type="button" class="am-btn am-btn-danger am-btn-sm">
                                         <i class="am-icon-cloud-upload"></i> 添加微信二维码</button>
-                                    <input id="doc-form-file" type="file" name="wechat_qrcode">
-                                    <img src="{{$websets ? $websets -> wechat_qrcode: '' }}" alt="" width="60" >
+                                    <input id="doc-form-file1" type="file" name="wechat_qrcode">
+                                    <img id='qrcode1' src="{{$websets ? $websets -> wechat_qrcode: '' }}" alt="" width="60" >
 
                                 </div>
                             </div>
@@ -106,4 +107,41 @@
             </div>
         </div>
     </div>
-    @endsection
+    <script>
+    $(function () {
+        $("#doc-form-file").change(function () {
+            var fil = this.files;
+            for (var i = 0; i < fil.length; i++) {
+                reads(fil[i]);
+            }
+        });
+
+         $("#doc-form-file1").change(function () {
+            var fil = this.files;
+            for (var i = 0; i < fil.length; i++) {
+                reads1(fil[i]);
+            }
+        });
+    });
+    
+    function reads(fil){
+        var reader = new FileReader();
+        reader.readAsDataURL(fil);
+        reader.onload = function(){
+            $('#qrcode').attr("src",reader.result);
+        }
+    };
+
+    function reads1(fil){
+        var reader = new FileReader();
+        reader.readAsDataURL(fil);
+        reader.onload = function(){
+            console.log('reader.result');
+            $('#qrcode1').attr("src",reader.result);
+        }
+}
+
+</script>
+
+
+@endsection

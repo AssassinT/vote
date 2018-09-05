@@ -4,7 +4,7 @@
     <div class="portlet-title">
 
         <div class="caption font-green bold">
-            <span class="am-icon-code"></span> 广告列表
+            <span class="am-icon-code"></span> 帮助列表
         </div>
     </div>
     <div class="tpl-block">
@@ -12,14 +12,14 @@
             <div class="am-u-sm-12 am-u-md-6">
                 <div class="am-btn-toolbar">
                     <div class="am-btn-group am-btn-group-xs">
-                        <a href="/a_d/create" class="am-btn am-btn-default am-btn-success"><span class="am-icon-plus"></span> 新增</a>
+                        <a href="/help/create" class="am-btn am-btn-default am-btn-success"><span class="am-icon-plus"></span> 新增</a>
                         <button type="button" class="am-btn am-btn-default am-btn-danger"><span class="am-icon-trash-o"></span> 删除</button>
                     </div>
                 </div>
             </div>
             
             <div class="am-u-sm-12 am-u-md-3">
-                <form action="/a_d" method="get">
+                <form action="/help" method="get">
                 <div class="am-input-group am-input-group-sm">
                     <input type="text" name="keywords" class="am-form-field" value="{{request()->keywords}}">
                     <span class="am-input-group-btn">
@@ -39,29 +39,29 @@
                                 <input type="checkbox" class="tpl-table-fz-check">
                             </th>
                             <th class="table-id">ID</th>
-                            <th class="table-title">广告名称</th>
-                            <th class="table-title">广告链接</th>
-                            <th class="table-title">广告主图</th>
-                            <th class="table-title">广告位置</th>
+                            <th class="table-title">问题</th>
+                            <th class="table-title">答案</th>
+
                             <th class="table-set">操作</th>
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach($a_ds as $v)
+                        @foreach($helps as $v)
                         <tr>
                             <td>
                                 <input type="checkbox">
                             </td>
                             <td>{{$v['id']}}</td>
-                            <td class="am-hide-sm-only">{{$v['a_d_name']}}</td>
-                            <td class="am-hide-sm-only">{{$v['a_d_url']}}</td>
-                            <td><img src="{{$v['a_d_pic']}}" width="40" height="40"alt=""></td>
-                            <td>{{$v['position']}}</td>
+                            <td class="am-hide-sm-only">{{$v['question']}}</td>
+                            <td class="am-hide-sm-only">{{$v['answer']}}</td>
+
+
+                            
                             <td>
                                 <div class="am-btn-toolbar">
                                     <div class="am-btn-group am-btn-group-xs">
-                                        <a href="/a_d/{{$v['id']}}/edit" class="am-btn am-btn-default am-btn-xs am-text-secondary"><span class="am-icon-pencil-square-o"></span> 编辑</a>
-                                        <form style="float:left" action="/a_d/{{$v['id']}}" method="post">
+                                        <a href="/help/{{$v['id']}}/edit" class="am-btn am-btn-default am-btn-xs am-text-secondary"><span class="am-icon-pencil-square-o"></span> 编辑</a>
+                                        <form style="float:left" action="/help/{{$v['id']}}" method="post">
                                             {{method_field('DELETE')}}
                                             {{csrf_field()}}
                                             <button class="am-btn am-btn-default am-btn-xs am-text-danger am-hide-sm-only"><span class="am-icon-trash-o"></span> 删除</button>
