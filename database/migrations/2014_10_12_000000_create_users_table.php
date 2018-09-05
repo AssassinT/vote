@@ -13,6 +13,7 @@ class CreateUsersTable extends Migration
      */
     public function up()
     {
+        
         Schema::create('users', function (Blueprint $table) {
             $table->increments('id');
             $table->enum('has_admin', ['0', '1'])->default('0');
@@ -34,6 +35,7 @@ class CreateUsersTable extends Migration
      */
     public function down()
     {
+
         Schema::dropIfExists('users');
     }
 }
