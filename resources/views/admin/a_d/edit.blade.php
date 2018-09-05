@@ -21,6 +21,12 @@
                         </div>
                     </div>
                     <div class="am-form-group">
+                        <label for="user-name" class="am-u-sm-3 am-form-label">广告链接<span class="tpl-form-line-small-title"></span></label>
+                        <div class="am-u-sm-9">
+                            <input type="text" name="a_d_url" class="tpl-form-input" id="user-name" value="{{$a_d['a_d_url']}}"placeholder="">                        
+                        </div>
+                    </div>
+                    <div class="am-form-group">
                         <label for="user-phone" class="am-u-sm-3 am-form-label">广告位置</label>
                         <div class="am-u-sm-9">
                             <select data-am-selected="{searchBox: 1}" name="position" style="display: none;">
@@ -37,12 +43,7 @@
 
 
 
-                    <div class="am-form-group">
-                        <label for="user-name" class="am-u-sm-3 am-form-label">广告链接<span class="tpl-form-line-small-title"></span></label>
-                        <div class="am-u-sm-9">
-                            <input type="text" name="a_d_url" class="tpl-form-input" id="user-name" value="{{$a_d['a_d_url']}}"placeholder="">                        
-                        </div>
-                    </div>
+                    
                     <div class="am-form-group">
                         <label for="user-weibo" class="am-u-sm-3 am-form-label">广告主图</label>
                         <div class="am-u-sm-9">
@@ -52,7 +53,7 @@
                                 <button type="button" class="am-btn am-btn-danger am-btn-sm">
                                     <i class="am-icon-cloud-upload"></i> 添加封面图片</button>
                                 <input id="doc-form-file" type="file" name="a_d_pic">
-                                <img src="{{$a_d['a_d_pic']}}" width="40" alt="">
+                                <img id="hsl" src="{{$a_d['a_d_pic']}}" width="40" height="40"alt="">
                             </div>
                         </div>
                     </div>
@@ -70,4 +71,22 @@
         </div>
     </div>
 </div>
+<script>
+$(function () {
+        $("#doc-form-file").change(function () {
+            var fil = this.files;
+            for (var i = 0; i < fil.length; i++) {
+                reads(fil[i]);
+            }
+        });
+    });
+    
+    function reads(fil){
+        var reader = new FileReader();
+        reader.readAsDataURL(fil);
+        reader.onload = function(){
+            $('#hsl').attr("src",reader.result);
+        };
+    };
+</script>
 @endsection

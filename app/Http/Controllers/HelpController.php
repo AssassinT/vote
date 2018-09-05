@@ -86,8 +86,7 @@ class HelpController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $help = new help;
-
+        $help = help::findOrFail($id);
         $help -> question = $request->question;
         $help -> answer = $request->answer;
         if($help -> save()){
@@ -95,6 +94,12 @@ class HelpController extends Controller
         }else{
             return back()->with('false','添加失败');
         }
+
+
+
+
+
+        
 
     }
 
