@@ -15,7 +15,7 @@ class ModefyWebsetPhone extends Migration
     {
         Schema::getConnection()->getDoctrineSchemaManager()->getDatabasePlatform()->registerDoctrineTypeMapping('enum', 'string');
         Schema::table('web_sets', function (Blueprint $table) {
-            $table->string('web_pgine')->nullable()->change();
+            $table->string('web_phone')->nullable()->change();
         });
     }
 
