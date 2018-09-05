@@ -16,11 +16,7 @@ Route::get('/admin/index', function () {
 });
 
 Route::get('/', function () {
-<<<<<<< HEAD
-    return view('/welcome');
-=======
     return view('welcome');
->>>>>>> 6c59b7e0301eda57e682b9f03fbdb57ed00a51c2
 });
 
 Route::get('/admin/index','AdminController@index');//后台首页
