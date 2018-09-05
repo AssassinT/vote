@@ -15,6 +15,17 @@
         <div class="am-g">
             <div class="tpl-form-body tpl-form-line">
                 <form class="am-form tpl-form-line-form" method="post" action="/a_d" enctype="multipart/form-data">
+                <div class="am-form-group">
+                        <label for="user-phone" class="am-u-sm-3 am-form-label">广告位置</label>
+                        <div class="am-u-sm-9">
+                            <select data-am-selected="{searchBox: 4}" name="position" style="display: none;">
+                                <option name="position" value="1">首页右侧栏</option>
+                                <option name="position" value="2">首页左侧栏</option>
+                                <option name="position" value="3">投票界面右侧栏</option>
+                                <option name="position" value="4">添加界面右侧栏</option>
+                            </select>
+                        </div>
+                    </div>
                     <div class="am-form-group">
                         <label for="user-name" class="am-u-sm-3 am-form-label">广告名称<span class="tpl-form-line-small-title"></span></label>
                         <div class="am-u-sm-9">
@@ -29,17 +40,7 @@
                         </div>
                     </div>
 
-                    <div class="am-form-group">
-                        <label for="user-phone" class="am-u-sm-3 am-form-label">广告位置</label>
-                        <div class="am-u-sm-9">
-                            <select data-am-selected="{searchBox: 4}" name="position" style="display: none;">
-                                <option name="position" value="1">首页右侧栏</option>
-                                <option name="position" value="2">首页左侧栏</option>
-                                <option name="position" value="3">投票界面右侧栏</option>
-                                <option name="position" value="4">添加界面右侧栏</option>
-                            </select>
-                        </div>
-                    </div>
+                    
                     
                     <div class="am-form-group">
                         <label for="user-weibo" class="am-u-sm-3 am-form-label">广告主图</label>

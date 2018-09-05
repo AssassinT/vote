@@ -55,7 +55,7 @@
                             <td>{{$v['id']}}</td>
                             <td class="am-hide-sm-only">{{$v['a_d_name']}}</td>
                             <td class="am-hide-sm-only">{{$v['a_d_url']}}</td>
-                            <td><img src="{{$v['a_d_pic']}}" width="40" alt=""></td>
+                            <td><img src="{{$v['a_d_pic']}}" width="40" height="40"alt=""></td>
                             <td>{{$v['position']}}</td>
                             <td>
                                 <div class="am-btn-toolbar">
