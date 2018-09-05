@@ -37,6 +37,8 @@
                                             <th class="table-check"><input type="checkbox" class="tpl-table-fz-check"></th>
                                             <th class="table-id">ID</th>
                                             <th class="table-title">名称</th>
+                                            <th class="table-title">价格</th>
+                                            <th class="table-title">图标</th>                                            
                                             <th class="table-type">操作</th>
                                         </tr>
                                     </thead>
@@ -52,8 +54,8 @@
                                             <td>
                                                 <div class="am-btn-toolbar">
                                                     <div class="am-btn-group am-btn-group-xs">
-                                                        <a href='/cate/{{$v['id']}}/edit'><button class="am-btn am-btn-default am-btn-xs am-text-secondary"><span class="am-icon-pencil-square-o"></span> 编辑</button></a>
-                                                      <form style="float:right;" action="/cate/{{$v['id']}}" method='post'>
+                                                        <a href='/gift/{{$v['id']}}/edit'><button class="am-btn am-btn-default am-btn-xs am-text-secondary"><span class="am-icon-pencil-square-o"></span> 编辑</button></a>
+                                                      <form style="float:right;" action="/gift/{{$v['id']}}" method='post'>
                                                         <button class="am-btn am-btn-default am-btn-xs am-text-danger am-hide-sm-only"><span class="am-icon-trash-o"></span> 删除</button>
 													{{method_field('DELETE')}}
 													{{csrf_field()}}

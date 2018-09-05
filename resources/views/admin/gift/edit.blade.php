@@ -15,13 +15,27 @@
 
 
                         <div class="am-u-sm-12 am-u-md-9">
-                            <form action="/cate/{{$cates['id']}}" method="post" class="am-form am-form-horizontal">
+                            <form action="/gift/{{$gifts['id']}}" method="post" class="am-form am-form-horizontal">
                                 <div class="am-form-group">
-                                    <label for="user-name" class="am-u-sm-3 am-form-label">分类名称</label>
+                                    <label for="user-name" class="am-u-sm-3 am-form-label">礼物名称</label>
                                     <div class="am-u-sm-9">
-                                        <input type="text" id="user-name" value="{{$cates['name']}}" name="name" placeholder="输入分类名称">
+                                        <input type="text" id="user-name" value="{{$gifts['gift_name']}}" name="gift_name">
                                     </div>
                                 </div>
+                                <div class="am-form-group">
+                                    <label for="user-name" class="am-u-sm-3 am-form-label">礼物价格</label>
+                                    <div class="am-u-sm-9">
+                                        <input type="text" id="user-name" value="{{$gifts['price']}}" name="price">
+                                    </div>
+                                </div>
+                                <div class="am-form-group">
+                                    <label for="user-name" class="am-u-sm-3 am-form-label">礼物图片</label>
+                                    <div class="am-u-sm-9" style='font-size:13px;'>
+                                        <input type="file"  id="file" value="{{$gifts['gift_pic']}}" name="gift_pic">
+                                    </div>
+                                </div>
+
+
 
                                
                                 
