@@ -185,13 +185,15 @@
 
         
         <div class="tpl-content-wrapper">
-        @yield('content')
+        
                             @if(Session::has('true'))
                             <div id='tishi1'>{{Session::get('true')}}</div>
                             @endif
                             @if(Session::has('false'))
                             <div id='tishi2'>{{Session::get('false')}}</div>
                             @endif
+                            
+                            @yield('content')
 
 
 
