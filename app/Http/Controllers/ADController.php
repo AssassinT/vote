@@ -49,9 +49,9 @@ class ADController extends Controller
         }
 
         if($a_d -> save()){
-            return redirect('/a_d')->with('success', '添加成功');
+            return redirect('/a_d')->with('true', '添加成功');
         }else{
-            return back()->with('error','添加失败');
+            return back()->with('false','添加失败');
         }
 
     }
@@ -99,9 +99,9 @@ class ADController extends Controller
         }
 
         if($a_d -> save()){
-            return redirect('/a_d')->with('success','更新成功');
+            return redirect('/a_d')->with('true','更新成功');
         }else{
-            return back()->with('error','更新失败');
+            return back()->with('false','更新失败');
     }
 }
 
@@ -115,9 +115,9 @@ class ADController extends Controller
     {
         $a_d = aD::findOrFail($id);
         if($a_d->delete()){
-            return back()->with('success','删除成功');
+            return back()->with('true','删除成功');
         }else{
-            return back()->with('error','删除失败!');
+            return back()->with('false','删除失败!');
         }
     }
 }

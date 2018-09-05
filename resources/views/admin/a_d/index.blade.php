@@ -1,20 +1,6 @@
-@extends('layouts.admin') @section('title','广告列表') @section('content')
+@extends('layouts.admin') @section('content')
 <div class="tpl-portlet-components">
-@if(Session::has('success'))
-            <div class=" am-u-sm-12" style="padding:0px;margin:0px;">
-                <div class="dashboard-stat green">
-                        <div class="desc" style="text-align: center;line-height:45px;color:white">{{Session::get('success')}} </div>
-                </div>
-            </div>
-            @endif
 
-            @if(Session::has('error'))
-            <div class=" am-u-sm-12" style="padding:0px;margin:0px;">
-                <div class="dashboard-stat red">
-                        <div class="desc" style="text-align: center;line-height:45px;color:white">{{Session::get('error')}} </div>
-                </div>
-            </div>
-            @endif
     <div class="portlet-title">
 
         <div class="caption font-green bold">
