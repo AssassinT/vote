@@ -13,9 +13,10 @@
                         <div class="am-form-group">
                             <label for="user-name" class="am-u-sm-3 am-form-label">网站开关</label>
                             <div class="am-u-sm-9">
-                                <input type="radio" id="user-name" name="has_off" value="0" checked>
+
+                                <input type="radio" id="user-name" name="has_off" {{$websets['has_off']==0 ? 'checked' : ''}} value="0" >
                                 <small>开</small>&nbsp;&nbsp;
-                                <input type="radio"  name="has_off" value="1">
+                                <input type="radio"  name="has_off" value="1" {{$websets['has_off']==1 ? 'checked' : ''}}>
                                 <small>关</small>                                
                             </div>
                         </div>

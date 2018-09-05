@@ -74,7 +74,8 @@ class GiftController extends Controller
      */
     public function edit($id)
     {
-        //
+       $gifts = Gift::findOrFail($id);
+       return view('admin.gift.edit',compact('gifts'));
     }
 
     /**
@@ -96,7 +97,12 @@ class GiftController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
-    {
-        //
+    {   
+        $gifts = Gift::findOrFail($id);
+        if($gifts->delete()){
+           return redirect('/gift')->with('true','删除成功');
+        }else{
+            return back()->with('false','删除失败');
+        }
     }
 }
