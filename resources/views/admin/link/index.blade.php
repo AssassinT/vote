@@ -51,10 +51,10 @@
                                 <input type="checkbox">
                             </td>
                             <td>{{$v['id']}}</td>
-                            <td class="am-hide-sm-only">{{$v['link_name']}}</td>
+                            <td class="am-hide-sm-only">{{$v['name']}}</td>
                             <td class="am-hide-sm-only">{{$v['weight']}}</td>
                             <td class="am-hide-sm-only"><img src="{{$v['link_pic']}}" width="40" alt="" height="40" ></td>
-                            <td class="am-hide-sm-only">{{$v['link_url']}}</td>
+                            <td class="am-hide-sm-only">{{$v['url']}}</td>
                             <td>
                                 <div class="am-btn-toolbar">
                                     <div class="am-btn-group am-btn-group-xs">
