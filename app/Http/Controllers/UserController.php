@@ -106,7 +106,7 @@ class UserController extends Controller
         // 更新
         $user -> user_name = $request->user_name;
         $user -> password = Hash::make($request->password);
-        $user -> user_phone = (int)$request->user_phone;
+        $user -> user_phone = $request->user_phone;
         $user -> has_vip = $request->has_vip;
         $user -> integral = $request->integral;
         $user -> has_admin = $request->has_admin;
