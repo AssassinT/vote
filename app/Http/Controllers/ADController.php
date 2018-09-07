@@ -16,7 +16,7 @@ class ADController extends Controller
     {
         $a_ds = aD::orderBy('id','desc')
             ->where('a_d_name','like', '%'.request()->keywords.'%')
-            ->get();
+            ->paginate(10);
         return view('admin.a_d.index', ['a_ds'=>$a_ds]);
     }
 
