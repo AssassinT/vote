@@ -17,11 +17,11 @@
 // });
 
 //前台
-Route::get('/login', 'LoginController@login');
+Route::get('/home/login', 'LoginController@login');
 Route::post('/login', 'LoginController@dologin');
 Route::get('/loginout', 'LoginController@loginout');
-Route::get('/reg', 'LoginController@reg');
-Route::post('/reg', 'LoginController@doreg');
+Route::get('/home/reg', 'LoginController@reg');
+Route::post('home/doreg', 'LoginController@doreg');
 
 
 Route::get('/myindex', 'MyController@index');
