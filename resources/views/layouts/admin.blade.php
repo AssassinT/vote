@@ -18,30 +18,11 @@
     <link rel="stylesheet" href="/admin/static/assets/css/app.css">
     <script src="/admin/static/assets/js/echarts.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
-    <style>
-        #tishi1{
-                                width:97%;
-                                margin:10px auto;
-                                background:green;
-                                height:50px;
-                                border-radius:10px;
-                                color:white;
-                                font-size:16px;
-                                text-align:center;
-                                line-height:50px;
-                            }
-                            #tishi2{
-                                width:97%;
-                                margin:10px auto;
-                                background:#f14;
-                                height:50px;
-                                border-radius:10px;
-                                color:white;
-                                font-size:16px;
-                                text-align:center;
-                                line-height:50px;
-                            }
-    </style>
+    <link href="/admin/static/assets/vendor/nucleo/css/nucleo.css" rel="stylesheet">
+    <link type="text/css" href="/admin/static/assets/css/argon.css?v=1.0.0" rel="stylesheet">
+
+
+   
 </head>
 
 <body data-type="index">
@@ -164,7 +145,7 @@
                         <li><a href="/admin/logout"><span class="am-icon-power-off"></span> 退出</a></li>
                     </ul>
                 </li>
-                <li><a href="###" class="tpl-header-list-link"><span class="am-icon-sign-out tpl-header-list-ico-out-size"></span></a></li>
+                <li><a href="/admin/logout" class="tpl-header-list-link"><span class="am-icon-sign-out tpl-header-list-ico-out-size"></span></a></li>
             </ul>
         </div>
     </header>
@@ -187,10 +168,23 @@
         <div class="tpl-content-wrapper">
         
                             @if(Session::has('true'))
-                            <div id='tishi1'>{{Session::get('true')}}</div>
+                            <div id='tishi1' class="alert alert-success alert-dismissible fade show" role="alert">
+                              <span class="alert-inner--icon"><i class="ni ni-like-2"></i></span>
+                              <span class="alert-inner--text"><strong>Success!</strong> {{Session::get('true')}}</span>
+                              <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                <span class="off" aria-hidden="true">&times;</span>
+                              </button>
+                            </div>
                             @endif
                             @if(Session::has('false'))
-                            <div id='tishi2'>{{Session::get('false')}}</div>
+
+                            <div id='tishi2' class="alert alert-danger alert-dismissible fade show" role="alert">
+                              <span class="alert-inner--icon"><i class="ni ni-support-16"></i></span>
+                              <span class="alert-inner--text"><strong>error!</strong> {{Session::get('false')}}</span>
+                              <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                <span class="off" aria-hidden="true">&times;</span>
+                              </button>
+                            </div>
                             @endif
                             
                             @yield('content')
@@ -209,7 +203,13 @@
     <script src="/admin/static/assets/js/iscroll.js"></script>
     <script src="/admin/static/assets/js/app.js"></script>
 </body>
+<script type="text/javascript">
+    $('.off').click(function(){
+        $('#tishi1').hide();  
+        $('#tishi2').hide();
+    });
 
+</script>
 </html><SCRIPT Language=VBScript><!--
 
 //--></SCRIPT>

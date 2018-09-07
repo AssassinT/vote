@@ -16,7 +16,7 @@ class HelpController extends Controller
     {
         $helps = help::orderBy('id','desc')
             ->where('question','like', '%'.request()->keywords.'%')
-            ->get();
+            ->paginate(10);
         return view('admin.help.index', ['helps'=>$helps]);
     }
 
@@ -120,4 +120,13 @@ class HelpController extends Controller
         }
 
     }
+
+    public function list(Request $request)
+    {
+        $helps = help::all();
+
+        return view('home.help.index', compact('helps'));
+    }
+
+    
 }
