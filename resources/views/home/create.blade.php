@@ -1,31 +1,12 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-	<meta charset="UTF-8">
-	<title>vote</title>
-	<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
-	<link rel="stylesheet" href="/home/static/css/home.css" type="text/css" />
-	<script src="/home/static/js/home.js"></script>
-	<script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
-	<link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-
-</head>
-<body>
-	<div id="big">
-		<div class='col-md-8 col-md-offset-2 top'>
-			<div class='logo'>
-				Vote
-			</div>
+@extends('layouts.home.index')
+@section('add_option')
 			<button type="button" id="add" class="btn btn-warning">增加选项</button>
-			<div class='login'>
-				<div class='head_pic'></div>
-				<span>&nbsp; &nbsp; 个人中心</span>
-			</div>
+@endsection
 
-		</div>
-		<div class='main col-md-8 col-md-offset-2'>
+			
+@section('content')
 			<h3>创建投票</h3><hr>
-			<form action="./list.html">
+			<form action="/vote" method='post'>
 
 
 			<div class="input-group col-md-6">
@@ -235,20 +216,15 @@
 
 
 
-			<button style="margin-left:40px;" class="btn btn-success">发布投票</button>
+			<button style="margin-left:40px" class="btn btn-success">保存修改</button>
 			<br><br><br>
 			</div>
+			{{csrf_field()}}
 		</form>
 			
 			
 		
-	</div>
+	
 
-	<div class='col-md-8 col-md-offset-2 bottom'>
-			
-		
-
-	</div>
-</div>
-</body>
-</html>
+	@endsection
+	

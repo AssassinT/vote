@@ -1,30 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-	<meta charset="UTF-8">
-	<title>vote</title>
-	<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
-	<link rel="stylesheet" href="/home/static/css/home.css" type="text/css" />
-	<script src="/home/static/js/home.js"></script>
-	<script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
-	<link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+@extends('layouts.home.index')
 
-</head>
-<body>
-	<div id="big">
-		<div class='col-md-8 col-md-offset-2 top'>
-			<div class='logo'>
-				Vote
-			</div>
-			
-			<div class='login'>
-				<div class='head_pic'></div>
-				<span>&nbsp; &nbsp; 个人中心</span>
-			</div>
-
-		</div>
-
-		<div class='main col-md-8 col-md-offset-2'>
+@section('content')
 			<h3>投票管理</h3><hr>
 			<table class="table table-hover">
 				<tr>
@@ -45,7 +21,7 @@
 					<td>12</td>
 					<td>520</td>
 					<td>
-						<a href="./edit.html">修改</a>|
+						<a href="/vote/1/edit">修改</a>|
 						<a href="#">统计</a>|
 						<a href="#">删除</a>
 					</td>
@@ -59,7 +35,7 @@
 					<td>12</td>
 					<td>520</td>
 					<td>
-						<a href="./edit.html">修改</a>|
+						<a href="/vote/1/edit">修改</a>|
 						<a href="#">统计</a>|
 						<a href="#">删除</a>
 					</td>
@@ -73,7 +49,7 @@
 					<td>12</td>
 					<td>520</td>
 					<td>
-						<a href="./edit.html">修改</a>|
+						<a href="/vote/1/edit">修改</a>|
 						<a href="#">统计</a>|
 						<a href="#">删除</a>
 					</td>
@@ -87,22 +63,14 @@
 					<td>12</td>
 					<td>520</td>
 					<td>
-						<a href="./edit.html">修改</a>|
+						<a href="/vote/1/edit">修改</a>|
 						<a href="#">统计</a>|
 						<a href="#">删除</a>
 					</td>
 				</tr>
 				
 			</table>	
+@endsection
 
 
-		</div>
 		
-	<div class='col-md-8 col-md-offset-2 bottom'>
-			
-		
-
-	</div>
-</div>
-</body>
-</html>

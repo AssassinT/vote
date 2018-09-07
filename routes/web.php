@@ -16,6 +16,34 @@
 //     return view('welcome');
 // });
 
+//前台
+Route::get('/login', 'LoginController@login');
+Route::post('/login', 'LoginController@dologin');
+Route::get('/loginout', 'LoginController@loginout');
+Route::get('/reg', 'LoginController@reg');
+Route::post('/reg', 'LoginController@doreg');
+
+
+Route::get('/myindex', 'MyController@index');
+Route::post('/myindex', 'MyController@store');
+
+
+Route::get('/helps', 'HelpController@list');
+
+
+
+
+
+
+
+
+
+
+
+Route::get('/', 'HomeController@index');
+Route::resource('vote', 'VoteController');//投票
+
+
 Route::get('/admin/login', 'AdminController@login');
 
 
@@ -42,6 +70,6 @@ Route::resource('gift', 'GiftController');//礼物
 Route::resource('comment', 'CommentController');//留言
 Route::resource('gift_gx', 'GiftGxController');//礼物关系
 Route::resource('option', 'OptionController');//选项
-Route::resource('vote', 'VoteController');//投票
+
 
 

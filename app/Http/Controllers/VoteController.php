@@ -13,7 +13,7 @@ class VoteController extends Controller
      */
     public function index()
     {
-        //
+        return view('/home/list');
     }
 
     /**
@@ -23,7 +23,7 @@ class VoteController extends Controller
      */
     public function create()
     {
-        //
+        return view('/home/create');
     }
 
     /**
@@ -34,7 +34,8 @@ class VoteController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        
+        return redirect('/vote');
     }
 
     /**
@@ -56,7 +57,7 @@ class VoteController extends Controller
      */
     public function edit($id)
     {
-        //
+        return view('/home/edit');
     }
 
     /**
