@@ -25,7 +25,7 @@ Route::post('home/doreg', 'LoginController@doreg');
 
 
 Route::get('/myindex', 'MyController@index');
-Route::post('/myindex', 'MyController@store');
+Route::post('/myindex/{id}', 'MyController@store');
 
 
 Route::post('/home/proposal', 'ProposalController@home_index');
@@ -34,6 +34,7 @@ Route::post('/home/proposal', 'ProposalController@home_index');
 
 
 Route::get('/helps', 'HelpController@list');
+Route::get('/home/webset', 'HelpController@cont');
 
 
 
