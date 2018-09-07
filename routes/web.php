@@ -25,7 +25,7 @@ Route::post('/reg', 'LoginController@doreg');
 
 
 Route::get('/myindex', 'MyController@index');
-Route::post('/myindex', 'MyController@store');
+Route::post('/myindex/{id}', 'MyController@store');
 
 
 Route::get('/helps', 'HelpController@list');
