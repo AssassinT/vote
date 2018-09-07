@@ -34,6 +34,7 @@ Route::post('/home/proposal', 'ProposalController@home_index');
 
 
 Route::get('/helps', 'HelpController@list');
+Route::get('/home/webset', 'HelpController@cont');
 
 
 
