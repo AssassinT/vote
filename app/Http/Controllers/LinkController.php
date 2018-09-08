@@ -17,7 +17,7 @@ class LinkController extends Controller
         //读取数据库
         $links = Link::orderBy('id','asc')
             ->where('link_name','like','%'.request()->keywords.'%')
-            ->get();
+            ->paginate(10);
         return view('admin.link.index',compact('links'));
     }
 

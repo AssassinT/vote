@@ -16,9 +16,9 @@ class ProposalController extends Controller
     public function index()
     {
         // 显示建议列表
-        $proposals = Proposal::orderBy('id','asc')
+        $proposals = Proposal::orderBy('id','desc')
             ->where('proposal_name','like','%'.request()->keywords.'%')
-            ->get();
+            ->paginate(10);
             // dd($proposals);
         return view('admin.proposal.index',compact('proposals'));
     }
@@ -33,6 +33,15 @@ class ProposalController extends Controller
         
     }
 
+    public function home_index()
+    {
+        $users = User::all();
+        $proposals = Proposal::orderBy('id','desc')
+            ->where('proposal_name','like','%'.request()->keywords.'%')
+            ->paginate(5);
+        return view('home.proposal',compact('users','proposals'));
+    }
+    
     /**
      * Store a newly created resource in storage.
      *
@@ -41,7 +50,16 @@ class ProposalController extends Controller
      */
     public function store(Request $request)
     {
-        
+        //插入数据
+        $proposal = new Proposal;
+        $proposal -> user_id = 6;//6改成session
+        $proposal -> proposal_name = $request->proposal_name;
+        $proposal -> proposal_content = $request->proposal_content;
+        if($proposal -> save()){
+            return redirect('/home/proposal')->with('true','添加成功');
+        }else{
+            return back()->with('false','添加失败');
+        }
     }
 
     /**
@@ -106,4 +124,6 @@ class ProposalController extends Controller
         }
 
     }
+
+    
 }

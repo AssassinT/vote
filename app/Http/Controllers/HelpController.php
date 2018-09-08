@@ -128,5 +128,10 @@ class HelpController extends Controller
         return view('home.help.index', compact('helps'));
     }
 
-    
+     public function cont(Request $request)
+    {
+       $helps = help::all();
+
+        return view('home.help.edit', compact('helps'));
+    }
 }
