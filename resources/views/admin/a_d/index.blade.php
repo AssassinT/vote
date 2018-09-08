@@ -74,7 +74,60 @@
                         @endforeach
                     </tbody>
                 </table>
-                
+                <style>
+                    .pagination{
+                        padding-left: 0;
+                        margin: 1.5rem 0;
+                        list-style: none;
+                        color: #999;
+                        text-align: left;
+                        padding: 0;
+                    }
+
+                    .pagination li{
+                        display: inline-block;
+                    }
+
+                    .pagination li a, .pagination li span{
+                        color: #23abf0;
+                        border-radius: 3px;
+                        padding: 6px 12px;
+                        position: relative;
+                        display: block;
+                        text-decoration: none;
+                        line-height: 1.2;
+                        background-color: #fff;
+                        border: 1px solid #ddd;
+                        border-radius: 0;
+                        margin-bottom: 5px;
+                        margin-right: 5px;
+                    }
+
+                    .pagination .active span{
+                        color: #23abf0;
+                        border-radius: 3px;
+                        padding: 6px 12px;
+                        position: relative;
+                        display: block;
+                        text-decoration: none;
+                        line-height: 1.2;
+                        background-color: #fff;
+                        border: 1px solid #ddd;
+                        border-radius: 0;
+                        margin-bottom: 5px;
+                        margin-right: 5px;
+                        background: #23abf0;
+                        color: #fff;
+                        border: 1px solid #23abf0;
+                        padding: 6px 12px;
+                    }
+                </style>
+                <div class="am-cf">
+                    <div class="am-fr">
+                        {{ $a_ds->appends(request()->all())->links() }}
+                    </div>
+                </div>
+                <hr>
             </div>
         </div>
     </div>

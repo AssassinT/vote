@@ -15,8 +15,8 @@
 			</div><br>
 
 			<div class="input-group col-md-6">
-			  <span class="input-group-addon" name='vote_explain' id="basic-addon1">说明</span>
-			  <input type="text" class="form-control" placeholder="请填写投票说明" aria-describedby="basic-addon1">
+			  <span class="input-group-addon" id="basic-addon1">说明</span>
+			  <input type="text" class="form-control" name="vote_explain" placeholder="请填写投票说明" aria-describedby="basic-addon1">
 			</div><br>
 
 			
@@ -26,13 +26,13 @@
 			<div class='option'>
 				<div class="input-group col-md-12">
 				  <span class="input-group-addon" id="basic-addon1">选项</span>
-				  <input type="text" name='option_content[]' class="form-control" placeholder="" aria-describedby="basic-addon1">
+				  <input type="text" has='option_title' name='option0[option_title]' class="form-control" placeholder="" aria-describedby="basic-addon1">
 				</div><br>
 
 				<div class='video'>
 				<div class=" input-group col-md-12">
 				  <span class="input-group-addon" id="basic-addon1">视频地址</span>
-				  <input type="text" class="form-control" name='video[]' placeholder="" aria-describedby="basic-addon1">
+				  <input type="text" class="form-control" name='option0[video]' placeholder="" aria-describedby="basic-addon1">
 				</div>
 				<div class='shi'></div>
 				</div>
@@ -41,7 +41,7 @@
 				<div class='content'>
 				<div class=" input-group col-md-12">
 				  <span class="input-group-addon" id="basic-addon1">选项说明</span>
-				  <input type="text" class="form-control" name='option_content' placeholder="" aria-describedby="basic-addon1">
+				  <input type="text" class="form-control" name='option0[option_content]' placeholder="" aria-describedby="basic-addon1">
 				</div>
 				<div class='shi'></div>
 				</div>
@@ -54,7 +54,7 @@
 		        </span>
 		        <span class="btn btn-default fileinput-button">
 		            <span>添加图片</span>
-		            <input type="file" name='option_pic'>
+		            <input type="file" name='option0[option_pic]'>
 		        </span>
 
 
@@ -180,17 +180,94 @@
 
 				<div class="input-group col-md-12">
 				  <span class="input-group-addon" id="basic-addon1">截止时间</span>
-				  <input type="date" class="form-control" placeholder="" aria-describedby="basic-addon1">
+				  <input type="date" name="end_time" class="form-control" placeholder="" aria-describedby="basic-addon1">
 				</div><br>
 
-			<button style="margin-left:40px" class="btn btn-success">保存修改</button>
+			<button style="margin-left:40px" id="tijiaoanliu" class="btn btn-success">发布投票</button>
 			<br><br><br>
 			</div>
 			{{csrf_field()}}
+			<input type="hidden" value="" id='num' name='num'>
 		</form>
-			
-			
-		
+		<style>
+			#tan{
+				display:none;
+				z-index:101;
+				width:300px;
+				height:140px;
+				position:fixed;
+				left:500px;
+				top:200px;
+				background:#09c;
+				border:1px solid #000;
+			}
+			#tishi{
+				font-size:20px;
+				line-height:40px;
+				color:white;
+				width:280px;
+				height:40px;
+				position:absolute;
+				border:1px solid white;
+				top:20px;
+				left:10px;
+			}
+			#close{
+				position:absolute;
+				bottom:20px;
+				left:120px;
+			}
+		</style>
+		<div id="tan">
+			<div id="tishi">
+				
+			</div>
+			<button id="close" class='btn-danger btn'>关闭</button>
+		</div>
+
+<script>
+	$(function(){
+		$('form').submit(function(){
+
+			if(!$('input[name=vote_title]').val()){
+				tc('必须输入投票标题!');
+				return false;
+			}
+
+			if(!$('input[name=vote_explain]').val()){
+				tc('必须输入投票说明!');
+				return false;
+			}
+
+			if(!$('input[name=vote_pic]').val()){
+				tc('必须上传投票封面!');
+				return false;
+			}
+
+			if(!$('input[has=option_title]').val()){
+				tc('必须输入选项标题!');
+				return false;
+			}
+
+			if(!$('input[name=end_time]').val()){
+				tc('必须选择投票结束时间!');
+				return false;
+			}
+
+
+
+				return false;
+		});
+		$('#close').click(function(){
+			$("#tan").hide();
+		});
+	});
+	function tc(str){
+		$('#tan').show();
+		$('#tishi').html(' &nbsp;&nbsp;'+str);
+	}
+</script>
+
 	
 
 	@endsection
