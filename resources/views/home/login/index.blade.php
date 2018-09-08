@@ -21,7 +21,7 @@
 	<div class="limiter">
 		<div class="container-login100" style="background-image: url('/login/images/bg-01.jpg');">
 			<div class="wrap-login100 p-l-55 p-r-55 p-t-65 p-b-54">
-				<form class="login100-form validate-form">
+				<form class="login100-form validate-form" action="/home/dologin" method="post">
 					<span class="login100-form-title p-b-49">登录</span>
 
 					<div class="wrap-input100 validate-input m-b-23" data-validate="请输入用户名">
@@ -32,7 +32,7 @@
 
 					<div class="wrap-input100 validate-input" data-validate="请输入密码">
 						<span class="label-input100">密码</span>
-						<input class="input100" type="password" name="pass" placeholder="请输入密码">
+						<input class="input100" type="password" name="password" placeholder="请输入密码">
 						<span class="focus-input100" data-symbol="&#xf190;"></span>
 					</div>
 
@@ -52,6 +52,7 @@
 					<div class="flex-col-c p-t-25">
 						<a href="/home/reg" class="txt2">立即注册</a>
 					</div>
+					{{csrf_field()}}
 				</form>
 			</div>
 		</div>
