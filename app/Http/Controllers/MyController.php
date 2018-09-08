@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\Hash;
 
 class MyController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
     	$user = User::findorfail(4);
     	return view('home.myindex',compact('user'));
@@ -28,7 +28,7 @@ class MyController extends Controller
         // $olduser -> integral = $request->integral;
 
 
-    	$user = User::findOrFail($id);
+    	$user = User::findOrFail(4);
     	// dd($user);
     	// $user-> password = Hash::make($request -> password);
     	// dd($user);
@@ -45,9 +45,9 @@ class MyController extends Controller
         }
 
         //检测是否修改账户
-         if(isset($request->user_name)){
-         	$user -> name = $request -> user_name ;
-         }	
+         // if(isset($request->user_name)){
+         // 	$user -> name = $request -> user_name ;
+         // }	
          
 
         //检测是否修改密码
