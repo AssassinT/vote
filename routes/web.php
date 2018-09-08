@@ -18,7 +18,7 @@
 
 //前台
 Route::get('/home/login', 'LoginController@login');
-Route::post('/login', 'LoginController@dologin');
+Route::post('/home/dologin', 'LoginController@dologin');
 Route::get('/loginout', 'LoginController@loginout');
 Route::get('/home/reg', 'LoginController@reg');
 Route::post('home/doreg', 'LoginController@doreg');

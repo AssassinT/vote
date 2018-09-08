@@ -29,13 +29,13 @@
 					</div>
 
 					<div class="wrap-input100 validate-input" data-validate="请输入密码">
-						<input class="input100" type="password" name="passward" placeholder="请输入密码">
+						<input class="input100" type="password" name="password" placeholder="请输入密码">
 						<span class="focus-input100" data-symbol="&#xf190;"></span>
 					</div>
 					
 					<div class="wrap-input100 validate-input" data-validate="请输入密码">
 						<input class="input100" type="text" name="user_phone" placeholder="请输入手机号">
-						<span class="focus-input100" data-symbol="&#xf232;"></span>
+						<span class="focus-input100" data-symbol="&#xf237;"></span>
 						<!-- <span class="focus-input100" ><i class="fa fa-mobile" aria-hidden="true" style="font-size:30px"></i></span> -->
 					</div>
 					<div class="flex-col-c p-t-25">
