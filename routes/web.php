@@ -28,7 +28,7 @@ Route::get('/myindex', 'MyController@index');
 Route::post('/myindex', 'MyController@store');
 
 
-Route::post('/home/proposal', 'ProposalController@home_index');
+Route::get('/home/proposal', 'ProposalController@home_index');
 
 
 
