@@ -139,10 +139,10 @@ $(function () {
 			if(v != $('input[name=password]').val()){
 
 				//边框
-				// $(this).addClass('error');
+				 $(this).addClass('error');
 
 				//文字提醒
-				// $(this).next().html('<span style="color:red">两次输入密码不一致</span>').show();
+				 $(this).next().html('<span style="color:red">两次输入密码不一致</span>').show();
 				alert('两次输入的密码不一致');
 				CREPASS = false;
 			}else{
