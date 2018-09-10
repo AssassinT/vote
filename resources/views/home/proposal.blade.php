@@ -24,11 +24,6 @@
                 <button class="am-btn am-btn-primary tpl-btn-bg-color-success btn" style="background-color:#1E90ff;color:white;">提交</button>
             </div>
        	</div>
-        <div style="float:right;margin-top:-263px;margin-right:110px;">
-            <input type="text" value="{{request()->keywords}}" name="keywords" id="keywords" style="height:33px ;" class="form-control"/>
-            <input type="submit" id="searchsubmit" value="搜索" class="btn" style="background-color:#1E90ff;color:white;"/>
-
-        </div>
     </form>
     <hr>
 

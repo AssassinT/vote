@@ -122,7 +122,7 @@
                 </style>
                 <div class="am-cf">
                     <div class="am-fr">
-                        {{ $proposals->appends(request()->all())->links() }}
+                        {{ $links->appends(request()->all())->links() }}
                     </div>
                 </div>
                 <hr>
