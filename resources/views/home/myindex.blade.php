@@ -141,7 +141,7 @@ $(function() {
         //获取用户输入的值
         var v = $(this).val();
         //正则
-        var reg = /^\S{6,20}$/;
+        var reg = /^\S{6,16}$/;
         if (!reg.test(v)) {
             //边框
             $(this).addClass('error');

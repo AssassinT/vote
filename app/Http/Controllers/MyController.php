@@ -10,7 +10,7 @@ class MyController extends Controller
 {
     public function index(Request $request)
     {
-    	$user = User::findorfail(4);
+    	$user = User::findorfail(5);
     	return view('home.myindex',compact('user'));
     }
 
