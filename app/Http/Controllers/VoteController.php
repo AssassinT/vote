@@ -15,7 +15,9 @@ class VoteController extends Controller
      */
     public function index()
     {
-        return view('/home/list');
+
+        $votes = Vote::where('user_id','10')->get();
+        return view('/home/list',['votes'=>$votes]);
     }
 
     /**

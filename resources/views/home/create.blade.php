@@ -5,19 +5,48 @@
 
 			
 @section('content')
+<style>
+	.pic{
+
+		display:black;
+	}
+	.option_video{
+		display:none;
+	}
+</style>
 			<h3>创建投票</h3><hr>
 			<form action="/vote" method='post'>
 
+			<div class='leixing' style="color:#888;margin-bottom:10px">
+				<span style="font-size:16px">请选择投票类型：</span> 
+				<label>
+			        <input type="radio" name="vote_type" id="" value='0' class="a-radio">
+			        <span class="b-radio"></span>文字类型
+				</label> &nbsp; &nbsp;
+				<label>
+			        <input type="radio" name="vote_type" checked id="" value='1' class="a-radio">
+			        <span class="b-radio"></span>图片类型
+				</label> &nbsp; &nbsp;
+				<label>
+			        <input type="radio" name="vote_type" id="" value='2' class="a-radio">
+			        <span class="b-radio"></span>视频类型
+				</label>
+			</div>
 
 			<div class="input-group col-md-6">
 			  <span class="input-group-addon" id="basic-addon1">标题</span>
 			  <input type="text" name='vote_title' class="form-control" placeholder="请填写投票标题" aria-describedby="basic-addon1">
 			</div><br>
+			
 
 			<div class="input-group col-md-6">
 			  <span class="input-group-addon" id="basic-addon1">说明</span>
 			  <input type="text" class="form-control" name="vote_explain" placeholder="请填写投票说明" aria-describedby="basic-addon1">
 			</div><br>
+			<span class="btn btn-default fileinput-button">
+		            <span>添加封面</span>
+		            <input type="file" name='vote_pic'>
+		        </span><br>
 
 			
 			<div id="content" class='col-md-6'>
@@ -48,22 +77,58 @@
 				
 
 
-				<span class="btn btn-default fileinput-button">
-		            <span>添加封面</span>
-		            <input type="file" name='vote_pic'>
-		        </span>
-		        <span class="btn btn-default fileinput-button">
+				
+		        <span class="btn btn-default pic fileinput-button">
 		            <span>添加图片</span>
 		            <input type="file" name='option0[option_pic]'>
 		        </span>
 
 
-				<button type="button" class="add_video btn btn-default">添加视频</button>
+				<button type="button" class="add_video btn option_video btn-default">添加视频</button>
 				<button type="button" class="add_content btn btn-default">添加说明</button>
 				
 			</div>
 			<br>
+
+<div class='option'>
+				<div class="input-group col-md-12">
+				  <span class="input-group-addon" id="basic-addon1">选项</span>
+				  <input type="text" has='option_title' name='option1[option_title]' class="form-control" placeholder="" aria-describedby="basic-addon1">
+				</div><br>
+
+				<div class='video'>
+				<div class=" input-group col-md-12">
+				  <span class="input-group-addon" id="basic-addon1">视频地址</span>
+				  <input type="text" class="form-control" name='option1[video]' placeholder="" aria-describedby="basic-addon1">
+				</div>
+				<div class='shi'></div>
+				</div>
+
+
+				<div class='content'>
+				<div class=" input-group col-md-12">
+				  <span class="input-group-addon" id="basic-addon1">选项说明</span>
+				  <input type="text" class="form-control" name='option1[option_content]' placeholder="" aria-describedby="basic-addon1">
+				</div>
+				<div class='shi'></div>
+				</div>
+				
+
+
+				
+		        <span class="btn btn-default pic fileinput-button">
+		            <span>添加图片</span>
+		            <input type="file" name='option1[option_pic]'>
+		        </span>
+
+
+				<button type="button" class="add_video btn option_video btn-default">添加视频</button>
+				<button type="button" class="add_content btn btn-default">添加说明</button>
+				
+			</div>
+
 		</div>
+
 
 
 				
@@ -227,37 +292,26 @@
 
 <script>
 	$(function(){
-		$('form').submit(function(){
-
-			if(!$('input[name=vote_title]').val()){
-				tc('必须输入投票标题!');
-				return false;
+		var vote_type_num = $('input[name=vote_type]:checked').val();
+		$('input[name=vote_type]').change(function(){
+			// alert(123);
+			var vote_type_num = $('input[name=vote_type]:checked').val();
+			if(vote_type_num=='2'){
+				$('.pic').hide();
+				$('.option_video').show();
+			}
+			if(vote_type_num=='1'){
+				$('.pic').show();
+				$('.option_video').hide();
+			}
+			if(vote_type_num=='0'){
+				$('.pic').hide();
+				$('.option_video').hide();
 			}
 
-			if(!$('input[name=vote_explain]').val()){
-				tc('必须输入投票说明!');
-				return false;
-			}
-
-			if(!$('input[name=vote_pic]').val()){
-				tc('必须上传投票封面!');
-				return false;
-			}
-
-			if(!$('input[has=option_title]').val()){
-				tc('必须输入选项标题!');
-				return false;
-			}
-
-			if(!$('input[name=end_time]').val()){
-				tc('必须选择投票结束时间!');
-				return false;
-			}
-
-
-
-				return false;
 		});
+
+
 		$('#close').click(function(){
 			$("#tan").hide();
 		});
