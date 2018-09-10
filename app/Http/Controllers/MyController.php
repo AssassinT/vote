@@ -28,7 +28,7 @@ class MyController extends Controller
         // $olduser -> integral = $request->integral;
 
 
-    	$user = User::findOrFail(4);
+    	$user = User::findOrFail($id);
     	// dd($user);
     	// $user-> password = Hash::make($request -> password);
     	// $user-> user_phone = $request -> user_phone;
