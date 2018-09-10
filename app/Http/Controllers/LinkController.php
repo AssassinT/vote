@@ -45,6 +45,7 @@ class LinkController extends Controller
         $link -> link_name = $request->link_name;
         $link -> weight = $request->weight;
         $link -> link_url = $request->link_url;
+        
 
         //文件上传
         //检测文件是否上传
@@ -52,12 +53,13 @@ class LinkController extends Controller
             $link -> link_pic = '/uploads/'.$request->link_pic->store('admin/'.date('Ymd'));
         }
 
-        if($link->save()){
+
+        if(empty($link->save())){
+            $this -> error('您输入有误,不润徐为空','/link/create');
             return redirect('/link')->with('true','添加成功');
         }else{
             return back()->with('false','添加失败');
         }
-        
 
     }
 
