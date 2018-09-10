@@ -31,13 +31,13 @@ class MyController extends Controller
     	$user = User::findOrFail(4);
     	// dd($user);
     	// $user-> password = Hash::make($request -> password);
-    	// dd($user);
     	// $user-> user_phone = $request -> user_phone;
 
     	 // 检测头像是否上传
         if($request->hasfile('head_pic')){
            $user->head_pic = '/uploads/'.$request->head_pic->store('admin/'.date('Ymd'));
         }
+         // dd($user);
 
          // 检测手机号是否修改
         if(isset($request->user_phone)){
