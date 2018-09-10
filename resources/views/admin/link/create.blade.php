@@ -15,7 +15,7 @@
                     <div class="am-form-group">
                         <label for="user-name" class="am-u-sm-3 am-form-label">名称<span class="tpl-form-line-small-title"></span></label>
                         <div class="am-u-sm-9">
-                            <input type="text" name="link_name" class="tpl-form-input" id="user-name" placeholder="">
+                            <input type="text" name="link_name" class="tpl-form-input" id="user-name" placeholder="" onblur = "CheckUserName('link_name')">
                         </div>
                     </div>
 
@@ -75,5 +75,24 @@
             $('#doc-form-file').after("<img width='60' src='"+reader.result+"'>");
         };
     };
+
+function VF_form1(){ 
+var theform = document.form;
+ var errMsg = "";
+ var setfocus = "";
+ 
+ 
+  if (theform['link_password'].value == "") {
+   errMsg = "用户名不能为空!";
+     setfocus = "['link_password']";
+ }
+  if (errMsg != ""){
+   alert(errMsg);
+ eval_r("theform" + setfocus + ".focus()");
+ }
+ else {
+ theform.submit();
+ }
+} //-->
 </script>
 @endsection
