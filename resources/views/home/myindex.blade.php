@@ -38,17 +38,17 @@
         <br>
         <br>
         <span class="btn btn-default fileinput-button">
-		    <span>上传头像</span>
-        <input type="file" id="user_head">
+            <span>上传头像</span>
+        <input type="file" id="user_head" name="head_pic">
         </span>
         <br>
         <br>
         <div class=" input-group col-md-4">
             <span class="input-group-addon" id="basic-addon1" style="width:82px">用户名</span>
             <input type="text" class="form-control" placeholder="" aria-describedby="basic-addon1" readonly value="{{$user['user_name']}}">
-            <!--  @if($user['has_vip'])	
-					  <span style="float:right"><b>V</b></span>
-					   @endif -->
+            <!--  @if($user['has_vip']) 
+                      <span style="float:right"><b>V</b></span>
+                       @endif -->
         </div>
         <br> @if(!$user['has_vip'])
         <a href="/bcvip"><i class="fa fa-star"></i> 点击成为会员</a> @endif
@@ -91,17 +91,20 @@
 {{csrf_field()}}
 </form>
 <!-- <div class="input-group col-md-6">
-			  <span class="input-group-addon" id="basic-addon1">标题</span>
-			  <input type="text" class="form-control" placeholder="请填写投票标题" aria-describedby="basic-addon1">
-	</div> -->
+              <span class="input-group-addon" id="basic-addon1">标题</span>
+              <input type="text" class="form-control" placeholder="请填写投票标题" aria-describedby="basic-addon1">
+    </div> -->
 <script>
 $(function() {
     var CPASS = false;
     var CREPASS = false;
+    var CPHONE = false;
+    var CPIC = false;
     $("#user_head").change(function() {
         var fil = this.files;
         for (var i = 0; i < fil.length; i++) {
             reads(fil[i]);
+            CPIC = true;
         }
     });
 
@@ -138,7 +141,7 @@ $(function() {
         //获取用户输入的值
         var v = $(this).val();
         //正则
-        var reg = /^\S{6,20}$/;
+        var reg = /^\S{6,16}$/;
         if (!reg.test(v)) {
             //边框
             $(this).addClass('error');
@@ -188,7 +191,7 @@ $(function() {
         //判断输入值是否都正确
         // alert(1);
         // alert(2);
-        if (CREPASS && CPASS) {
+        if (CREPASS && CPASS || CPHONE || CPIC) {
             return true;
         } else {
             return false;
@@ -217,6 +220,7 @@ function reads(fil) {
     reader.readAsDataURL(fil);
     reader.onload = function() {
         $('#usertx').attr("src", reader.result);
+
     };
 };
 </script>
