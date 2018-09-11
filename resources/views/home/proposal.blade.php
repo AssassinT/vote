@@ -5,7 +5,7 @@
             height:40px;
         }
     </style>
-	<form class="am-form tpl-form-line-form" method="post" action="/proposal">
+	<form class="am-form tpl-form-line-form" method="post" action="/proposal" onSubmit="return check(this);">
         <div class="input-group col-md-6" style="margin-left:70px; padding-top:10px;!important">
 			<span class="input-group-addon" id="basic-addon1">建议标题</span>
 			<input type="text" name='proposal_name' class="form-control" placeholder="请填写建议标题" aria-describedby="basic-addon1">
@@ -13,22 +13,16 @@
 
 		<div class="input-group col-md-6" style="margin-left:70px; padding-top:10px;!important">
 			<span class="input-group-addon" name='vote_explain' id="basic-addon1">建议内容</span>
-			<textarea class="form-control" placeholder="请填写建议内容" aria-describedby="basic-addon1" rows="6" name='proposal_content'>
-			</textarea>
-		</div><br>
+            <textarea class="form-control" name="proposal_content" rows="5" cols="59" placeholder="请填写建议内容"></textarea>
+		</div><br>7
 
                     
 		{{csrf_field()}}
         <div class="am-form-group">
            	<div class="am-u-sm-9 am-u-sm-push-3" style="margin-left:300px; padding-top:10px;!important">
-                <button class="am-btn am-btn-primary tpl-btn-bg-color-success btn" style="background-color:#1E90ff;color:white;">提交</button>
+                <button class="am-btn am-btn-primary tpl-btn-bg-color-success btn" style="background-color:#1E90ff;color:white;" >提交</button>
             </div>
        	</div>
-        <div style="float:right;margin-top:-263px;margin-right:110px;">
-            <input type="text" value="{{request()->keywords}}" name="keywords" id="keywords" style="height:33px ;" class="form-control"/>
-            <input type="submit" id="searchsubmit" value="搜索" class="btn" style="background-color:#1E90ff;color:white;"/>
-
-        </div>
     </form>
     <hr>
 
@@ -41,7 +35,7 @@
     @foreach($proposals as $v)
         <div style="margin-left:70px; padding-top:10px;">
             <b style="font-size:22px; color:#666666;">建议标题:&nbsp;&nbsp;{{$v['proposal_name']}}</b>
-            <b style="font-size:5px; color:#666666;float:right;margin-right:70px;">{{$v['created_at']}}</b>
+            <b style="font-size:5px; color:#666666;float:right;margin-right:70px;margin-top:15px;font-size: 12px;">{{$v['created_at']}}</b>
         </div>
         <div style="margin-right:63px; padding-top:10px;">
             <p style="font-size:17px;margin-left:71px; color:#666666;">
@@ -105,3 +99,32 @@
                 </div>
 
 @endsection
+
+<script type="text/javascript">
+
+    function check(form){
+        //检查建议标题是否填写
+        var proposal_name = form.proposal_name.value;
+        if(proposal_name.length==0){
+        alert("请填写建议标题！");
+        form.proposal_name.focus();
+        return false;
+        }
+        //检查建议内容是否填写
+        var proposal_content = form.proposal_content.value;
+        if(proposal_content.length==0){
+        alert("请填写建议内容！");
+        form.proposal_content.focus();
+        return false;
+        }
+
+        //提交是否成功
+        if(proposal_name.length==false || proposal_content.length==false){
+            alert("提交失败！");
+            return false;
+        }else{
+            alert("提交成功！");
+            return true;
+        }
+    }
+</script>

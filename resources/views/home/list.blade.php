@@ -12,62 +12,28 @@
 					<th>总票数</th>
 					<th>操作</th>
 				</tr>
-
+@foreach($votes as $v)
 				<tr class="active">
-					<td>1</td>
-					<td>lamp207班花选举投票活动</td>
-					<td>投票中</td>
-					<td>2018-09-02</td>
+					<td>{{$v->id}}</td>
+					<td>{{$v->vote_title}}</td>
+					<td>待定义</td>
+					<td>{{$v->created_at}}</td>
 					<td>12</td>
 					<td>520</td>
 					<td>
-						<a href="/vote/1/edit">修改</a>|
-						<a href="#">统计</a>|
-						<a href="#">删除</a>
+						<a href="/vote/{{$v->id}}/edit">修改</a>|
+						<a href="/vote/{{$v->id}}/count">统计</a>|
+						<form action="/vote/{{$v->id}}" method="post" >
+							<input type='submit' value="删除">
+							{{method_field('DELETE')}}
+							{{csrf_field()}}
+						</form>
+
+
 					</td>
 				</tr>
 
-				<tr class="active">
-					<td>1</td>
-					<td>lamp207班花选举投票活动</td>
-					<td>投票中</td>
-					<td>2018-09-02</td>
-					<td>12</td>
-					<td>520</td>
-					<td>
-						<a href="/vote/1/edit">修改</a>|
-						<a href="#">统计</a>|
-						<a href="#">删除</a>
-					</td>
-				</tr>
-
-				<tr class="active">
-					<td>1</td>
-					<td>lamp207班花选举投票活动</td>
-					<td>投票中</td>
-					<td>2018-09-02</td>
-					<td>12</td>
-					<td>520</td>
-					<td>
-						<a href="/vote/1/edit">修改</a>|
-						<a href="#">统计</a>|
-						<a href="#">删除</a>
-					</td>
-				</tr>
-
-				<tr class="active">
-					<td>1</td>
-					<td>lamp207班花选举投票活动</td>
-					<td>投票中</td>
-					<td>2018-09-02</td>
-					<td>12</td>
-					<td>520</td>
-					<td>
-						<a href="/vote/1/edit">修改</a>|
-						<a href="#">统计</a>|
-						<a href="#">删除</a>
-					</td>
-				</tr>
+@endforeach
 				
 			</table>	
 @endsection

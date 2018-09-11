@@ -8,6 +8,6 @@ class gift extends Model
 {
     public function gift_gxs()
     {
-        return $this->belongsToMany('App\Gift_gx');
+        return $this->hasMany('App\Gift_gx');
     }
 }

@@ -10,7 +10,7 @@ class MyController extends Controller
 {
     public function index(Request $request)
     {
-    	$user = User::findorfail(4);
+    	$user = User::findorfail(5);
     	return view('home.myindex',compact('user'));
     }
 
@@ -28,16 +28,16 @@ class MyController extends Controller
         // $olduser -> integral = $request->integral;
 
 
-    	$user = User::findOrFail(4);
+    	$user = User::findOrFail($id);
     	// dd($user);
     	// $user-> password = Hash::make($request -> password);
-    	// dd($user);
     	// $user-> user_phone = $request -> user_phone;
 
     	 // 检测头像是否上传
         if($request->hasfile('head_pic')){
            $user->head_pic = '/uploads/'.$request->head_pic->store('admin/'.date('Ymd'));
         }
+         // dd($user);
 
          // 检测手机号是否修改
         if(isset($request->user_phone)){
