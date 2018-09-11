@@ -16,7 +16,7 @@ class VoteController extends Controller
     public function index()
     {
 
-        $votes = Vote::where('user_id','10')->get();
+        $votes = Vote::where('user_id','10')->get();//session
         return view('/home/list',['votes'=>$votes]);
     }
 
@@ -54,7 +54,7 @@ class VoteController extends Controller
         $votes -> user_id  = '10';//后期改成session
 
         $votes->save();
-        $vote_id = Vote::where([['user_id','10'],['vote_title',request()->vote_title]])->get();
+        $vote_id = Vote::where([['user_id','10'],['vote_title',request()->vote_title]])->get();//10-session
 
         
         for($i=0;$i<=request()->num;$i++){
