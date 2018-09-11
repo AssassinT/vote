@@ -48,6 +48,7 @@ Route::get('/home/webset', 'HelpController@cont');
 
 Route::get('/', 'HomeController@index');
 Route::resource('vote', 'VoteController');//投票
+Route::get('/vote/{id}/count', 'VoteController@count');//
 
 
 Route::get('/admin/login', 'AdminController@login');

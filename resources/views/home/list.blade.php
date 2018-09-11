@@ -21,9 +21,15 @@
 					<td>12</td>
 					<td>520</td>
 					<td>
-						<a href="/vote/1/edit">修改</a>|
-						<a href="#">统计</a>|
-						<a href="#">删除</a>
+						<a href="/vote/{{$v->id}}/edit">修改</a>|
+						<a href="/vote/{{$v->id}}/count">统计</a>|
+						<form action="/vote/{{$v->id}}" method="post" >
+							<input type='submit' value="删除">
+							{{method_field('DELETE')}}
+							{{csrf_field()}}
+						</form>
+
+
 					</td>
 				</tr>
 
