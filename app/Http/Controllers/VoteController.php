@@ -38,12 +38,13 @@ class VoteController extends Controller
      */
     public function store(Request $request)
     {
+
         $votes = new Vote;
         $votes -> vote_title  = request() -> vote_title;
         $votes -> vote_explain  = request() -> vote_explain;
         $votes -> has_wechat  = request() -> has_wechat;
         $votes -> has_gift  = request() -> has_gift;
-        $votes -> has_comment  = request() -> has_comment;
+        $votes -> comment  = request() -> has_comment;
         $votes -> has_a_d  = request() -> has_a_d;
         $votes -> has_top  = request() -> has_top;
         $votes -> has_checkbox  = request() -> has_checkbox;
