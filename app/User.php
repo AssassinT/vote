@@ -31,5 +31,15 @@ class User extends Authenticatable
     {
         return $this->hasMany('App\Proposal');
     }
+
+     public function comments()
+    {
+        return $this->belongsTo('App\Comment');
+    }
+
+     public function votes()
+    {
+        return $this->belongsToMany('App\Vote');
+    }
     
 }

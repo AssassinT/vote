@@ -120,4 +120,11 @@ class VoteController extends Controller
     {
         //
     }
+
+
+
+    public function count($id)
+    {
+        echo $id;
+    }
 }
