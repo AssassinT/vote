@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-use App\Vote;
 use App\Option;
-
+use App\Vote;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 class VoteController extends Controller
 {
     /**
@@ -52,7 +52,7 @@ class VoteController extends Controller
         $votes -> has_password  = request() -> has_password;
         $votes -> end_time  = request() -> end_time;
         $votes -> vote_pic = '12345';
-        $votes -> user_id  = '10';//鍚庢湡鏀规垚session
+        $votes -> user_id  = '10';//后期改成session
 
         $votes->save();
         $vote_id = Vote::where([['user_id','10'],['vote_title',request()->vote_title]])->get();//10-session
@@ -124,8 +124,15 @@ class VoteController extends Controller
 
 
 
-    public function count($id)
+    public function count(Request $request,$id)
     {
-        echo $id;
+
+        $options =  Option::orderBy('vote_num','desc')->where('vote_id',$id)->get();
+        $arry = DB::select('select  sum(vote_num) as total from options where vote_id ='.$id);
+        $arrys = $arry[0]->total;
+        if($arrys==0){
+            $arrys = 0.1;
+        }
+     return view('/home/option/index',['options'=>$options,'arrys'=>$arrys]);
     }
 }
