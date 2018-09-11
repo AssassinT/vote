@@ -15,4 +15,11 @@ class vote extends Model
     {
         return $this->belongsTo('App\Comment');
     }
+
+    public function option()
+    {
+        return $this->hasMany('App\Option');
+    }
+
+  
 }
