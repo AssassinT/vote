@@ -15,7 +15,7 @@
 	}
 </style>
 			<h3>创建投票</h3><hr>
-			<form action="/vote" method='post'>
+			<form action="/vote" method='post' enctype="multipart/form-data">
 
 			<div class='leixing' style="color:#888;margin-bottom:10px">
 				<span style="font-size:16px">请选择投票类型：</span> 
