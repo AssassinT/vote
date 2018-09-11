@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\User;
-
+// namespace App\Http\Controllers\Ajax;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 
@@ -62,5 +62,31 @@ class LoginController extends Controller
            echo "<script>alert('注册失败');window.location.href='/home/reg';</script>";
         }
     	
+    }
+
+
+    public function req()
+    {
+        // $user_name = $_POST['user_name'];
+        //  var_dump($user_name);
+
+        // $pdo = new PDO('mysql:host=localhost;dbname=vote;chatset=utf8','root',''); 
+
+        // $stmt = $pdo -> prepare('select * from users where user_name = ?');
+
+        // $arr = [$user_name];
+
+        // $stmt -> execute($arr);
+
+        // $user = $stmt -> fetch();
+        $user = User::where('user_name',$_POST['user_name'])->first();
+
+        
+
+        if(!count($user)){
+            echo '1';
+        }else{
+            echo '0';
+        }
     }
 }
