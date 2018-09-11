@@ -52,7 +52,7 @@ class ProposalController extends Controller
     {
         //插入数据
         $proposal = new Proposal;
-        $proposal -> user_id = 6;//6改成session
+        $proposal -> user_id = 16;//16改成session
         $proposal -> proposal_name = $request->proposal_name;
         $proposal -> proposal_content = $request->proposal_content;
         if($proposal -> save()){

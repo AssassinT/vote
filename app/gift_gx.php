@@ -8,7 +8,7 @@ class gift_gx extends Model
 {
     public function options()
     {
-        return $this->hasMany('App\Option');
+        return $this->belongsToMany('App\Option');
     }
     public function gifts()
     {

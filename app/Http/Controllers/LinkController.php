@@ -15,7 +15,7 @@ class LinkController extends Controller
     public function index()
     {
         //读取数据库
-        $links = Link::orderBy('id','asc')
+        $links = Link::orderBy('id','desc')
             ->where('link_name','like','%'.request()->keywords.'%')
             ->paginate(10);
         return view('admin.link.index',compact('links'));
@@ -53,13 +53,19 @@ class LinkController extends Controller
             $link -> link_pic = '/uploads/'.$request->link_pic->store('admin/'.date('Ymd'));
         }
 
-
-        if(empty($link->save())){
-            $this -> error('您输入有误,不润徐为空','/link/create');
+        if($link->save()){
             return redirect('/link')->with('true','添加成功');
         }else{
             return back()->with('false','添加失败');
         }
+
+
+        // if(empty($link->save())){
+        //     $link -> error('您输入有误,不润徐为空','/link/create');
+        //     return redirect('/link')->with('true','添加成功');
+        // }else{
+        //     return back()->with('false','添加失败');
+        // }
 
     }
 

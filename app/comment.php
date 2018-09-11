@@ -8,10 +8,10 @@ class comment extends Model
 {
     public function users()
     {
-    	return $this->belongsToMany('App\User');
+    	return $this->hasMany('App\User');
     }
     public function votes()
     {
-    	return $this->belongsToMany('App\Vote');
+    	return $this->hasMany('App\Vote');
     }
 }

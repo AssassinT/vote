@@ -10,7 +10,7 @@ class MyController extends Controller
 {
     public function index(Request $request)
     {
-    	$user = User::findorfail(4);
+    	$user = User::findorfail(5);
     	return view('home.myindex',compact('user'));
     }
 
@@ -28,7 +28,7 @@ class MyController extends Controller
         // $olduser -> integral = $request->integral;
 
 
-    	$user = User::findOrFail(4);
+    	$user = User::findOrFail($id);
     	// dd($user);
     	// $user-> password = Hash::make($request -> password);
     	// $user-> user_phone = $request -> user_phone;
