@@ -76,7 +76,7 @@ class VoteController extends Controller
                $options -> video = request()->$temp['video'];
                // $options -> option_pic = '12345';
                // $filename = $temp.'[option_pic]';
-               // dd($request->$temp['option_pic']);
+               // dd($votes->vote_pic);
 
                  if ($request->hasFile($temp)) {
                     // dd(12);
@@ -114,8 +114,8 @@ class VoteController extends Controller
     {
         // $user = User::findOrfail($id);
         // dd($user);
-        $votes = Vote::findOrfail(27);
-
+        $votes = Vote::findOrfail($id);
+        // dd($options);
 
         // dd($votes->user);
         return view('/home/edit',compact('votes'));

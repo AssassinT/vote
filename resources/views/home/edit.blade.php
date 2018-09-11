@@ -15,7 +15,7 @@
 	}
 </style>
 			<h3>投票修改</h3><hr>
-			<form action="/vote" method='post'>
+			<form action="/vote" method='post' enctype="multipart/form-data">
 
 			<div class='leixing' style="color:#888;margin-bottom:10px">
 				<span style="font-size:16px">请选择投票类型：</span> 
@@ -35,19 +35,22 @@
 
 			<div class="input-group col-md-6">
 			  <span class="input-group-addon" id="basic-addon1">标题</span>
-			  <input type="text" name='vote_title' class="form-control" placeholder="请填写投票标题" aria-describedby="basic-addon1" value="{{$votes->vote_title}}">
+			  <input type="text" name='vote_title' class="form-control" placeholder="请填写投票标题" aria-describedby="basic-addon1" value="{{$votes->options->vote_title}}">
+
 			</div><br>
 			
 
 			<div class="input-group col-md-6">
 			  <span class="input-group-addon" id="basic-addon1">说明</span>
-			  <input type="text" class="form-control" name="vote_explain" placeholder="请填写投票说明" aria-describedby="basic-addon1">
+			  <input type="text" class="form-control" name="vote_explain" placeholder="请填写投票说明" aria-describedby="basic-addon1" value="{{$votes->vote_explain}}">
 			</div><br>
+              <div><img src ="{{$votes->vote_pic}}" height='200px' id="fmpicc"></div>
+			<br>
 			<span class="btn btn-default fileinput-button">
-		            <span>添加封面</span>
-		            <input type="file" name='vote_pic'>
-		        </span><br>
+		            <span>修改封面</span>
+		            <input type="file" name='vote_pic' id="fmpic">
 
+		        </span><br>
 			
 			<div id="content" class='col-md-6'>
 
@@ -55,7 +58,7 @@
 			<div class='option'>
 				<div class="input-group col-md-12">
 				  <span class="input-group-addon" id="basic-addon1">选项</span>
-				  <input type="text" has='option_title' name='option0[option_title]' class="form-control" placeholder="" aria-describedby="basic-addon1">
+				  <input type="text" has='option_title' name='option0[option_title]' class="form-control" placeholder="" aria-describedby="basic-addon1" value="{{$votes->option_title}}">
 				</div><br>
 
 				<div class='video'>
@@ -70,7 +73,7 @@
 				<div class='content'>
 				<div class=" input-group col-md-12">
 				  <span class="input-group-addon" id="basic-addon1">选项说明</span>
-				  <input type="text" class="form-control" name='option0[option_content]' placeholder="" aria-describedby="basic-addon1">
+				  <input type="text" class="form-control" name='option0[option_content]' placeholder="" aria-describedby="basic-addon1" >
 				</div>
 				<div class='shi'></div>
 				</div>
@@ -79,13 +82,13 @@
 
 				
 		        <span class="btn btn-default pic fileinput-button">
-		            <span>添加图片</span>
+		            <span>修改图片</span>
 		            <input type="file" name='option0[option_pic]'>
 		        </span>
 
 
-				<button type="button" class="add_video btn option_video btn-default">添加视频</button>
-				<button type="button" class="add_content btn btn-default">添加说明</button>
+				<button type="button" class="add_video btn option_video btn-default">修改视频</button>
+				<button type="button" class="add_content btn btn-default">修改说明</button>
 				
 			</div>
 			<br>
@@ -117,13 +120,13 @@
 
 				
 		        <span class="btn btn-default pic fileinput-button">
-		            <span>添加图片</span>
+		            <span>修改图片</span>
 		            <input type="file" name='option1[option_pic]'>
 		        </span>
 
 
-				<button type="button" class="add_video btn option_video btn-default">添加视频</button>
-				<button type="button" class="add_content btn btn-default">添加说明</button>
+				<button type="button" class="add_video btn option_video btn-default">修改视频</button>
+				<button type="button" class="add_content btn btn-default">修改说明</button>
 				
 			</div>
 
@@ -247,7 +250,9 @@
 
 				<div class="input-group col-md-12">
 				  <span class="input-group-addon" id="basic-addon1">单选多选</span>
-				  <input type="text" name="has_checkbox" class="form-control" placeholder="默认为最多允许投一个选项" aria-describedby="basic-addon1">
+				  <input type="select" name="has_checkbox" class="form-control" placeholder="默认为最多允许投一个选项" aria-describedby="basic-addon1">
+				  <option value="">11</option>
+				  <option value="">22</option>
 				</div><br>
 
 				<div class="input-group col-md-12">
@@ -338,6 +343,23 @@
 		$('#tan').show();
 		$('#tishi').html(' &nbsp;&nbsp;'+str);
 	}
+
+$(function () {
+        $("#fmpic").change(function () {
+            var fil = this.files;
+            for (var i = 0; i < fil.length; i++) {
+                reads(fil[i]);
+            }
+        });
+    });
+    
+    function reads(fil){
+        var reader = new FileReader();
+        reader.readAsDataURL(fil);
+        reader.onload = function(){
+            $('#fmpicc').attr("src",reader.result);
+        };
+    };
 </script>
 
 	
