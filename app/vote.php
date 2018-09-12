@@ -18,12 +18,6 @@ class vote extends Model
 
     public function option()
     {
-        return $this->belongsToMany('App\Option');
-    }
-
-
-    public function option()
-    {
         return $this->hasMany('App\Option');
     }
 
