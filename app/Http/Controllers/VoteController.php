@@ -11,6 +11,7 @@ use App\User;
 use App\Vote;
 
 
+
 class VoteController extends Controller
 {
     /**
@@ -117,15 +118,15 @@ class VoteController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Request $request,$id)
     {
         // $user = User::findOrfail($id);
         // dd($user);
         $votes = Vote::findOrfail($id);
-         // dd($votes->option);
+        // dd($votes->vote_type);
 
-        // dd($votes->user);
-        return view('/home/edit',compact('votes'));
+        
+        return view('/home/edit',compact('votes','nowtime'));
     }
 
     /**
@@ -136,10 +137,57 @@ class VoteController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
-    {
-        //
-    }
+    { 
+        $votes = Vote::findOrfail($id);
+        dd($votes);
+        $votes -> vote_title  = request() -> vote_title;  //
+        $votes -> vote_explain  = request() -> vote_explain;  //
+        $votes -> has_wechat  = request() -> has_wechat; //
+        $votes -> has_gift  = request() -> has_gift;   //
+        $votes -> comment  = request() -> has_comment;  //
+        $votes -> has_a_d  = request() -> has_a_d;    //
+        $votes -> has_top  = request() -> has_top;  //
+        $votes -> has_checkbox  = request() -> has_checkbox; //
+        $votes -> has_repeat  = request() -> has_repeat; //
+        $votes -> has_password  = request() -> has_password;  //
+        $votes -> end_time  = request() -> end_time;  //
+        $votes -> vote_type = request() -> vote_type;  //
 
+         if ($request->hasFile('vote_pic')) {
+            $votes->vote_pic = '/uploads/'.$request->vote_pic->store('admin/'.date('Ymd'));
+        }
+
+        $votes->save();
+        $vote_id = Vote::where([['user_id','$id'],['vote_title',request()->vote_title]])->get();//10-session
+
+        
+        for($i=0;$i<=request()->num;$i++){
+            // dd($_FILES);
+
+            $temp = 'option'.$i;
+            if(isset(request()->$temp)){
+                $options = new Option;
+               $options -> vote_id = $vote_id[0]->id;
+               $options -> option_title = request()->$temp['option_title'];
+               $options -> option_content = request()->$temp['option_content'];
+               $options -> video = request()->$temp['video'];
+               // $options -> option_pic = '12345';
+               // $filename = $temp.'[option_pic]';
+               // dd($votes->vote_pic);
+
+                 if ($request->hasFile($temp)) {
+                    // dd(12);
+            $options -> option_pic = '/uploads/'.$request->$temp['option_pic']->store('admin/'.date('Ymd'));
+        }
+               $options->save();
+            }
+            
+        }
+
+
+
+        return redirect('/vote');
+    }
     /**
      * Remove the specified resource from storage.
      *
