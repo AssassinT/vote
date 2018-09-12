@@ -14,7 +14,7 @@
     <div class="tpl-block">
         <div class="am-g">
             <div class="tpl-form-body tpl-form-line">
-                <form class="am-form tpl-form-line-form" method="post" action="/a_d" enctype="multipart/form-data">
+                <form class="am-form tpl-form-line-form" method="post" action="/a_d" enctype="multipart/form-data" onSubmit="return check(this);">
                 <div class="am-form-group">
                         <label for="user-phone" class="am-u-sm-3 am-form-label">广告位置</label>
                         <div class="am-u-sm-9">
@@ -85,5 +85,29 @@ $(function () {
             $('#hsl').attr("src",reader.result);
         };
     };
+
+    function check(form){
+        //检查广告名是否填写
+        var a_d_name = form.a_d_name.value;
+        if(a_d_name.length==0){
+        alert("请填写广告名！");
+        form.a_d_name.focus();
+        return false;
+        }
+        //检查广告链接是否填写
+        var a_d_url = form.a_d_url.value;
+        if(a_d_url.length==0){
+        alert("请填写广告链接！");
+        form.a_d_url.focus();
+        return false;
+        }
+        //检查广告图是否填写
+        var a_d_pic = form.a_d_pic.value;
+        if(a_d_pic.length==0){
+        alert("请选择广告图！");
+        form.a_d_pic.focus();
+        return false;
+        }
+    }
 </script>
 @endsection

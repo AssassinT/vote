@@ -39,7 +39,7 @@ class User extends Authenticatable
 
      public function votes()
     {
-        return $this->belongsToMany('App\Vote');
+        return $this->hasMany('App\vote');
     }
     
 }

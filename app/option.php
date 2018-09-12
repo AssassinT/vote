@@ -10,4 +10,15 @@ class option extends Model
     {
         return $this->belongsToMany('App\Gift_gx');
     }
+
+
+
+
+    public function vote()
+    {
+        return $this->belongsTo('App\Vote');
+    }
+
+
+
 }
