@@ -1,26 +1,14 @@
 @extends('layouts.home.index')
+
 <style>
-<style>
-    .btn {
-        color: blue;   
-        border: 0px none;  //去边框
-        font-family: "宋体";
-        text-decoration:underline;  //加下划线
-    }
-    .btn:hover{
-        color:red;
-        border: none;
-        cursor: hand;
-        cursor: pointer;
-        text-decoration:underline;  //加下划线
-    }
-    .btn:focus { 
-        outline: none;    //去边框
-    }
+	#table_list td{
+		height:30px;
+	}
+    
 </style>
 @section('content')
 			<h3>投票管理</h3><hr>
-			<table class="table table-hover">
+			<table id='table_list' class="table table-hover">
 				<tr>
 					<th>ID</th>
 					<th>标题</th>
@@ -47,12 +35,12 @@
 
 					<td>{{substr($v->end_time,0,10)}}</td>
 					<td>12</td>
-					<td>520</td>
+					<td>{{$v->vote_num}}</td>
 					<td>
-						|<a href="/vote/{{$v->id}}/edit">修改</a>|
-						<a href="/vote/{{$v->id}}/count">统计</a>
+						|<a href="/vote/{{$v->id}}/edit"><button class='btn btn-success'>修改</button></a>|
+						<a href="/vote/{{$v->id}}/count"><button class='btn btn-success'>统计</button></a>
 						<form style="float:left"  action="/vote/{{$v->id}}" method="post" >
-							<button class='btn' type='submit'>删除</button>
+							<button class='btn btn-success' type='submit'>删除</button>
 							{{method_field('DELETE')}}
 							{{csrf_field()}}
 						</form>

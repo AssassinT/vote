@@ -58,9 +58,7 @@ class VoteController extends Controller
         $votes -> has_password  = request() -> has_password;
         $votes -> end_time  = request() -> end_time;
 
-        $votes -> vote_pic = '12345';
-        $votes -> user_id  = '10';//后期改成session
-
+        $votes -> vote_type = request() -> vote_type;
         // $votes -> vote_pic = '12345';
         $votes -> user_id  = '10';//鍚庢湡鏀规垚session
 
@@ -85,7 +83,7 @@ class VoteController extends Controller
                $options -> video = request()->$temp['video'];
                // $options -> option_pic = '12345';
                // $filename = $temp.'[option_pic]';
-               // dd($request->$temp['option_pic']);
+               // dd($votes->vote_pic);
 
                  if ($request->hasFile($temp)) {
                     // dd(12);
@@ -123,8 +121,8 @@ class VoteController extends Controller
     {
         // $user = User::findOrfail($id);
         // dd($user);
-        $votes = Vote::findOrfail(27);
-
+        $votes = Vote::findOrfail($id);
+         // dd($votes->option);
 
         // dd($votes->user);
         return view('/home/edit',compact('votes'));

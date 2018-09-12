@@ -15,117 +15,92 @@
 	}
 </style>
 			<h3>投票修改</h3><hr>
-			<form action="/vote" method='post'>
+			<form action="/vote" method='post' enctype="multipart/form-data">
 
-			<div class='leixing' style="color:#888;margin-bottom:10px">
+			<div class='leixing' style="color:#888;margin-bottom:10px" >
 				<span style="font-size:16px">请选择投票类型：</span> 
 				<label>
-			        <input type="radio" name="vote_type" id="" value='0' class="a-radio">
+			        <input type="radio" name="vote_type" id="" value='0' class="a-radio" disabled {{$votes -> vote_type == 0 ? 'checked' : ''}}>
 			        <span class="b-radio"></span>文字类型
 				</label> &nbsp; &nbsp;
 				<label>
-			        <input type="radio" name="vote_type" checked id="" value='1' class="a-radio">
+			        <input type="radio" name="vote_type" id="" value='1' class="a-radio" disabled {{$votes -> vote_type == 1 ? 'checked' : ''}}>
 			        <span class="b-radio"></span>图片类型
 				</label> &nbsp; &nbsp;
 				<label>
-			        <input type="radio" name="vote_type" id="" value='2' class="a-radio">
+			        <input type="radio" name="vote_type" id=""   value='2' class="a-radio" disabled {{$votes -> vote_type == 2 ? 'checked' : ''}}>
 			        <span class="b-radio"></span>视频类型
 				</label>
 			</div>
 
+
 			<div class="input-group col-md-6">
 			  <span class="input-group-addon" id="basic-addon1">标题</span>
 			  <input type="text" name='vote_title' class="form-control" placeholder="请填写投票标题" aria-describedby="basic-addon1" value="{{$votes->vote_title}}">
+
 			</div><br>
 			
 
 			<div class="input-group col-md-6">
 			  <span class="input-group-addon" id="basic-addon1">说明</span>
-			  <input type="text" class="form-control" name="vote_explain" placeholder="请填写投票说明" aria-describedby="basic-addon1">
+			  <input type="text" class="form-control" name="vote_explain" placeholder="请填写投票说明" aria-describedby="basic-addon1" value="{{$votes->vote_explain}}">
 			</div><br>
+              <div><img src ="{{$votes->vote_pic}}" height='200px' id="fmpicc"></div>
+			<br>
 			<span class="btn btn-default fileinput-button">
-		            <span>添加封面</span>
-		            <input type="file" name='vote_pic'>
-		        </span><br>
+		            <span>修改封面</span>
+		            <input type="file" name='vote_pic' id="fmpic">
 
+		        </span><br>
 			
 			<div id="content" class='col-md-6'>
 
-				
+			@foreach($votes->option as $v)	
 			<div class='option'>
 				<div class="input-group col-md-12">
 				  <span class="input-group-addon" id="basic-addon1">选项</span>
-				  <input type="text" has='option_title' name='option0[option_title]' class="form-control" placeholder="" aria-describedby="basic-addon1">
+				  <input type="text" has='option_title' name='option0[option_title]' class="form-control" placeholder="" aria-describedby="basic-addon1" value="{{$v->option_title}}">
 				</div><br>
 
-				<div class='video'>
+				@if(empty(!$v->video))
+				<div class='video' style="display:block">
 				<div class=" input-group col-md-12">
 				  <span class="input-group-addon" id="basic-addon1">视频地址</span>
-				  <input type="text" class="form-control" name='option0[video]' placeholder="" aria-describedby="basic-addon1">
+				  <input type="text" class="form-control" name='option0[video]' placeholder="" aria-describedby="basic-addon1" value="{{$v->video}}">
 				</div>
 				<div class='shi'></div>
 				</div>
+				@endif
 
-
-				<div class='content'>
+				@if(empty($v->option_content))
+				<div class='content' >
+				@else
+				<div class='content' style="display:block;">
+				@endif
 				<div class=" input-group col-md-12">
 				  <span class="input-group-addon" id="basic-addon1">选项说明</span>
-				  <input type="text" class="form-control" name='option0[option_content]' placeholder="" aria-describedby="basic-addon1">
+				  <input type="text" class="form-control" name='option0[option_content]' placeholder="" aria-describedby="basic-addon1" value="{{$v->option_content}}">
 				</div>
 				<div class='shi'></div>
 				</div>
 				
 
 
-				
-		        <span class="btn btn-default pic fileinput-button">
-		            <span>添加图片</span>
+		        <span class="btn btn-default pic fileinput-button" >
+		            <span>修改图片</span>
 		            <input type="file" name='option0[option_pic]'>
 		        </span>
-
-
-				<button type="button" class="add_video btn option_video btn-default">添加视频</button>
-				<button type="button" class="add_content btn btn-default">添加说明</button>
+				
+				
+				<button type="button" class="add_video btn option_video btn-default">修改视频</button>
+				<button type="button" class="modify_content btn btn-default">修改说明</button>
 				
 			</div>
+
+
+
 			<br>
-
-<div class='option'>
-				<div class="input-group col-md-12">
-				  <span class="input-group-addon" id="basic-addon1">选项</span>
-				  <input type="text" has='option_title' name='option1[option_title]' class="form-control" placeholder="" aria-describedby="basic-addon1">
-				</div><br>
-
-				<div class='video'>
-				<div class=" input-group col-md-12">
-				  <span class="input-group-addon" id="basic-addon1">视频地址</span>
-				  <input type="text" class="form-control" name='option1[video]' placeholder="" aria-describedby="basic-addon1">
-				</div>
-				<div class='shi'></div>
-				</div>
-
-
-				<div class='content'>
-				<div class=" input-group col-md-12">
-				  <span class="input-group-addon" id="basic-addon1">选项说明</span>
-				  <input type="text" class="form-control" name='option1[option_content]' placeholder="" aria-describedby="basic-addon1">
-				</div>
-				<div class='shi'></div>
-				</div>
-				
-
-
-				
-		        <span class="btn btn-default pic fileinput-button">
-		            <span>添加图片</span>
-		            <input type="file" name='option1[option_pic]'>
-		        </span>
-
-
-				<button type="button" class="add_video btn option_video btn-default">添加视频</button>
-				<button type="button" class="add_content btn btn-default">添加说明</button>
-				
-			</div>
+	@endforeach
 
 		</div>
 
@@ -243,12 +218,32 @@
 				</td>
 		  </tr>
 
+			<tr class='active'>
+				<td>单选多选</td>
+				<td>
+					<label>
+				        <input type="radio"  name="has_gift" value="1" id="" class="a-radio" {{$votes['has_gift']==1 ? 'checked' : ''}}>
+				        <span class="b-radio"></span>
+				    </label>
+				</td>
+				<td>
+					<label>
+				        <input type="radio" name="has_gift" value="0" id="" class="a-radio" {{$votes['has_gift']==0 ? 'checked' : ''}}>
+				        <span class="b-radio"></span>
+				    </label>
+				</td>
+		  </tr>
+
+		  <tr class='success'>
+
 		</table>
 
-				<div class="input-group col-md-12">
+				<!-- <div class="input-group col-md-12">
 				  <span class="input-group-addon" id="basic-addon1">单选多选</span>
-				  <input type="text" name="has_checkbox" class="form-control" placeholder="默认为最多允许投一个选项" aria-describedby="basic-addon1">
-				</div><br>
+				  <input type="select" name="has_checkbox" class="form-control" placeholder="默认为最多允许投一个选项" aria-describedby="basic-addon1">
+				   
+				</div><br> -->
+				
 
 				<div class="input-group col-md-12">
 				  <span class="input-group-addon" id="basic-addon1">重复投票</span>
@@ -273,6 +268,7 @@
 			<input type="hidden" value="" id='num' name='num'>
 		</form>
 		<style>
+
 			#tan{
 				display:none;
 				z-index:101;
@@ -309,7 +305,9 @@
 		</div>
 
 <script>
+
 	$(function(){
+		
 		var vote_type_num = $('input[name=vote_type]:checked').val();
 		$('input[name=vote_type]').change(function(){
 			// alert(123);
@@ -318,7 +316,7 @@
 				$('.pic').hide();
 				$('.option_video').show();
 			}
-			if(vote_type_num=='1'){
+			if(vote_type_num=='1'){ 
 				$('.pic').show();
 				$('.option_video').hide();
 			}
@@ -329,6 +327,7 @@
 
 		});
 
+	$("input[name=vote_type]").trigger("change");
 
 		$('#close').click(function(){
 			$("#tan").hide();
@@ -338,6 +337,40 @@
 		$('#tan').show();
 		$('#tishi').html(' &nbsp;&nbsp;'+str);
 	}
+
+$(function () {
+        $("#fmpic").change(function () {
+            var fil = this.files;
+            for (var i = 0; i < fil.length; i++) {
+                reads(fil[i]);
+            }
+        });
+
+
+$('.modify_content').off('click').on('click',function(){
+			if({{$votes->vote_type}}==0){
+				n = 2;
+			}else{
+				n = 3;
+			}
+			var content_has_down = $(this).parent().children().eq(n).css('display');
+			if(content_has_down=='block'){
+				$(this).parent().children().eq(n).hide();
+			}else{
+				$(this).parent().children().eq(n).show();
+			}
+		});
+
+
+    });
+    
+    function reads(fil){
+        var reader = new FileReader();
+        reader.readAsDataURL(fil);
+        reader.onload = function(){
+            $('#fmpicc').attr("src",reader.result);
+        };
+    };
 </script>
 
 	
