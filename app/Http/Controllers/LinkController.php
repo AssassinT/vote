@@ -77,7 +77,9 @@ class LinkController extends Controller
      */
     public function show($id)
     {
-        //
+        // $links = Link::all();
+        
+        // echo
     }
 
     /**

@@ -3,10 +3,15 @@
 namespace App\Http\Controllers;
 
 use App\Option;
+
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+
 use App\User;
 use App\Vote;
-use Illuminate\Http\Request;
-use Carbon\Carbon;
+
+
+
 class VoteController extends Controller
 {
     /**
@@ -53,9 +58,11 @@ class VoteController extends Controller
         $votes -> has_repeat  = request() -> has_repeat;
         $votes -> has_password  = request() -> has_password;
         $votes -> end_time  = request() -> end_time;
+
         $votes -> vote_type = request() -> vote_type;
         // $votes -> vote_pic = '12345';
         $votes -> user_id  = '10';//后期改成session
+
 
           if ($request->hasFile('vote_pic')) {
             $votes->vote_pic = '/uploads/'.$request->vote_pic->store('admin/'.date('Ymd'));
@@ -189,13 +196,33 @@ class VoteController extends Controller
      */
     public function destroy($id)
     {
-        //
+        //删除投票数据,投票中选项数据
+        $options = Option::where('vote_id',$id)->get(); 
+        // dd($options[3]['id']);
+        for($i=0;$i<count($options);$i++){
+            Option::findOrFail($options[$i]['id'])->delete();   
+        }
+        $vote = Vote::findOrFail($id);
+        if($vote->delete()){
+            return back()->with('true','删除成功');
+        }else{
+            return back()->with('false','删除失败!');
+        }
+
+        
     }
 
 
 
-    public function count($id)
+    public function count(Request $request,$id)
     {
-        echo $id;
+
+        $options =  Option::orderBy('vote_num','desc')->where('vote_id',$id)->get();
+        $arry = DB::select('select  sum(vote_num) as total from options where vote_id ='.$id);
+        $arrys = $arry[0]->total;
+        if($arrys==0){
+            $arrys = 0.1;
+        }
+     return view('/home/option/index',['options'=>$options,'arrys'=>$arrys]);
     }
 }

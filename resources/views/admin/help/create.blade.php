@@ -14,7 +14,7 @@
     <div class="tpl-block">
         <div class="am-g">
             <div class="tpl-form-body tpl-form-line">
-                <form class="am-form tpl-form-line-form" method="post" action="/help" enctype="multipart/form-data">
+                <form class="am-form tpl-form-line-form" method="post" action="/help" enctype="multipart/form-data" onSubmit="return check(this);">
                     <div class="am-form-group">
                         <label for="user-name" class="am-u-sm-3 am-form-label">问题<span class="tpl-form-line-small-title"></span></label>
                         <div class="am-u-sm-9">
@@ -40,4 +40,25 @@
         </div>
     </div>
 </div>
+<script type="text/javascript">
+
+    function check(form){
+        //检查问题是否填写
+        var question = form.question.value;
+        if(question.length==0){
+        alert("请填写问题！");
+        form.question.focus();
+        return false;
+        }
+        //检查答案是否填写
+        var answer = form.answer.value;
+        if(answer.length==0){
+        alert("请填写答案！");
+        form.answer.focus();
+        return false;
+        }
+    }
+    
+
+</script>
 @endsection

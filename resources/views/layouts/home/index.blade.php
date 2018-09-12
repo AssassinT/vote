@@ -1,6 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+	<?php
+		$links = \App\Link::all();
+	?>
 	<meta charset="UTF-8">
 	<title>vote</title>
 	<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
