@@ -8,11 +8,15 @@
 <style>
 	.pic{
 
-		display:black;
+		display:block;
 	}
 	.option_video{
 		display:none;
 	}
+	
+	
+	
+
 </style>
 			<h3>投票修改</h3><hr>
 			<form action="/vote" method='post' enctype="multipart/form-data">
@@ -219,25 +223,46 @@
 		  </tr>
 
 			<tr class='active'>
-				<td>单选多选</td>
+				<td>单选</td>
 				<td>
 					<label>
-				        <input type="radio"  name="has_gift" value="1" id="" class="a-radio" {{$votes['has_gift']==1 ? 'checked' : ''}}>
+				        <input type="radio"  name="has_checkbox" value="0" id="one" class="a-radio" {{$votes['has_checkbox']== 0? 'checked' : ''}}>
 				        <span class="b-radio"></span>
 				    </label>
 				</td>
 				<td>
 					<label>
-				        <input type="radio" name="has_gift" value="0" id="" class="a-radio" {{$votes['has_gift']==0 ? 'checked' : ''}}>
-				        <span class="b-radio"></span>
+				        <input type="radio" name="has_checkbox" value="1" id="many" class="a-radio" {{$votes['has_checkbox']==1? 'checked' : ''}}>
+				        <span class="b-radio"></span> 
+				        <span class="duoxuan" >
+				        	<select name=""  > 
+					        	<option value="">1</option>
+					        	<option value="">2</option>
+					        	<option value="">3</option>
+				  		   </select>    
+				     </span> 
 				    </label>
+					
 				</td>
+				
 		  </tr>
-
+			
 		  <tr class='success'>
+		<script>
+			$('#many').click(function(){
+					
+				$('.duoxuan').show();
 
+			});
+			$('#one').click(function(){
+			$('.duoxuan').hide();			
+				
+
+			})
+				
+		
+		</script>
 		</table>
-
 				<!-- <div class="input-group col-md-12">
 				  <span class="input-group-addon" id="basic-addon1">单选多选</span>
 				  <input type="select" name="has_checkbox" class="form-control" placeholder="默认为最多允许投一个选项" aria-describedby="basic-addon1">
@@ -247,20 +272,20 @@
 
 				<div class="input-group col-md-12">
 				  <span class="input-group-addon" id="basic-addon1">重复投票</span>
-				  <input type="select" class="form-control" name='has_repeat' placeholder="默认不允许重复投票" aria-describedby="basic-addon1">
+				  <input type="select" class="form-control" name='has_repeat' placeholder="间隔几小时可以再次投票,默认不允许重复投票" aria-describedby="basic-addon1" value="{{$votes->has_repeat}}">
 				</div><br>
 
 				<div class="input-group col-md-12">
 				  <span class="input-group-addon" id="basic-addon1">投票密码</span>
-				  <input type="text" class="form-control" name="has_password" placeholder="默认无密码" aria-describedby="basic-addon1">
+				  <input type="text" class="form-control" name="has_password" placeholder="默认无密码" aria-describedby="basic-addon1" value="{{$votes->has_password}}">
 				</div><br>
 
 
 				<div class="input-group col-md-12">
 				  <span class="input-group-addon" id="basic-addon1">截止时间</span>
-				  <input type="date" name="end_time" class="form-control" placeholder="" aria-describedby="basic-addon1">
+				  <input type="date" name="end_time" class="form-control" placeholder="" aria-describedby="basic-addon1" value="{{$votes->end_time}}">
 				</div><br>
-
+				  
 			<button style="margin-left:40px" id="tijiaoanliu" class="btn btn-success">发布投票</button>
 			<br><br><br>
 			</div>
@@ -307,7 +332,18 @@
 <script>
 
 	$(function(){
-		
+		$('input[name=end_time]').change(function(){
+
+			var newtime = $(this).val();
+			<?php
+			 // $newtime->lt($stop);
+			$ti
+
+			 ?>
+			 
+			alert(nowtime);
+		})
+
 		var vote_type_num = $('input[name=vote_type]:checked').val();
 		$('input[name=vote_type]').change(function(){
 			// alert(123);
