@@ -38,7 +38,8 @@
 					<td>{{$v->vote_num}}</td>
 					<td>
 						|<a href="/vote/{{$v->id}}/edit"><button class='btn btn-success'>修改</button></a>|
-						<a href="/vote/{{$v->id}}/count"><button class='btn btn-success'>统计</button></a>
+						<a href="/vote/{{$v->id}}/count"><button class='btn btn-success'>统计</button></a>|
+						<a href="/vote/{{$v->id}}"><button class='btn btn-success'>查看</button></a>
 						<form style="float:left"  action="/vote/{{$v->id}}" method="post" >
 							<button class='btn btn-success' type='submit'>删除</button>
 							{{method_field('DELETE')}}

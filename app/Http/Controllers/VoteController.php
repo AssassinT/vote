@@ -109,7 +109,20 @@ class VoteController extends Controller
      */
     public function show($id)
     {
-        //
+        $user_agent = $_SERVER['HTTP_USER_AGENT'];
+        if (strpos($user_agent, 'MicroMessenger') === false) {
+            $wechat = true;
+        } else {
+            $wechat = false;
+        }
+
+        $votes = Vote::findOrfail($id);
+        // dd($votes);
+        
+
+
+        return view('/home/show',compact('votes','wechat'));
+
     }
 
     /**
