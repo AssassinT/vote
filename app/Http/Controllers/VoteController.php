@@ -53,6 +53,7 @@ class VoteController extends Controller
         $votes -> has_repeat  = request() -> has_repeat;
         $votes -> has_password  = request() -> has_password;
         $votes -> end_time  = request() -> end_time;
+        $votes -> vote_type = request() -> vote_type;
         // $votes -> vote_pic = '12345';
         $votes -> user_id  = '10';//后期改成session
 
@@ -115,7 +116,7 @@ class VoteController extends Controller
         // $user = User::findOrfail($id);
         // dd($user);
         $votes = Vote::findOrfail($id);
-        // dd($options);
+         // dd($votes->option);
 
         // dd($votes->user);
         return view('/home/edit',compact('votes'));
