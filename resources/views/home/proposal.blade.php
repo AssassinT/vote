@@ -14,7 +14,7 @@
 		<div class="input-group col-md-6" style="margin-left:70px; padding-top:10px;!important">
 			<span class="input-group-addon" name='vote_explain' id="basic-addon1">建议内容</span>
             <textarea class="form-control" name="proposal_content" rows="5" cols="59" placeholder="请填写建议内容"></textarea>
-		</div><br>7
+		</div><br>
 
                     
 		{{csrf_field()}}

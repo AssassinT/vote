@@ -19,7 +19,7 @@ class ProposalController extends Controller
         $proposals = Proposal::orderBy('id','desc')
             ->where('proposal_name','like','%'.request()->keywords.'%')
             ->paginate(10);
-            // dd($proposals);
+            // dd($proposals[0]->user);
         return view('admin.proposal.index',compact('proposals'));
     }
 

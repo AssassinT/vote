@@ -78,7 +78,7 @@
         //检查姓名是否填写
         var link_name = form.link_name.value;
         if(link_name.length==0){
-        alert("请填写用户名！");
+        alert("请填写链接名称！");
         form.link_name.focus();
         return false;
         }

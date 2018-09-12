@@ -119,7 +119,20 @@ class VoteController extends Controller
      */
     public function destroy($id)
     {
-        //
+        //删除投票数据,投票中选项数据
+        $options = Option::where('vote_id',$id)->get(); 
+        // dd($options[3]['id']);
+        for($i=0;$i<count($options);$i++){
+            Option::findOrFail($options[$i]['id'])->delete();   
+        }
+        $vote = Vote::findOrFail($id);
+        if($vote->delete()){
+            return back()->with('true','删除成功');
+        }else{
+            return back()->with('false','删除失败!');
+        }
+
+        
     }
 
 
