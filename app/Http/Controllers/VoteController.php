@@ -138,8 +138,9 @@ class VoteController extends Controller
      */
     public function update(Request $request, $id)
     { 
+        // dd(request()->all());
         $votes = Vote::findOrfail($id);
-        dd($votes);
+        // dd($votes);
         $votes -> vote_title  = request() -> vote_title;  //
         $votes -> vote_explain  = request() -> vote_explain;  //
         $votes -> has_wechat  = request() -> has_wechat; //
@@ -158,19 +159,21 @@ class VoteController extends Controller
         }
 
         $votes->save();
-        $vote_id = Vote::where([['user_id','$id'],['vote_title',request()->vote_title]])->get();//10-session
+        // $vote_id = Vote::where([['user_id','$id'],['vote_title',request()->vote_title]])->get();//10-session
 
-        
+        // echo "<pre>";
         for($i=0;$i<=request()->num;$i++){
             // dd($_FILES);
 
             $temp = 'option'.$i;
             if(isset(request()->$temp)){
-                $options = new Option;
-               $options -> vote_id = $vote_id[0]->id;
+                $options = Option::findOrfail(request()->$temp['option_id']);
+               // $options -> vote_id =  $vote_id[0]->id;
                $options -> option_title = request()->$temp['option_title'];
                $options -> option_content = request()->$temp['option_content'];
+               if($request->vote_type == 2){
                $options -> video = request()->$temp['video'];
+                }
                // $options -> option_pic = '12345';
                // $filename = $temp.'[option_pic]';
                // dd($votes->vote_pic);
@@ -183,9 +186,10 @@ class VoteController extends Controller
             }
             
         }
+        
 
 
-
+        // return view('/home/list',compact('votes'));
         return redirect('/vote');
     }
     /**
