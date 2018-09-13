@@ -45,7 +45,7 @@
 			</div><br>
 			<span class="btn btn-default fileinput-button">
 		            <span>添加封面</span>
-		            <input type="file" name='vote_pic'>
+		            <input type="file" id="vote_picc" name='vote_pic'>
 		        </span><br>
 
 			
@@ -55,13 +55,13 @@
 			<div class='option'>
 				<div class="input-group col-md-12">
 				  <span class="input-group-addon" id="basic-addon1">选项</span>
-				  <input type="text" has='option_title' name='option0[option_title]' class="form-control" placeholder="" aria-describedby="basic-addon1">
+				  <input type="text" has='option_title' name='option1000[option_title]' class="form-control" placeholder="" aria-describedby="basic-addon1">
 				</div><br>
 
 				<div class='video'>
 				<div class=" input-group col-md-12">
 				  <span class="input-group-addon" id="basic-addon1">视频地址</span>
-				  <input type="text" class="form-control" name='option0[video]' placeholder="" aria-describedby="basic-addon1">
+				  <input type="text" class="form-control" name='option1000[video]' placeholder="" aria-describedby="basic-addon1">
 				</div>
 				<div class='shi'></div>
 				</div>
@@ -70,7 +70,7 @@
 				<div class='content'>
 				<div class=" input-group col-md-12">
 				  <span class="input-group-addon" id="basic-addon1">选项说明</span>
-				  <input type="text" class="form-control" name='option0[option_content]' placeholder="" aria-describedby="basic-addon1">
+				  <input type="text" class="form-control" name='option1000[option_content]' placeholder="" aria-describedby="basic-addon1">
 				</div>
 				<div class='shi'></div>
 				</div>
@@ -80,7 +80,7 @@
 				
 		        <span class="btn btn-default pic fileinput-button">
 		            <span>添加图片</span>
-		            <input type="file" name='option0[option_pic]'>
+		            <input type="file" name='option1000[option_pic]'>
 		        </span>
 
 
@@ -93,13 +93,13 @@
 <div class='option'>
 				<div class="input-group col-md-12">
 				  <span class="input-group-addon" id="basic-addon1">选项</span>
-				  <input type="text" has='option_title' name='option1[option_title]' class="form-control" placeholder="" aria-describedby="basic-addon1">
+				  <input type="text" has='option_title' name='option1001[option_title]' class="form-control" placeholder="" aria-describedby="basic-addon1">
 				</div><br>
 
 				<div class='video'>
 				<div class=" input-group col-md-12">
 				  <span class="input-group-addon" id="basic-addon1">视频地址</span>
-				  <input type="text" class="form-control" name='option1[video]' placeholder="" aria-describedby="basic-addon1">
+				  <input type="text" class="form-control" name='option1001[video]' placeholder="" aria-describedby="basic-addon1">
 				</div>
 				<div class='shi'></div>
 				</div>
@@ -108,7 +108,7 @@
 				<div class='content'>
 				<div class=" input-group col-md-12">
 				  <span class="input-group-addon" id="basic-addon1">选项说明</span>
-				  <input type="text" class="form-control" name='option1[option_content]' placeholder="" aria-describedby="basic-addon1">
+				  <input type="text" class="form-control" name='option1001[option_content]' placeholder="" aria-describedby="basic-addon1">
 				</div>
 				<div class='shi'></div>
 				</div>
@@ -118,7 +118,7 @@
 				
 		        <span class="btn btn-default pic fileinput-button">
 		            <span>添加图片</span>
-		            <input type="file" name='option1[option_pic]'>
+		            <input type="file" name='option1001[option_pic]'>
 		        </span>
 
 
@@ -166,13 +166,13 @@
 				<td>允许刷礼物</td>
 				<td>
 					<label>
-				        <input type="radio" checked="" name="has_gift" value="1" id="" class="a-radio">
-				        <span class="b-radio"></span>
+				        <input type="radio" name="has_gift" value="1" id="" class="a-radio">
+				        <span class="b-radio"></span><a href="/gift/brush" style="font-size:13px;">同意礼物协议</a>
 				    </label>
 				</td>
 				<td>
 					<label>
-				        <input type="radio" name="has_gift" value="0" id="" class="a-radio">
+				        <input type="radio" checked="" name="has_gift" value="0" id="" class="a-radio">
 				        <span class="b-radio"></span>
 				    </label>
 				</td>
@@ -320,6 +320,8 @@
 		$('#tan').show();
 		$('#tishi').html(' &nbsp;&nbsp;'+str);
 	}
+
+
 </script>
 
 	

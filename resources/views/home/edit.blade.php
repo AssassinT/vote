@@ -99,6 +99,7 @@
 				
 				<button type="button" class="add_video btn option_video btn-default">修改视频</button>
 				<button type="button" class="modify_content btn btn-default">修改说明</button>
+				<button type="button" class="remove btn btn-default">删除该项</button><br>
 				
 			</div>
 
@@ -168,7 +169,7 @@
 				</td>
 				<td>
 					<label>
-				        <input type="radio"   name="has_comment" value="0" id="" class="a-radio" {{$votes['comment']==0 ? 'checked' : ''}}>
+				        <input type="radio"   name="comment" value="0" id="" class="a-radio" {{$votes['comment']==0 ? 'checked' : ''}}>
 				        <span class="b-radio"></span>
 				    </label>
 				</td>
@@ -292,8 +293,8 @@
 			</div>
 			{{csrf_field()}}
 			{{method_field('PUT')}}
-			<input type="hidden" value="{{$k+1
-		}}"  name='num'>
+			<input type="hidden" value="{{$k+1}}"  name='num'>
+			<input type="hidden" value=""  id="num" name='numm'>
 		</form>
 		<style>
 
@@ -428,9 +429,38 @@ $('.modify_content').off('click').on('click',function(){
         });
     });
     
-    // function reads(fil){
-        
-    // };
+    $('.remove').click(function(){
+    	if(confirm('删除后不可撤销')){
+    		$(this).parent().remove();
+				$.get('/del/{{$v->id}}',{},function(data){
+					
+				});
+    	}
+			
+				// $.ajax({
+				// 	// url: '/vote/{{$votes->id}}',
+				// 	url: '/del/{{$votes->id}}',
+				// 	type:'POST',
+				// 	 data:{
+				// 	 	// option: v
+				// 	 '_token':'{{csrf_token()}}'	
+				// 	 },
+				// 	 dataType:'json',
+				// 	headers: {
+				//             'X-CSRF-TOKEN': $('meta[name="csrf-token"]')},	
+				// 	success: function(data){
+				// 		if(data != '1'){
+				// 			alert('删除失败');
+				// 		}else{
+				// 			alert('删除成功');
+				// 		}
+				// 	},
+				// 	async: false
+				// })
+		});
+
+
+
 </script>
 
 	
