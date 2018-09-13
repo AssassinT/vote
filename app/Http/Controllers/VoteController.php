@@ -257,8 +257,8 @@ class VoteController extends Controller
 
     public function count(Request $request,$id)
     {
-
         $options =  Option::orderBy('vote_num','desc')->where('vote_id',$id)->get();
+        // dd($options);
         $arry = DB::select('select  sum(vote_num) as total from options where vote_id ='.$id);
         $arrys = $arry[0]->total;
         if($arrys==0){

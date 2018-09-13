@@ -7,8 +7,8 @@
                             <b style="color:#666666">会员特权</b></div>
                 </header><hr>
                 <div style="margin-left:70px;!important;width:85%;">
-                    <b style="background: #ffffff;font-size:20px">联系电话：<font id="OrderId">137906053356</font></b><br><br>
-                    <b style="background: #ffffff;font-size:20px;">微信关注：请填写您的<a style="color:red">(用户名)</a>，方便与管理员联系</b><br><br>
+                    <b style="background: #ffffff;font-size:20px;color:#666666">联系电话：<font id="OrderId">137906053356</font></b><br><br>
+                    <b style="background: #ffffff;font-size:20px;color:#666666">微信关注：请填写您的<a style="color:red">(用户名)</a>，方便与管理员联系。</b><br><br>
                     <p ><img src="/vo/微信.jpg" width="20%" /></p>
                 </div>
             </div>
