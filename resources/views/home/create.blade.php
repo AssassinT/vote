@@ -166,13 +166,13 @@
 				<td>允许刷礼物</td>
 				<td>
 					<label>
-				        <input type="radio" checked="" name="has_gift" value="1" id="" class="a-radio">
-				        <span class="b-radio"></span>
+				        <input type="radio" name="has_gift" value="1" id="" class="a-radio">
+				        <span class="b-radio"></span><a href="/gift/brush" style="font-size:13px;">同意礼物协议</a>
 				    </label>
 				</td>
 				<td>
 					<label>
-				        <input type="radio" name="has_gift" value="0" id="" class="a-radio">
+				        <input type="radio" checked="" name="has_gift" value="0" id="" class="a-radio">
 				        <span class="b-radio"></span>
 				    </label>
 				</td>
@@ -320,6 +320,8 @@
 		$('#tan').show();
 		$('#tishi').html(' &nbsp;&nbsp;'+str);
 	}
+
+
 </script>
 
 	

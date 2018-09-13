@@ -44,6 +44,9 @@ Route::get('/home/webset', 'HelpController@cont');
 //vip
 Route::get('/bcvip','VipController@index');
 
+//前台礼物是否
+Route::get('/gift/brush','GiftGxController@brush');
+
 
 
 
