@@ -19,6 +19,11 @@
 					<th>操作</th>
 				</tr>
 @foreach($votes as $v)
+<?php
+	$arry = DB::select('select  sum(vote_num) as total from options where vote_id ='.$v->id);
+        $arrys = $arry[0]->total;
+
+?>
 				<tr class="active">
 					<td>{{$v->id}}</td>
 					<td>{{$v->vote_title}}</td>
@@ -35,12 +40,6 @@
 
 					<td>{{substr($v->end_time,0,10)}}</td>
 					<td>12</td>
-
-<?php
-	$arry = DB::select('select  sum(vote_num) as total from options where vote_id ='.$v->id);
-        $arrys = $arry[0]->total;
-?>
-
 					<td>{{$arrys}}</td>
 					<td>
 						|<a href="/vote/{{$v->id}}/edit"><button class='btn btn-success'>修改</button></a>|
@@ -60,6 +59,3 @@
 				
 			</table>	
 @endsection
-
-
-		

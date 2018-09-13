@@ -1,7 +1,5 @@
 			<style>
-				.active{
-					display:block;
-				}
+				
 				#sell{
 					width:80px;
 					height:80px;
