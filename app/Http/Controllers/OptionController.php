@@ -48,11 +48,14 @@ class OptionController extends Controller
     public function show($id)
     {
         $options = Option::findOrfail($id);
-        $num = $options -> vote_num;
-        $options -> vote_num = $num+1;
-        $options->save();
+        
         $ipss = Ip::where([['vote_id',$options->vote_id],['openid_ip',$_SERVER["REMOTE_ADDR"]]])->get();
         if(count($ipss)<=0){
+        
+            $num = $options -> vote_num;
+            $options -> vote_num = $num+1;
+            $options->save();
+        
             $ips = new Ip;
             $ips -> option_id = $id;
             $ips -> vote_id = $options -> vote_id;
