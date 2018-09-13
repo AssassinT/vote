@@ -47,26 +47,18 @@
         <th> <p ><img src="/vo/微信.jpg" width="60%" /></p><p  style="font-size:180%;color:#666666;margin-left:10%;margin-right:10%">关注微博</p></th>
 
     </tr>
-    <tr>
-        <td>
-            <div  style="margin-left:-42%; margin-top:10px"class="col-md-7 item">
+</table>
+            
+                
+</div>
+            <div  style="margin-left:5%; margin-top:10px"class="col-md-7 item">
                     <h3 style="color:#666666"><b>客服电话</b></h3>
                     <a style="color:#666666"><b>15234356666</b></a>
             </div>
-        </td>
-    </tr>    
-     <div  style="margin-left:-60%; margin-top:20px"class="col-md-7 item">
-    <tr>
-        <td>
-           
+            <div  style="margin-left:5%; margin-top:10px"class="col-md-7 item">
                     <h3 style="color:#666666"><b>工作时间</b></h3>
                     <p style="color:#666666"><b>每日10:00——17:00时（不含法定节假日）</b></p>
-           
-        </td>
-    </tr>
-</div>
-</table>
-</div>
+                </div>
 @endsection
-
+                
 

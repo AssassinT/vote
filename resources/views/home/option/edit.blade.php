@@ -9,7 +9,7 @@
                 <div style="margin-left:70px;!important;width:85%;">
                     <b style="background: #ffffff;font-size:20px">联系电话：<font id="OrderId">137906053356</font></b><br><br>
                     <b style="background: #ffffff;font-size:20px;">微信关注：请填写您的<a style="color:red">(用户名)</a>，方便与管理员联系</b><br><br>
-                    <p ><img src="/vo/微信.jpg" width="60%" /></p>
+                    <p ><img src="/vo/微信.jpg" width="20%" /></p>
                 </div>
             </div>
         </div>
