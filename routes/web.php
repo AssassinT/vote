@@ -25,6 +25,7 @@ Route::post('home/doreg', 'LoginController@doreg');
 Route::post('home/req', 'LoginController@req');
 
 
+
 Route::get('/myindex', 'MyController@index');
 Route::post('/myindex/{id}', 'MyController@store');
 
@@ -32,6 +33,9 @@ Route::post('/myindex/{id}', 'MyController@store');
 Route::get('/home/proposal', 'ProposalController@home_index');
 
 
+Route::get('/help/none', 'HelpController@none');
+
+Route::get('/help/nonet', 'HelpController@nonet');
 
 
 Route::get('/helps', 'HelpController@list');
@@ -40,6 +44,9 @@ Route::get('/home/webset', 'HelpController@cont');
 //vip
 Route::get('/del/{id}','DellController@index');
 // Route::get('/del/{id}','DellController@index');
+
+//前台礼物是否
+Route::get('/gift/brush','GiftGxController@brush');
 
 
 
