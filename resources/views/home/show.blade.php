@@ -148,7 +148,7 @@
 	$(function(){
 		$('.tou_vote').click(function(){
 			$.get('/option/'+$(this).attr('option_id'),{},function(data){
-				alert('投票成功');
+				alert(data);
 			});
 		});
 	});
