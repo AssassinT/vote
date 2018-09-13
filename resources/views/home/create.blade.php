@@ -203,7 +203,7 @@
 					<label>
 				        <input type="radio" checked name="has_a_d" id="" value='0' class="a-radio">
 				        <span class="b-radio"></span>
-				        <a href="/help/none"><b style="color:#FFCC00;font-size:10px;">&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp </b></a>
+				        <b style="color:#FFCC00;font-size:10px;">&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp </b>
 				    </label>
 				</td>
 				
