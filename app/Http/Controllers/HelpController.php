@@ -134,4 +134,18 @@ class HelpController extends Controller
 
         return view('home.help.edit', compact('helps'));
     }
+
+    public function none(Request $request)
+    {
+       $helps = help::all();
+
+        return view('home.help.create', compact('helps'));
+    }
+
+    public function nonet(Request $request)
+    {
+       $helps = help::all();
+
+        return view('home.option.edit', compact('helps'));
+    }
 }

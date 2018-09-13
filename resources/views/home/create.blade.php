@@ -143,7 +143,7 @@
 		  <tr>
 				<th width='40%'>选项</th>
 				<th>是</th>
-				<th>否</th>
+				<th >否</th>
 		  </tr>
 
 		  <tr class='success'>
@@ -196,18 +196,18 @@
 		 
 		  <tr class='active'>
 				<td>去除广告</td>
-				<td>
-					<label>
-				        <input type="radio" name="has_a_d" id="" value='1' class="a-radio">
-				        <span class="b-radio"></span>
-				    </label>
+				<td >
+				 <a href="/help/none"><b style="color:#FFCC00;font-size:10px;"> ★ 加入会员 ，去除广告</b></a>
 				</td>
 				<td>
 					<label>
 				        <input type="radio" checked name="has_a_d" id="" value='0' class="a-radio">
 				        <span class="b-radio"></span>
+				        <a href="/help/none"><b style="color:#FFCC00;font-size:10px;">&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp </b></a>
 				    </label>
 				</td>
+				
+
 		  </tr>
 		  
 		  <tr class='success'>
