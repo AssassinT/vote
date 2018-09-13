@@ -51,7 +51,7 @@
                        @endif -->
         </div>
         <br> @if(!$user['has_vip'])
-        <a href="/bcvip"><i class="fa fa-star"></i> 点击成为会员</a> @endif
+        <a href="/bcvip"><span style="color:red">获取更多积分</span></a> @endif
         <div class=" input-group col-md-4">
             <span class="input-group-addon" id="basic-addon1" style="width:82px">积分</span>
             <img src="" alt="">
