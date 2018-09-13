@@ -42,7 +42,11 @@ Route::get('/helps', 'HelpController@list');
 Route::get('/home/webset', 'HelpController@cont');
 
 //vip
-Route::get('/bcvip','VipController@index');
+Route::get('/del/{id}','DellController@index');
+// Route::get('/del/{id}','DellController@index');
+
+//前台礼物是否
+Route::get('/gift/brush','GiftGxController@brush');
 
 
 

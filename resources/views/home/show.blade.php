@@ -75,16 +75,83 @@
 <div id="option_main" class='col-md-6'>
 	@foreach($votes->option as $v)
 	<div class='home_option col-md-6'>
+		<!-- 判断类型 -->
+		@if($votes->vote_type=='1')
 		<div class="col-md-12" style="height:140px;background:#ddd">
 		<img src="{{$v->option_pic}}" width="100%" alt="">
 		</div>
-		<div>{{$v->option_title}}</div>
-		<div>
-			<button class='col-md-12 btn btn-success'>投票</button>
+		@endif
+
+		@if($votes->vote_type=='0')
+		<div class="col-md-12" style="background:#ddd">
+			文字类型
 		</div>
+		@endif
+
+		@if($votes->vote_type=='2')
+		<div class="col-md-12" style="background:#ddd">
+			视频类型
+		</div>
+		@endif
+		<!-- 判断类型 -->
+
+		<div>{{$v->option_title}}</div>
+		<!-- 判断微信时只在微信显示投票 -->
+					<?php //判断截止时间
+						$time = (int)strtotime(substr($votes->end_time,0,10));
+						$newtime = (int)time();
+						if($time>$newtime){
+							$str = true;
+						}else{
+							$str = false;
+						}
+					?>
+		
+		@if(!$str)
+			<div class="col-md-12" style="text-align: center;color:red">
+				已截止
+			</div>
+		@elseif(!$votes->has_wechat=='1' && $wechat)
+			<!-- 礼物判断 -->
+			@if($votes->has_gift)
+				<div>
+					<button  option_id="{{$v->id}}" style="margin-right:10px;" class='tou_vote col-md-5 btn btn-success'>投票</button>
+					<button class='col-md-5 btn btn-success'>送礼</button>
+				</div>
+			@else
+				<div>
+					<button option_id="{{$v->id}}" class='tou_vote col-md-12 btn btn-success'>投票</button>
+				</div>
+			@endif
+			<!-- 礼物判断 -->
+
+		@endif
+		<!-- 判断微信时只在微信显示投票 -->
+
 	</div>
 	@endforeach
+
+
 </div>
 
+<!-- 判断允许评论 -->
+@if($votes->comment=='1')
+<form action=""></form>
+	<div class="col-md-8">
+		<textarea name="" id="" cols="50" placeholder="留下你的评论吧" rows="4"></textarea><br>
+		<button class='btn btn-success'>提交评论</button>
+	</div>
+</form>
+@endif
+<!-- 判断允许评论 -->
+<script>
+	$(function(){
+		$('.tou_vote').click(function(){
+			$.get('/option/'+$(this).attr('option_id'),{},function(data){
+				alert('投票成功');
+			});
+		});
+	});
+</script>
 
 @endsection
