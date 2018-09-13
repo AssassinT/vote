@@ -99,21 +99,15 @@
 				
 				<button type="button" class="add_video btn option_video btn-default">修改视频</button>
 				<button type="button" class="modify_content btn btn-default">修改说明</button>
+				
 				<button type="button" class="remove btn btn-default">删除该项</button><br>
 				
 			</div>
 
-
-
 			<br>
 	@endforeach
 
-		</div>
-
-
-
-				
-			
+		</div>			
 		</div>
 		
 
@@ -336,6 +330,7 @@
 <script>
 
 	$(function(){
+		
 		$('input[name=end_time]').change(function(){
 
 			var newtime = $(this).val();
@@ -431,7 +426,8 @@ $('.modify_content').off('click').on('click',function(){
     
     $('.remove').click(function(){
     	if(confirm('删除后不可撤销')){
-    		$(this).parent().remove();
+    		$(this).next().remove();
+    		$(this).lastChild.remove();
 				$.get('/del/{{$v->id}}',{},function(data){
 					
 				});

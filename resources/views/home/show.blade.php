@@ -14,7 +14,7 @@
 
 <!-- 微信判断 -->
 
-@if($votes->has_wechat=='1' && $wechat)
+@if($votes->has_wechat=='1' && !$wechat)
 <div>
 		请用微信扫描二维码进行投票
 		<div style="width:200px;height:200px;border:1px solid black">
@@ -111,19 +111,26 @@
 			<div class="col-md-12" style="text-align: center;color:red">
 				已截止
 			</div>
-		@elseif(!$votes->has_wechat=='1' && $wechat)
-			<!-- 礼物判断 -->
-			@if($votes->has_gift)
-				<div>
-					<button  option_id="{{$v->id}}" style="margin-right:10px;" class='tou_vote col-md-5 btn btn-success'>投票</button>
-					<button class='col-md-5 btn btn-success'>送礼</button>
-				</div>
+		@else
+			@if($votes->has_wechat=='1' && $wechat)
+				<!-- 礼物判断 -->
+				@if($votes->has_gift)
+					<div>
+						<button  option_id="{{$v->id}}" style="margin-right:10px;" class='tou_vote col-md-5 btn btn-success'>投票</button>
+						<button class='col-md-5 btn btn-success'>送礼</button>
+					</div>
+				@else
+					<div>
+						<button option_id="{{$v->id}}" class='tou_vote col-md-12 btn btn-success'>投票</button>
+					</div>
+				@endif
+				<!-- 礼物判断 -->
 			@else
-				<div>
-					<button option_id="{{$v->id}}" class='tou_vote col-md-12 btn btn-success'>投票</button>
-				</div>
+			<div>
+				请用微信投票
+			</div>
 			@endif
-			<!-- 礼物判断 -->
+
 
 		@endif
 		<!-- 判断微信时只在微信显示投票 -->
@@ -148,7 +155,7 @@
 	$(function(){
 		$('.tou_vote').click(function(){
 			$.get('/option/'+$(this).attr('option_id'),{},function(data){
-				alert('投票成功');
+				alert(data);
 			});
 		});
 	});

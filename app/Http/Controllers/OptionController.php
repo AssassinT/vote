@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Option;
+use App\Ip;
 
 class OptionController extends Controller
 {
@@ -45,7 +47,25 @@ class OptionController extends Controller
      */
     public function show($id)
     {
-        echo $id; 
+        $options = Option::findOrfail($id);
+        
+        $ipss = Ip::where([['vote_id',$options->vote_id],['openid_ip',$_SERVER["REMOTE_ADDR"]]])->get();
+        if(count($ipss)<=0){
+        
+            $num = $options -> vote_num;
+            $options -> vote_num = $num+1;
+            $options->save();
+        
+            $ips = new Ip;
+            $ips -> option_id = $id;
+            $ips -> vote_id = $options -> vote_id;
+            $ips -> openid_ip = $_SERVER["REMOTE_ADDR"];
+            $ips->save();
+            echo '投票成功'; 
+        }else{
+            echo '您已经投过票了';
+        }
+        
     }
 
     /**

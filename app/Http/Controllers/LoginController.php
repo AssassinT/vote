@@ -89,4 +89,11 @@ class LoginController extends Controller
             echo '0';
         }
     }
+
+
+    public function loginout(Request $request)
+    {
+        $request->session()->flush();
+        return redirect('/home/login')->with('true','退出成功');
+    }
 }

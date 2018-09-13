@@ -25,7 +25,6 @@
 			<a href="/home/webset"><button type="button"  id="webset" class="btn btn-warning">联系我们</button></a>
 			<a href="/home/proposal"><button type="button"  id="proposal" class="btn btn-warning">建议</button></a>
 			
-			<a href="/myindex"><button type="button"  id="my" class="btn btn-warning">个人中心</button></a>
 			@include('layouts.home.login')
 
 		</div>
