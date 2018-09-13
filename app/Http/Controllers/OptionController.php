@@ -34,7 +34,7 @@ class OptionController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        
     }
 
     /**
@@ -45,7 +45,7 @@ class OptionController extends Controller
      */
     public function show($id)
     {
-        //
+        echo $id; 
     }
 
     /**
