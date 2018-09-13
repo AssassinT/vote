@@ -72,7 +72,7 @@ class VoteController extends Controller
         $vote_id = Vote::where([['user_id','10'],['vote_title',request()->vote_title]])->get();//10-session
 
         
-        for($i=0;$i<=request()->num;$i++){
+        for($i=1000;$i<=request()->num;$i++){
             // dd($_FILES);
 
             $temp = 'option'.$i;
@@ -109,7 +109,20 @@ class VoteController extends Controller
      */
     public function show($id)
     {
-        //
+        $user_agent = $_SERVER['HTTP_USER_AGENT'];
+        if (strpos($user_agent, 'MicroMessenger') === false) {
+            $wechat = true;
+        } else {
+            $wechat = false;
+        }
+
+        $votes = Vote::findOrfail($id);
+        // dd($votes);
+        
+
+
+        return view('/home/show',compact('votes','wechat'));
+
     }
 
     /**
@@ -137,7 +150,7 @@ class VoteController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
-    { 
+    {  
         // dd(request()->all());
         $votes = Vote::findOrfail($id);
         // dd($votes);
@@ -145,7 +158,7 @@ class VoteController extends Controller
         $votes -> vote_explain  = request() -> vote_explain;  //
         $votes -> has_wechat  = request() -> has_wechat; //
         $votes -> has_gift  = request() -> has_gift;   //
-        $votes -> comment  = request() -> has_comment;  //
+        $votes -> comment  = request() -> comment;  //
         $votes -> has_a_d  = request() -> has_a_d;    //
         $votes -> has_top  = request() -> has_top;  //
         $votes -> has_checkbox  = request() -> has_checkbox; //
@@ -174,6 +187,30 @@ class VoteController extends Controller
                if($request->vote_type == 2){
                $options -> video = request()->$temp['video'];
                 }
+               // $options -> option_pic = '12345';
+               // $filename = $temp.'[option_pic]';
+               // dd($votes->vote_pic);
+
+                 if ($request->hasFile($temp)) {
+                    // dd(12);
+            $options -> option_pic = '/uploads/'.$request->$temp['option_pic']->store('admin/'.date('Ymd'));
+        }
+               $options->save();
+            }
+            
+        }
+        $vote_idd = request()->option0['option_id'];
+
+        for($i=1002;$i<=request()->numm;$i++){
+            // dd($_FILES);
+
+            $temp = 'option'.$i;
+            if(isset(request()->$temp)){
+                $options = new Option;
+               $options -> vote_id = $id;
+               $options -> option_title = request()->$temp['option_title'];
+               $options -> option_content = request()->$temp['option_content'];
+               $options -> video = request()->$temp['video'];
                // $options -> option_pic = '12345';
                // $filename = $temp.'[option_pic]';
                // dd($votes->vote_pic);
