@@ -38,7 +38,8 @@ Route::get('/helps', 'HelpController@list');
 Route::get('/home/webset', 'HelpController@cont');
 
 //vip
-Route::get('/bcvip','VipController@index');
+Route::get('/del/{id}','DellController@index');
+// Route::get('/del/{id}','DellController@index');
 
 
 
