@@ -35,7 +35,13 @@
 
 					<td>{{substr($v->end_time,0,10)}}</td>
 					<td>12</td>
-					<td>{{$v->vote_num}}</td>
+
+<?php
+	$arry = DB::select('select  sum(vote_num) as total from options where vote_id ='.$v->id);
+        $arrys = $arry[0]->total;
+?>
+
+					<td>{{$arrys}}</td>
 					<td>
 						|<a href="/vote/{{$v->id}}/edit"><button class='btn btn-success'>修改</button></a>|
 						<a href="/vote/{{$v->id}}/count"><button class='btn btn-success'>统计</button></a>|
