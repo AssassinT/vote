@@ -112,9 +112,9 @@ class VoteController extends Controller
 
         $user_agent = $_SERVER['HTTP_USER_AGENT'];
         if (strpos($user_agent, 'MicroMessenger') === false) {
-            $wechat = true;
-        } else {
             $wechat = false;
+        } else {
+            $wechat = true;
         }
         $votes = Vote::findOrfail($id);
         // dd($votes);
