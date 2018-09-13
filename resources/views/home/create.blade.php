@@ -197,7 +197,7 @@
 		  <tr class='active'>
 				<td>去除广告</td>
 				<td >
-				 <a href="/help/none"><b style="color:#FFCC00;font-size:10px;"> ★ 加入会员 ，去除广告</b></a>
+				 <a href="/help/none"><b style="color:#FFCC00;font-size:10px;">★加入会员 去除广告</b></a>
 				</td>
 				<td>
 					<label>

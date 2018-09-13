@@ -9,8 +9,11 @@
                 <div style="margin-left:70px;!important;width:85%;">
                     <b style="background: #ffffff;font-size:20px">联系电话：<font id="OrderId">137906053356</font></b><br><br>
                     <b style="background: #ffffff;font-size:20px;">微信关注：请填写您的<a style="color:red">(用户名)</a>，方便与管理员联系</b><br><br>
-                    <p id="WxQrcode"><img src="/vo/微信.jpg" width="30%" /></p>
+                    <p ><img src="/vo/微信.jpg" width="60%" /></p>
                 </div>
             </div>
         </div>
+        <div class="col-sm-offset-2 ">
+            <a href="/vote/create"><button  class="btn btn-info "style="margin-left:35%;width:10%;height:38px"><b>返回</b></button></a>
+            </div>
 @endsection
