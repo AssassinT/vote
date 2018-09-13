@@ -14,7 +14,7 @@
 
 <!-- 微信判断 -->
 
-@if($votes->has_wechat=='1' && $wechat)
+@if($votes->has_wechat=='1' && !$wechat)
 <div>
 		请用微信扫描二维码进行投票
 		<div style="width:200px;height:200px;border:1px solid black">
