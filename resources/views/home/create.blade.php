@@ -197,13 +197,13 @@
 		  <tr class='active'>
 				<td>去除广告</td>
 				<td >
-				 <a href="/help/none"><b style="color:#FFCC00;font-size:10px;"> ★ 加入会员 ，去除广告</b></a>
+				 <a href="/help/none"><b style="color:#FFCC00;font-size:10px;">★加入会员 去除广告</b></a>
 				</td>
 				<td>
 					<label>
 				        <input type="radio" checked name="has_a_d" id="" value='0' class="a-radio">
 				        <span class="b-radio"></span>
-				        <a href="/help/none"><b style="color:#FFCC00;font-size:10px;">&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp </b></a>
+				        <b style="color:#FFCC00;font-size:10px;">&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp </b>
 				    </label>
 				</td>
 				

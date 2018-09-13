@@ -8,10 +8,10 @@
                 </header><hr>
             <table style="text-align:center;margin-left:70px;!important;width:85%;">
                 <thead style="padding-left:70px;">
-                    <tr style="font-size:18px;width:85px;height:40px">
+                    <tr style="font-size:18px;width:85px;height:45px">
                         <th style="background: #ffffff;"></th>
-                        <th style="background: #33CCFF;text-align:center;color:#666666">普通用户</th>&nbsp
-                        <th style="background: #33CCFF;text-align:center;color:#666666">会员</th>
+                        <th style="background: #5bc0de;text-align:center;color:#fff"><b>普通用户</b></th>&nbsp
+                        <th style="background: #5bc0de;text-align:center;color:#fff"><b>会员</b></th>
                     </tr>
                 </thead>
                 <tbody>
@@ -97,9 +97,11 @@
                         <td><h4 style="color:#33CCFF">40元/月</h4></td>
                     </tr>
                     <tr style='background:#eee;height:40px;font-size:15px;color:#666666;height:35px'>
-                        <td></td>
-                        <td></td>
-                        <td ><a href="/help/nonet"><button style="background:#33CCFF;color:#666666;width:80px;height:46px;font-size:17px;border:0px"><b>现在购买</b></button></a></td>
+                        <td> </td>
+                        <td> <a href="/vote/create"><button class="btn btn-info "style="margin-left:3%;width:38%;height:38px"><b>返回</b></button></a></td>
+                        <td >
+                        <a href="/help/nonet"><button  class="btn btn-info "style="margin-left:3%;width:38%;height:38px"><b>现在购买</b></button></a>
+                        </td>
                     </tr>
                 </tbody>
             </table>
