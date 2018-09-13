@@ -19,7 +19,7 @@
 
 </style>
 			<h3>投票修改</h3><hr>
-			<form action="/vote" method='post' enctype="multipart/form-data">
+			<form action="/vote/{{$votes->id}}" method='post' enctype="multipart/form-data">
 
 			<div class='leixing' style="color:#888;margin-bottom:10px" >
 				<span style="font-size:16px">请选择投票类型：</span> 
@@ -59,18 +59,19 @@
 			
 			<div id="content" class='col-md-6'>
 
-			@foreach($votes->option as $v)	
+			@foreach($votes->option  as $k=>$v)	
+			<input type="hidden" value="{{$v->id}}" name = "option{{$k}}[option_id]">
 			<div class='option'>
 				<div class="input-group col-md-12">
 				  <span class="input-group-addon" id="basic-addon1">选项</span>
-				  <input type="text" has='option_title' name='option0[option_title]' class="form-control" placeholder="" aria-describedby="basic-addon1" value="{{$v->option_title}}">
+				  <input type="text" has='option_title' name='option{{$k}}[option_title]' class="form-control" placeholder="" aria-describedby="basic-addon1" value="{{$v->option_title}}">
 				</div><br>
 
 				@if(empty(!$v->video))
 				<div class='video' style="display:block">
 				<div class=" input-group col-md-12">
 				  <span class="input-group-addon" id="basic-addon1">视频地址</span>
-				  <input type="text" class="form-control" name='option0[video]' placeholder="" aria-describedby="basic-addon1" value="{{$v->video}}">
+				  <input type="text" class="form-control" name='option{{$k}}[video]' placeholder="" aria-describedby="basic-addon1" value="{{$v->video}}">
 				</div>
 				<div class='shi'></div>
 				</div>
@@ -83,21 +84,22 @@
 				@endif
 				<div class=" input-group col-md-12">
 				  <span class="input-group-addon" id="basic-addon1">选项说明</span>
-				  <input type="text" class="form-control" name='option0[option_content]' placeholder="" aria-describedby="basic-addon1" value="{{$v->option_content}}">
+				  <input type="text" class="form-control" name='option{{$k}}[option_content]' placeholder="" aria-describedby="basic-addon1" value="{{$v->option_content}}">
 				</div>
 				<div class='shi'></div>
 				</div>
 				
 
-
+				<img src="{{$v->option_pic}}" alt="" height=200;>
 		        <span class="btn btn-default pic fileinput-button" >
 		            <span>修改图片</span>
-		            <input type="file" name='option0[option_pic]'>
+		            <input type="file" name='option{{$k}}[option_pic]' class="img">
 		        </span>
 				
 				
 				<button type="button" class="add_video btn option_video btn-default">修改视频</button>
 				<button type="button" class="modify_content btn btn-default">修改说明</button>
+				<button type="button" class="remove btn btn-default">删除该项</button><br>
 				
 			</div>
 
@@ -167,7 +169,7 @@
 				</td>
 				<td>
 					<label>
-				        <input type="radio"   name="has_comment" value="0" id="" class="a-radio" {{$votes['comment']==0 ? 'checked' : ''}}>
+				        <input type="radio"   name="comment" value="0" id="" class="a-radio" {{$votes['comment']==0 ? 'checked' : ''}}>
 				        <span class="b-radio"></span>
 				    </label>
 				</td>
@@ -285,12 +287,14 @@
 				  <span class="input-group-addon" id="basic-addon1">截止时间</span>
 				  <input type="date" name="end_time" class="form-control" placeholder="" aria-describedby="basic-addon1" value="{{$votes->end_time}}">
 				</div><br>
-				  
-			<button style="margin-left:40px" id="tijiaoanliu" class="btn btn-success">发布投票</button>
+				 <input type="hidden" name="vote_type" value="{{$votes->vote_type}}">
+			<button style="margin-left:40px" id="tijiaoanliu" class="btn btn-success">修改投票</button>
 			<br><br><br>
 			</div>
 			{{csrf_field()}}
-			<input type="hidden" value="" id='num' name='num'>
+			{{method_field('PUT')}}
+			<input type="hidden" value="{{$k+1}}"  name='num'>
+			<input type="hidden" value=""  id="num" name='numm'>
 		</form>
 		<style>
 
@@ -407,6 +411,56 @@ $('.modify_content').off('click').on('click',function(){
             $('#fmpicc').attr("src",reader.result);
         };
     };
+
+    $(function () {
+        $('.img').change(function () {
+
+            var fil = this.files;
+
+           var reader = new FileReader();
+	        reader.readAsDataURL(fil[0]);
+	        var nb = $(this);
+	        // alert(123)
+	        reader.onload = function(){
+	        	console.log(reader.result);
+	           	nb.parent().prev().attr('src',reader.result);
+	        };
+
+        });
+    });
+    
+    $('.remove').click(function(){
+    	if(confirm('删除后不可撤销')){
+    		$(this).parent().remove();
+				$.get('/del/{{$v->id}}',{},function(data){
+					
+				});
+    	}
+			
+				// $.ajax({
+				// 	// url: '/vote/{{$votes->id}}',
+				// 	url: '/del/{{$votes->id}}',
+				// 	type:'POST',
+				// 	 data:{
+				// 	 	// option: v
+				// 	 '_token':'{{csrf_token()}}'	
+				// 	 },
+				// 	 dataType:'json',
+				// 	headers: {
+				//             'X-CSRF-TOKEN': $('meta[name="csrf-token"]')},	
+				// 	success: function(data){
+				// 		if(data != '1'){
+				// 			alert('删除失败');
+				// 		}else{
+				// 			alert('删除成功');
+				// 		}
+				// 	},
+				// 	async: false
+				// })
+		});
+
+
+
 </script>
 
 	

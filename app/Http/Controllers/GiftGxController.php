@@ -81,4 +81,11 @@ class GiftGxController extends Controller
     {
         //
     }
+
+    public function brush()
+    {
+        //是否刷礼物
+        return view('home.brush');
+    }
+
 }
