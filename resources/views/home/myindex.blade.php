@@ -51,7 +51,7 @@
                        @endif -->
         </div>
         <br> @if(!$user['has_vip'])
-        <a href="/bcvip"><span style="color:red">获取更多积分</span></a> @endif
+        <a href="/help/none"><span style="color:red">获取更多积分</span></a> @endif
         <div class=" input-group col-md-4">
             <span class="input-group-addon" id="basic-addon1" style="width:82px">积分</span>
             <img src="" alt="">
@@ -146,7 +146,7 @@ $(function() {
             //边框
             $(this).addClass('error');
             //文字提醒
-            $('.remind1').html('<span style="color:red">格式不正确</span>').show();
+            $('.remind1').html('<span style="color:red">格式不正确,请输入6-16f非空白字符</span>').show();
             CPASS = false;
         } else {
             //边框

@@ -33,8 +33,8 @@ class VoteController extends Controller
      */
     public function create()
     {
-
-        return view('/home/create');
+        $votes = new Vote;
+        return view('/home/create',compact('votes'));
     }
 
     /**
@@ -54,12 +54,30 @@ class VoteController extends Controller
         $votes -> comment  = request() -> has_comment;
         $votes -> has_a_d  = request() -> has_a_d;
         $votes -> has_top  = request() -> has_top;
-        $votes -> has_checkbox  = request() -> has_checkbox;
-        $votes -> has_repeat  = request() -> has_repeat;
-        $votes -> has_password  = request() -> has_password;
+      
         $votes -> end_time  = request() -> end_time;
 
         $votes -> vote_type = request() -> vote_type;
+        //允许多选默认值
+        if(empty(request() -> has_checkbox)){
+            $votes -> has_checkbox  = 0;
+        }else{
+            $votes -> has_checkbox  = request() -> has_checkbox;
+        }
+        //允许重复默认值
+        if(empty(request() -> has_repeat)){
+            $votes -> has_repeat  = 0;
+        }else{
+            $votes -> has_repeat  = request() -> has_repeat;
+        }
+
+        //密码默认值
+        if(empty(request() -> has_password)){
+            $votes -> has_password  = 0;
+        }else{
+            $votes -> has_password  = request() -> has_password;
+        }
+
         // $votes -> vote_pic = '12345';
         $votes -> user_id  = '10';//后期改成session
 
