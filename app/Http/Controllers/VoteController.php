@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\DB;
 
 use App\User;
 use App\Vote;
+use App\Ip;
 
 
 
@@ -33,8 +34,8 @@ class VoteController extends Controller
      */
     public function create()
     {
-
-        return view('/home/create');
+        $votes = new Vote;
+        return view('/home/create',compact('votes'));
     }
 
     /**
@@ -54,12 +55,30 @@ class VoteController extends Controller
         $votes -> comment  = request() -> has_comment;
         $votes -> has_a_d  = request() -> has_a_d;
         $votes -> has_top  = request() -> has_top;
-        $votes -> has_checkbox  = request() -> has_checkbox;
-        $votes -> has_repeat  = request() -> has_repeat;
-        $votes -> has_password  = request() -> has_password;
+      
         $votes -> end_time  = request() -> end_time;
 
         $votes -> vote_type = request() -> vote_type;
+        //允许多选默认值
+        if(empty(request() -> has_checkbox)){
+            $votes -> has_checkbox  = 0;
+        }else{
+            $votes -> has_checkbox  = request() -> has_checkbox;
+        }
+        //允许重复默认值
+        if(empty(request() -> has_repeat)){
+            $votes -> has_repeat  = 0;
+        }else{
+            $votes -> has_repeat  = request() -> has_repeat;
+        }
+
+        //密码默认值
+        if(empty(request() -> has_password)){
+            $votes -> has_password  = 0;
+        }else{
+            $votes -> has_password  = request() -> has_password;
+        }
+
         // $votes -> vote_pic = '12345';
         $votes -> user_id  = '10';//后期改成session
 
@@ -109,6 +128,19 @@ class VoteController extends Controller
      */
     public function show($id)
     {
+        $votes = Vote::findOrfail($id);
+        $ipss = Ip::orderBy('id','asc')->where([['vote_id',$id],['openid_ip',$_SERVER["REMOTE_ADDR"]]])->get();
+if(count($ipss)>0){//删除超过时间段的ip表数据
+        $ctime = strtotime($ipss[0]->created_at);
+
+        for ($j=0; $j < count($ipss); $j++) { 
+                if(strtotime($ipss[$j]->created_at)<time()-$votes->has_repeat*3600){
+                    $nnn = Ip::findOrFail($ipss[$j]->id);
+                    $nnn->delete();
+                }
+            }
+}
+
 
         $user_agent = $_SERVER['HTTP_USER_AGENT'];
         if (strpos($user_agent, 'MicroMessenger') === false) {
@@ -116,12 +148,17 @@ class VoteController extends Controller
         } else {
             $wechat = true;
         }
-        $votes = Vote::findOrfail($id);
-        // dd($votes);
+        
+        
+        //查出该ip投过的该投票信息的哪些选项
+        $option_id = [];
+        $ips = Ip::where([['vote_id',$id],['openid_ip',$_SERVER["REMOTE_ADDR"]]])->get();
+        for ($i=0; $i < count($ips); $i++) { 
+            $option_id[] = $ips[$i]->option_id;
+        }
         
 
-
-        return view('/home/show',compact('votes','wechat'));
+        return view('/home/show',compact('votes','wechat','option_id'));
 
     }
 

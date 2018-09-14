@@ -112,16 +112,24 @@
 				已截止
 			</div>
 		@else
-			@if($votes->has_wechat=='1' && $wechat)
+			@if(($votes->has_wechat=='1' && $wechat) ||$votes->has_wechat=='0')
 				<!-- 礼物判断 -->
 				@if($votes->has_gift)
 					<div>
-						<button  option_id="{{$v->id}}" style="margin-right:10px;" class='tou_vote col-md-5 btn btn-success'>投票</button>
+						@if(!in_array($v->id,$option_id))
+						<button option_id="{{$v->id}}" style="margin-right:10px;" class='tou_vote col-md-5 btn btn-success'>投票</button>
+						@else
+						<button option_id="{{$v->id}}" style="margin-right:10px;" class='tou_vote col-md-5 btn btn-active'>已投票</button>
+						@endif
 						<button class='col-md-5 btn btn-success'>送礼</button>
 					</div>
 				@else
 					<div>
+						@if(!in_array($v->id,$option_id))
 						<button option_id="{{$v->id}}" class='tou_vote col-md-12 btn btn-success'>投票</button>
+						@else
+						<button option_id="{{$v->id}}" class='tou_vote col-md-12 btn btn-active'>已投票</button>
+						@endif
 					</div>
 				@endif
 				<!-- 礼物判断 -->
@@ -154,7 +162,14 @@
 <script>
 	$(function(){
 		$('.tou_vote').click(function(){
+			var nb = $(this);
 			$.get('/option/'+$(this).attr('option_id'),{},function(data){
+				if(data=='投票成功'){
+					nb.html('已投票');
+					nb.css('background','#ddd');
+					nb.css('border','1px solid #eee');
+					nb.css('color','#000');
+				}
 				alert(data);
 			});
 		});

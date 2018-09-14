@@ -15,7 +15,7 @@
 	}
 </style>
 			<h3>创建投票</h3><hr>
-			<form action="/vote" method='post' enctype="multipart/form-data">
+			<form action="/vote" method='post' enctype="multipart/form-data" onSubmit="return check(this)";>
 
 			<div class='leixing' style="color:#888;margin-bottom:10px">
 				<span style="font-size:16px">请选择投票类型：</span> 
@@ -55,7 +55,9 @@
 			<div class='option'>
 				<div class="input-group col-md-12">
 				  <span class="input-group-addon" id="basic-addon1">选项</span>
+					
 				  <input type="text" has='option_title' name='option1000[option_title]' class="form-control" placeholder="" aria-describedby="basic-addon1">
+
 				</div><br>
 
 				<div class='video'>
@@ -239,7 +241,7 @@
 
 				<div class="input-group col-md-12">
 				  <span class="input-group-addon" id="basic-addon1">投票密码</span>
-				  <input type="text" class="form-control" name="has_password" placeholder="默认无密码" aria-describedby="basic-addon1">
+				  <input type="text" class="form-control" name="has_password" placeholder="默认无密码" aria-describedby="basic-addon1" >
 				</div><br>
 
 
@@ -320,7 +322,38 @@
 		$('#tan').show();
 		$('#tishi').html(' &nbsp;&nbsp;'+str);
 	}
+	 function check(form){
+        //检查姓名是否填写
+        var vote_title = form.vote_title.value;
+        if(vote_title.length==0){
+        tc ("请填写标题名称！");
+        form.vote_title.focus();
+        return false;
+        }
+        //检查权重是否填写
+        var vote_explain = form.vote_explain.value;
+        if(vote_explain.length==0){
+        tc("请填写说明！");
+        form.vote_explain.focus();
+        return false;
+        }
+      
+        //检查结束时间是否填写
+        var end_time = form.end_time.value;
+        if(end_time.length==0){
+        tc("请填写结束时间！");
+        form.end_time.focus();
+        return false;
+        }
 
+        检查封面是否填写
+        var vote_pic = form.vote_pic.value;
+        if(vote_pic.length==0){
+        tc("请添加封面！");
+        form.vote_pic.focus();
+        return false;
+        }
+    }
 
 </script>
 

@@ -90,7 +90,7 @@
 				</div>
 				
 
-				<img src="{{$v->option_pic}}" alt="" height=200;>
+				<img src="{{$v->option_pic}}" alt="" height=200  width="362" ;>
 		        <span class="btn btn-default pic fileinput-button" >
 		            <span>修改图片</span>
 		            <input type="file" name='option{{$k}}[option_pic]' class="img">
@@ -104,7 +104,7 @@
 				
 			</div>
 
-			<br>
+			<br> 
 	@endforeach
 
 		</div>			
@@ -268,13 +268,13 @@
 
 				<div class="input-group col-md-12">
 				  <span class="input-group-addon" id="basic-addon1">重复投票</span>
-				  <input type="select" class="form-control" name='has_repeat' placeholder="间隔几小时可以再次投票,默认不允许重复投票" aria-describedby="basic-addon1" value="{{$votes->has_repeat}}">
-				</div><br>
+				  <input type="text" class="form-control" name='has_repeat' placeholder="间隔几小时可以再次投票,默认不允许重复投票" aria-describedby="basic-addon1" value="{{$votes->has_repeat}}">
+				</div><span style="color:red;font-size:12px;display:none"  >间隔几小时可以再次投票,默认0表示不允许再次投票</span><br>
 
 				<div class="input-group col-md-12">
 				  <span class="input-group-addon" id="basic-addon1">投票密码</span>
 				  <input type="text" class="form-control" name="has_password" placeholder="默认无密码" aria-describedby="basic-addon1" value="{{$votes->has_password}}">
-				</div><br>
+				</div><span style="color:red;font-size:12px;display:none"  >请设置投票密码,默认0表示没有密码</span><br>
 
 
 				<div class="input-group col-md-12">
@@ -330,7 +330,6 @@
 <script>
 
 	$(function(){
-		
 		$('input[name=end_time]').change(function(){
 
 			var newtime = $(this).val();
@@ -367,6 +366,20 @@
 		$('#close').click(function(){
 			$("#tan").hide();
 		});
+
+	//重复投票
+	$('input[name=has_repeat]').focus(function(){
+		$(this).parent().next().show();
+	}).blur(function(){
+		$(this).parent().next().hide();
+
+	});
+
+	$('input[name=has_password]').focus(function(){
+		$(this).parent().next().show();
+	}).blur(function(){
+		$(this).parent().next().hide();	
+	});
 	});
 	function tc(str){
 		$('#tan').show();
@@ -426,8 +439,8 @@ $('.modify_content').off('click').on('click',function(){
     
     $('.remove').click(function(){
     	if(confirm('删除后不可撤销')){
+    		// $(this).firstChild().next().remove();
     		$(this).next().remove();
-    		$(this).lastChild.remove();
 				$.get('/del/{{$v->id}}',{},function(data){
 					
 				});
