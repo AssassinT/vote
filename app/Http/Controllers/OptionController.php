@@ -16,9 +16,9 @@ class OptionController extends Controller
      * @return \Illuminate\Http\Response
      */
     public $config = [
-        'app_id' => 'wxc6503c9cdfc17b02',
-        'secret' => '8ee369c04b09bbdba74ea049334b3eba',
-        'token' => 'wechat',
+        'app_id' => 'wxeb8503aed05a2c1a',
+        'secret' => '052836c4dde956a0644acf0607c8934d',
+        'token' => 'easywechat',
         'response_type' => 'array',
 
         'log' => [
@@ -95,15 +95,20 @@ if(count($ipss)>0){
         $user_agent = $_SERVER['HTTP_USER_AGENT'];
 
         if (strpos($user_agent, 'MicroMessenger') === false) {
-            
+
             $ips -> openid_ip = $_SERVER["REMOTE_ADDR"];
+            // $app = Factory::officialAccount($this->config);
+            // $response = $app->oauth->scopes(['snsapi_userinfo'])->redirect();
+            // $user = $app->oauth->user();
+            // $ips -> openid_ip = $user->getId();
 
         } else {
+            $ips -> openid_ip = $_SERVER["REMOTE_ADDR"];
 
-            $app = Factory::officialAccount($this->config);
-            $response = $app->oauth->scopes(['snsapi_base'])->redirect();
-            $user = $app->oauth->user();
-            $ips -> openid_ip = $user->getId();
+            // $app = Factory::officialAccount($this->config);
+            // $response = $app->oauth->scopes(['snsapi_base'])->redirect();
+            // $user = $app->oauth->user();
+            // $ips -> openid_ip = $user->getId();
            
         }
 

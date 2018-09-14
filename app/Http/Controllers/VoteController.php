@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+use EasyWeChat\Factory;
 
 use App\Option;
 
@@ -20,6 +21,17 @@ class VoteController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public $config = [
+        'app_id' => 'wxeb8503aed05a2c1a',
+        'secret' => '052836c4dde956a0644acf0607c8934d',
+        'token' => 'easywechat',
+        'response_type' => 'array',
+
+        'log' => [
+            'level' => 'debug',
+            'file' => __DIR__.'/wechat.log',
+        ],
+    ];
     public function index()
     {
 
@@ -110,6 +122,26 @@ class VoteController extends Controller
      */
     public function show($id)
     {
+        $user_agent = $_SERVER['HTTP_USER_AGENT'];
+        if (strpos($user_agent, 'MicroMessenger') === false) {
+
+            $wechat = false;
+
+        } else {
+
+            $app = Factory::officialAccount($this->config);
+            $response = $app->oauth->scopes(['snsapi_userinfo'])->redirect('http://www.zczl.shop/wechat/redirect');
+            return $response;
+
+           
+            // $ips -> openid_ip = $user->getId();
+
+            // $wechat = true;
+        }
+        $wechat = false;
+        
+
+
         $votes = Vote::findOrfail($id);
         $ipss = Ip::orderBy('id','asc')->where([['vote_id',$id],['openid_ip',$_SERVER["REMOTE_ADDR"]]])->get();
 if(count($ipss)>0){//删除超过时间段的ip表数据
@@ -124,12 +156,6 @@ if(count($ipss)>0){//删除超过时间段的ip表数据
 }
 
 
-        $user_agent = $_SERVER['HTTP_USER_AGENT'];
-        if (strpos($user_agent, 'MicroMessenger') === false) {
-            $wechat = false;
-        } else {
-            $wechat = true;
-        }
         
         
         //查出该ip投过的该投票信息的哪些选项
@@ -140,8 +166,14 @@ if(count($ipss)>0){//删除超过时间段的ip表数据
         }
         
 
-        return view('/home/show',compact('votes','wechat','option_id'));
+        return view('/home/show',compact('votes','wechat','option_id','userid'));
 
+    }
+
+    public function redirect(){
+        // echo 123;
+        $app = Factory::officialAccount($this->config);
+        echo $app->oauth->user()->getId();
     }
 
     /**
