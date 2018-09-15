@@ -22,7 +22,7 @@ class VoteController extends Controller
     public function index()
     {
 
-        $votes = Vote::where('user_id','10')->get();//session
+        $votes = Vote::where('user_id',session('id'))->get();//session
         return view('/home/list',['votes'=>$votes]);
     }
 
@@ -79,7 +79,7 @@ class VoteController extends Controller
         }
 
         // $votes -> vote_pic = '12345';
-        $votes -> user_id  = '10';//后期改成session
+        $votes -> user_id  = session('id');//后期改成session
 
 
           if ($request->hasFile('vote_pic')) {
@@ -87,7 +87,7 @@ class VoteController extends Controller
         }
 
         $votes->save();
-        $vote_id = Vote::where([['user_id','10'],['vote_title',request()->vote_title]])->get();//10-session
+        $vote_id = Vote::where([['user_id',session('id')],['vote_title',request()->vote_title]])->get();//10-session
 
         
         for($i=1000;$i<=request()->num;$i++){
