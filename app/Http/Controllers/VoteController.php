@@ -158,6 +158,7 @@ class VoteController extends Controller
      */
     public function show($id)
     {
+
         $user_agent = $_SERVER['HTTP_USER_AGENT'];
 
         if (strpos($user_agent, 'MicroMessenger') === false) {
@@ -192,11 +193,13 @@ class VoteController extends Controller
         //查出该ip投过的该投票信息的哪些选项
         $option_id = [];
 
+
         $ips = Ip::where([['vote_id',$id],['openid_ip',$_SERVER["REMOTE_ADDR"]]])->get();
 
         for ($i=0; $i < count($ips); $i++) { 
             $option_id[] = $ips[$i]->option_id;
         }
+
 
         $openid = false;
 

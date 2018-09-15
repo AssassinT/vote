@@ -5,7 +5,10 @@
             height:40px;
         }
     </style>
-	<form class="am-form tpl-form-line-form" method="post" action="/proposal" onSubmit="return check(this);">
+	<form class="am-form tpl-form-line-form" method="post" action="/home/proposal" onSubmit="return check(this);">
+        <div session='{{session("id")}}' id="userid">
+        </div><br>
+        
         <div class="input-group col-md-6" style="margin-left:70px; padding-top:10px;!important">
 			<span class="input-group-addon" id="basic-addon1">建议标题</span>
 			<input type="text" name='proposal_name' class="form-control" placeholder="请填写建议标题" aria-describedby="basic-addon1">
@@ -102,7 +105,17 @@
 
 <script type="text/javascript">
 
+    
+    
+
     function check(form){
+        //判断用户登录是否存在
+        var id = $('#userid').attr('session');
+        if(id==""){
+        alert('请先登录');
+        return false;
+        }
+
         //检查建议标题是否填写
         var proposal_name = form.proposal_name.value;
         if(proposal_name.length==0){
@@ -118,6 +131,7 @@
         return false;
         }
 
+
         //提交是否成功
         if(proposal_name.length==false || proposal_content.length==false){
             alert("提交失败！");
@@ -126,5 +140,6 @@
             alert("提交成功！");
             return true;
         }
+    // return false;
     }
 </script>
