@@ -6,11 +6,11 @@ use Illuminate\Database\Eloquent\Model;
 
 class comment extends Model
 {
-    public function users()
+    public function user()
     {
     	return $this->hasMany('App\User');
     }
-    public function votes()
+    public function vote()
     {
     	return $this->hasMany('App\Vote');
     }

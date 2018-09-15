@@ -151,9 +151,11 @@
 
 <!-- 判断允许评论 -->
 @if($votes->comment=='1')
-<form action=""></form>
+<form method="post" action="/home/comment">
+	<input type="hidden" name="vote_id" value="{{$votes->id}}">
 	<div class="col-md-8">
-		<textarea name="" id="" cols="50" placeholder="留下你的评论吧" rows="4"></textarea><br>
+		<textarea name="comment_content" id="" cols="50" placeholder="留下你的评论吧" rows="4"></textarea><br>
+		{{csrf_field()}}
 		<button class='btn btn-success'>提交评论</button>
 	</div>
 </form>

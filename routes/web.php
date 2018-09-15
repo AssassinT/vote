@@ -33,6 +33,7 @@ Route::post('/myindex/{id}', 'MyController@store');
 Route::get('/home/proposal', 'ProposalController@home_index');
 Route::post('/home/proposal', 'ProposalController@store');
 
+Route::post('/home/comment', 'CommentController@store');
 
 Route::get('/help/none', 'HelpController@none');
 
