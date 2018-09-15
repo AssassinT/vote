@@ -1,4 +1,5 @@
 @extends('layouts.home.index')
+<div id="openid" openid="{{$openid}}">{{$openid}}</div>
 @section('content')
 <!-- 密码判断 -->
 @if(!$votes->has_password==0)
@@ -121,7 +122,7 @@
 						@else
 						<button option_id="{{$v->id}}" style="margin-right:10px;" class='tou_vote col-md-5 btn btn-active'>已投票</button>
 						@endif
-						<button class='col-md-5 btn btn-success'>送礼</button>
+						<a href="/gift_gx/{{$v->id}}"><button class='col-md-5 btn btn-success'>送礼</button></a>
 					</div>
 				@else
 					<div>
@@ -163,7 +164,8 @@
 	$(function(){
 		$('.tou_vote').click(function(){
 			var nb = $(this);
-			$.get('/option/'+$(this).attr('option_id'),{},function(data){
+			var openid = $('#openid').attr('openid');
+			$.get('/option/'+$(this).attr('option_id')+'?openid='+openid,{},function(data){
 				if(data=='投票成功'){
 					nb.html('已投票');
 					nb.css('background','#ddd');

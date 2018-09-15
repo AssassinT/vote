@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Gift_gx;
+use App\Gift;
+use App\Option;
 
 class GiftGxController extends Controller
 {
@@ -45,7 +48,15 @@ class GiftGxController extends Controller
      */
     public function show($id)
     {
-        //
+
+        $gift_gxs = Gift_gx::where('option_id',$id)->get();
+
+        $options = Option::findOrFail($id);
+
+        $gifts = Gift::all();
+
+        return view('/home/gift',compact('gift_gxs','gifts','options'));
+
     }
 
     /**
