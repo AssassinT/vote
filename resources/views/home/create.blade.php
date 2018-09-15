@@ -15,7 +15,7 @@
 	}
 </style>
 			<h3>创建投票</h3><hr>
-			<form action="/vote" method='post' enctype="multipart/form-data">
+			<form action="/vote" method='post' enctype="multipart/form-data" onSubmit="return check(this)";>
 
 			<div class='leixing' style="color:#888;margin-bottom:10px">
 				<span style="font-size:16px">请选择投票类型：</span> 
@@ -45,7 +45,7 @@
 			</div><br>
 			<span class="btn btn-default fileinput-button">
 		            <span>添加封面</span>
-		            <input type="file" id="vote_picc" name='vote_pic'>
+		            <input type="file" id="vote_picc"   name='vote_pic'>
 		        </span><br>
 
 			
@@ -55,7 +55,9 @@
 			<div class='option'>
 				<div class="input-group col-md-12">
 				  <span class="input-group-addon" id="basic-addon1">选项</span>
+					
 				  <input type="text" has='option_title' name='option1000[option_title]' class="form-control" placeholder="" aria-describedby="basic-addon1">
+
 				</div><br>
 
 				<div class='video'>
@@ -239,7 +241,7 @@
 
 				<div class="input-group col-md-12">
 				  <span class="input-group-addon" id="basic-addon1">投票密码</span>
-				  <input type="text" class="form-control" name="has_password" placeholder="默认无密码" aria-describedby="basic-addon1">
+				  <input type="text" class="form-control" name="has_password" placeholder="默认无密码" aria-describedby="basic-addon1" >
 				</div><br>
 
 

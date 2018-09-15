@@ -91,5 +91,11 @@ Route::resource('comment', 'CommentController');//留言
 Route::resource('gift_gx', 'GiftGxController');//礼物关系
 Route::resource('option', 'OptionController');//选项
 
+Route::get('/wechat','WechatController@index');//微信
+
+
+
+
+
 
 
