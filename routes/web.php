@@ -52,16 +52,12 @@ Route::get('/gift/brush','GiftGxController@brush');
 
 
 
-
-
-
-
-
-
-
-
 Route::get('/', 'HomeController@index');
+
+
+
 Route::resource('vote', 'VoteController');//投票
+Route::get('/wechat/redirect', 'VoteController@redirect');//投票
 Route::get('/vote/{id}/count', 'VoteController@count');//
 
 
@@ -90,9 +86,10 @@ Route::resource('gift', 'GiftController');//礼物
 //前台的后台
 Route::resource('comment', 'CommentController');//留言
 Route::resource('gift_gx', 'GiftGxController');//礼物关系
+
 Route::resource('option', 'OptionController');//选项
 
-Route::get('/wechat','WechatController@index');//微信
+Route::get('/wechat/wechat','WechatController@indexindex');//微信
 
 
 

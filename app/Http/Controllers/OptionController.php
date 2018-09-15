@@ -16,9 +16,9 @@ class OptionController extends Controller
      * @return \Illuminate\Http\Response
      */
     public $config = [
-        'app_id' => 'wxc6503c9cdfc17b02',
-        'secret' => '8ee369c04b09bbdba74ea049334b3eba',
-        'token' => 'wechat',
+        'app_id' => 'wxeb8503aed05a2c1a',
+        'secret' => '052836c4dde956a0644acf0607c8934d',
+        'token' => 'easywechat',
         'response_type' => 'array',
 
         'log' => [
@@ -62,19 +62,23 @@ class OptionController extends Controller
     {
         $options = Option::findOrfail($id);
         $votes = Vote::findOrfail($options->vote_id);
-        
-        $ipss = Ip::orderBy('id','asc')->where([['vote_id',$options->vote_id],['openid_ip',$_SERVER["REMOTE_ADDR"]]])->get();
+        if(request()->openid){
+            $nn = request()->openid;
+        }else{
+            $nn = $_SERVER["REMOTE_ADDR"];
+        }
+        $ipss = Ip::orderBy('id','asc')->where([['vote_id',$options->vote_id],['openid_ip',$nn]])->get();
 if(count($ipss)>0){
         $ctime = strtotime($ipss[0]->created_at);
 
-        if((time()-$ctime>$votes->has_repeat*3600 || $votes->has_repeat=='0')||count($ipss)<$votes->has_checkbox){
+        if((time()-$ctime>$votes->has_repeat*1800 || $votes->has_repeat=='0')||count($ipss)<$votes->has_checkbox){
             $zt = true;
         }else{
             $zt = false;
         }
 
         for ($j=0; $j < count($ipss); $j++) { 
-                if(strtotime($ipss[$j]->created_at)<time()-$votes->has_repeat*3600){
+                if(strtotime($ipss[$j]->created_at)<time()-$votes->has_repeat*1800){
                     $nnn = Ip::findOrFail($ipss[$j]->id);
                     $nnn->delete();
                 }
@@ -92,19 +96,15 @@ if(count($ipss)>0){
             $ips = new Ip;
             $ips -> option_id = $id;
             $ips -> vote_id = $options -> vote_id;
-        $user_agent = $_SERVER['HTTP_USER_AGENT'];
 
-        if (strpos($user_agent, 'MicroMessenger') === false) {
+        if (request()->openid) {
+
+            $ips -> openid_ip = request()->openid;
             
-            $ips -> openid_ip = $_SERVER["REMOTE_ADDR"];
 
         } else {
-
-            $app = Factory::officialAccount($this->config);
-            $response = $app->oauth->scopes(['snsapi_base'])->redirect();
-            $user = $app->oauth->user();
-            $ips -> openid_ip = $user->getId();
-           
+            $ips -> openid_ip = $_SERVER["REMOTE_ADDR"];
+ 
         }
 
 
@@ -115,7 +115,7 @@ if(count($ipss)>0){
 
             echo '投票成功';
         }else{
-            echo $votes->has_repeat*1800;
+            echo $votes->has_repeat.'小时后可再投票';
             // echo date('H:i:s',strtotime($ipss[0]->created_at));
         }
         
