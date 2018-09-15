@@ -45,7 +45,7 @@
 			</div><br>
 			<span class="btn btn-default fileinput-button">
 		            <span>添加封面</span>
-		            <input type="file" id="vote_picc" name='vote_pic'>
+		            <input type="file" id="vote_picc"   name='vote_pic'>
 		        </span><br>
 
 			
@@ -322,38 +322,7 @@
 		$('#tan').show();
 		$('#tishi').html(' &nbsp;&nbsp;'+str);
 	}
-	 function check(form){
-        //检查姓名是否填写
-        var vote_title = form.vote_title.value;
-        if(vote_title.length==0){
-        tc ("请填写标题名称！");
-        form.vote_title.focus();
-        return false;
-        }
-        //检查权重是否填写
-        var vote_explain = form.vote_explain.value;
-        if(vote_explain.length==0){
-        tc("请填写说明！");
-        form.vote_explain.focus();
-        return false;
-        }
-      
-        //检查结束时间是否填写
-        var end_time = form.end_time.value;
-        if(end_time.length==0){
-        tc("请填写结束时间！");
-        form.end_time.focus();
-        return false;
-        }
 
-        检查封面是否填写
-        var vote_pic = form.vote_pic.value;
-        if(vote_pic.length==0){
-        tc("请添加封面！");
-        form.vote_pic.focus();
-        return false;
-        }
-    }
 
 </script>
 
