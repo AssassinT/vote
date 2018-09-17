@@ -12,6 +12,7 @@ use Illuminate\Support\Facades\DB;
 use App\User;
 use App\Vote;
 use App\Ip;
+use App\Comment;
 
 
 
@@ -203,7 +204,11 @@ class VoteController extends Controller
 
         $openid = false;
 
-        return view('/home/show',compact('votes','wechat','option_id','openid'));
+        $comments = Comment::orderBy('id','asc')
+            ->where('comment_content','like','%'.request()->keywords.'%')
+            ->paginate(5);        
+
+        return view('/home/show',compact('votes','wechat','option_id','openid','comments'));
 
     }
 

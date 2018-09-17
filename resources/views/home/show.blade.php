@@ -152,14 +152,78 @@
 
 <!-- 判断允许评论 -->
 @if($votes->comment=='1')
-<form method="post" action="/home/comment">
+<form method="post" action="/home/comment" onSubmit="return check(this);">
 	<input type="hidden" name="vote_id" value="{{$votes->id}}">
+	<div session='{{session("id")}}' id="userid">
+    </div><br>
 	<div class="col-md-8">
 		<textarea name="comment_content" id="" cols="50" placeholder="留下你的评论吧" rows="4"></textarea><br>
 		{{csrf_field()}}
 		<button class='btn btn-success'>提交评论</button>
-	</div>
-</form>
+	</div><br>
+</form><hr>
+
+	@foreach($comments as $v)
+	        <div>
+	            <b style="font-size:22px;color:#666666;">&nbsp;&nbsp;{{$v['comment_content']}}</b>
+	            <b style="font-size:5px;color:#666666;float:right;margin-right:70px;margin-top:15px;font-size:12px;">{{$v['created_at']}}</b>
+	        </div>
+	@endforeach
+
+
+	<style>
+        .pagination{
+            padding-left: 0;
+            margin: 1.5rem 0;
+           list-style: none;
+            color: #999;
+            text-align: left;
+            padding: 0;
+        }
+
+        .pagination li{
+            display: inline-block;
+        }
+        .pagination li a, .pagination li span{
+            color: #23abf0;
+            border-radius: 3px;
+            padding: 6px 12px;
+            position: relative;
+            display: block;
+            text-decoration: none;
+            line-height: 1.2;
+            background-color: #fff;
+            border: 1px solid #ddd;
+            border-radius: 0;
+            margin-bottom: 5px;
+            margin-right: 5px;
+        }
+
+        .pagination .active span{
+            color: #23abf0;
+            border-radius: 3px;
+            padding: 6px 12px;
+            position: relative;
+            display: block;
+           text-decoration: none;
+            line-height: 1.2;
+            background-color: #fff;
+            border: 1px solid #ddd;
+            border-radius: 0;
+            margin-bottom: 5px;
+            margin-right: 5px;
+            background: #23abf0;
+            color: #fff;
+            border: 1px solid #23abf0;
+            padding: 6px 12px;
+    	}
+    </style>
+    <div class="am-cf" style="margin-left:70px; padding-top:10px;!important">
+        <div class="am-fr" > 
+            {{ $comments->appends(request()->all())->links() }}
+        </div>
+    </div>
+
 @endif
 <!-- 判断允许评论 -->
 <script>
@@ -177,7 +241,44 @@
 				alert(data);
 			});
 		});
-	});
-</script>
 
+		$('#userid').click(function(){
+			var id = $('#userid').attr('session');
+			alert('aaa');
+        	if(id==""){
+        	alert('请先登录');
+        	return false;
+        	}
+		});
+	});
+
+	//评论点击事件
+	function check(form){
+        //判断用户登录是否存在
+        var id = $('#userid').attr('session');
+        if(id==""){
+        alert('请先登录');
+        return false;
+        }
+
+        //检查建议内容是否填写
+        var comment_content = form.comment_content.value;
+        if(comment_content.length==0){
+        alert("请填写评论内容！");
+        form.comment_content.focus();
+        return false;
+        }
+
+        //提交是否成功
+        if(comment_content.length==false){
+            alert("提交失败！");
+            return false;
+        }else{
+            alert("提交成功！");
+            return true;
+        }
+    }
+
+
+</script>
 @endsection
