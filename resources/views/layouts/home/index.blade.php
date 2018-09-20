@@ -38,6 +38,29 @@
      })(document, window);
  </script>
 
+	<link href="//netdna.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+
+	<meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">  
+<script>   
+(function (doc, win) {
+        var docEl = doc.documentElement,
+             resizeEvt = 'orientationchange' in window ? 'orientationchange' : 'resize',
+             recalc = function () {
+                var clientWidth = docEl.clientWidth;
+                if (!clientWidth) return;
+                 if(clientWidth>=640){
+                     docEl.style.fontSize = '100px';
+                 }else{
+                     docEl.style.fontSize = 100 * (clientWidth / 640) + 'px';
+                 }
+             };
+ 
+         if (!doc.addEventListener) return;
+         win.addEventListener(resizeEvt, recalc, false);
+         doc.addEventListener('DOMContentLoaded', recalc, false);
+     })(document, window);
+ </script>
+
 </head>
 <body>
 	<div id="has_login" has_login="{{Session::has('id')}}"></div>
@@ -100,6 +123,12 @@
 		<div class='main col-md-8 col-md-offset-2'>
 
 			@yield('content')
+
+		</div>
+
+		<div class='main col-md-8 col-md-offset-2' style="margin-top: 35px">
+
+			@yield('contents')
 
 		</div>
 		@include('layouts.home.link')
