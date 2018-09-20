@@ -1,7 +1,7 @@
 @extends('layouts.home.index')
-@section('add_option')
-			<button type="button" id="add" class="btn btn-warning">增加选项</button>
-@endsection
+
+			
+
 
 			
 @section('content')
@@ -18,15 +18,15 @@
 			<form action="/vote" method='post' enctype="multipart/form-data" onSubmit="return check(this)";>
 
 			<div class='leixing' style="color:#888;margin-bottom:10px">
-				<span style="font-size:16px">请选择投票类型：</span> 
+				<span style="font-size:16px">投票类型：</span> 
 				<label>
 			        <input type="radio" name="vote_type" id="" value='0' class="a-radio">
 			        <span class="b-radio"></span>文字类型
-				</label> &nbsp; &nbsp;
+				</label> &nbsp; 
 				<label>
 			        <input type="radio" name="vote_type" checked id="" value='1' class="a-radio">
 			        <span class="b-radio"></span>图片类型
-				</label> &nbsp; &nbsp;
+				</label> &nbsp; 
 				<label>
 			        <input type="radio" name="vote_type" id="" value='2' class="a-radio">
 			        <span class="b-radio"></span>视频类型
@@ -43,9 +43,9 @@
 			  <span class="input-group-addon" id="basic-addon1">说明</span>
 			  <input type="text" class="form-control" name="vote_explain" placeholder="请填写投票说明" aria-describedby="basic-addon1">
 			</div><br>
-			<span class="btn btn-default fileinput-button">
-		            <span>添加封面</span>
-		            <input type="file" id="vote_picc" name='vote_pic'>
+			<span class="btn btn-success fileinput-button">
+		            <span><span class="glyphicon glyphicon-plus" aria-hidden="true"></span>&nbsp;添加封面</span>
+		            <input type="file" id="vote_picc"   name='vote_pic'>
 		        </span><br>
 
 			
@@ -80,14 +80,14 @@
 
 
 				
-		        <span class="btn btn-default pic fileinput-button">
+		        <span class="btn btn-info pic fileinput-button"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
 		            <span>添加图片</span>
 		            <input type="file" name='option1000[option_pic]'>
 		        </span>
 
 
-				<button type="button" class="add_video btn option_video btn-default">添加视频</button>
-				<button type="button" class="add_content btn btn-default">添加说明</button>
+				<button type="button" class="add_video btn option_video btn-info"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> 添加视频</button>
+				<button type="button" class="add_content btn btn-info"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> 添加说明</button>
 				
 			</div>
 			<br>
@@ -118,19 +118,23 @@
 
 
 				
-		        <span class="btn btn-default pic fileinput-button">
+		        <span class="btn btn-info pic fileinput-button"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
 		            <span>添加图片</span>
 		            <input type="file" name='option1001[option_pic]'>
 		        </span>
 
 
-				<button type="button" class="add_video btn option_video btn-default">添加视频</button>
-				<button type="button" class="add_content btn btn-default">添加说明</button>
+				<button type="button" class="add_video btn option_video btn-info"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> 添加视频</button>
+				<button type="button" class="add_content btn btn-info"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> 添加说明</button>
 				
 			</div>
 
 		</div>
 
+<div class="col-md-7">
+	<button type="button" id="add" class="btn btn-success"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> 增加选项</button>
+
+</div>
 
 
 				
@@ -145,7 +149,7 @@
 		  <tr>
 				<th width='40%'>选项</th>
 				<th>是</th>
-				<th >否</th>
+				<th width='20%'>否</th>
 		  </tr>
 
 		  <tr class='success'>
@@ -199,13 +203,13 @@
 		  <tr class='active'>
 				<td>去除广告</td>
 				<td >
-				 <a href="/help/none"><b style="color:#FFCC00;font-size:10px;">★加入会员 去除广告</b></a>
+				 <a href="/help/none"><span style="color:#FFCC00;">★去除广告</span></a>
 				</td>
 				<td>
 					<label>
 				        <input type="radio" checked name="has_a_d" id="" value='0' class="a-radio">
-				        <span class="b-radio"></span>
-				        <b style="color:#FFCC00;font-size:10px;">&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp </b>
+				        <span class="b-radio"></span><!-- 
+				        <b style="color:#FFCC00;font-size:10px;">&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp </b> -->
 				    </label>
 				</td>
 				
@@ -249,12 +253,14 @@
 				  <span class="input-group-addon" id="basic-addon1">截止时间</span>
 				  <input type="date" name="end_time" class="form-control" placeholder="" aria-describedby="basic-addon1">
 				</div><br>
+			<div col-md-12>
+				<button style="width:100%" id="tijiaoanliu" class="btn btn-success">发布投票</button>
+			</div>
 
-			<button style="margin-left:40px" id="tijiaoanliu" class="btn btn-success">发布投票</button>
 			<br><br><br>
 			</div>
 			{{csrf_field()}}
-			<input type="hidden" value="" id='num' name='num'>
+			<input type="hidden" value="1003" id='num' name='num'>
 		</form>
 		<style>
 			#tan{
@@ -322,38 +328,7 @@
 		$('#tan').show();
 		$('#tishi').html(' &nbsp;&nbsp;'+str);
 	}
-	 function check(form){
-        //检查姓名是否填写
-        var vote_title = form.vote_title.value;
-        if(vote_title.length==0){
-        tc ("请填写标题名称！");
-        form.vote_title.focus();
-        return false;
-        }
-        //检查权重是否填写
-        var vote_explain = form.vote_explain.value;
-        if(vote_explain.length==0){
-        tc("请填写说明！");
-        form.vote_explain.focus();
-        return false;
-        }
-      
-        //检查结束时间是否填写
-        var end_time = form.end_time.value;
-        if(end_time.length==0){
-        tc("请填写结束时间！");
-        form.end_time.focus();
-        return false;
-        }
 
-        检查封面是否填写
-        var vote_pic = form.vote_pic.value;
-        if(vote_pic.length==0){
-        tc("请添加封面！");
-        form.vote_pic.focus();
-        return false;
-        }
-    }
 
 </script>
 

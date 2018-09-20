@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\User;
+use App\Vote;
+use App\Comment;
 use Illuminate\Http\Request;
 
 class CommentController extends Controller
@@ -35,6 +38,16 @@ class CommentController extends Controller
     public function store(Request $request)
     {
         //
+        $comment = new Comment;
+        $comment -> user_id = $request->session()->get('id');
+        $comment -> vote_id = $request->vote_id;
+        $comment -> comment_content = $request->comment_content;
+        // dd($comment);
+        if($comment -> save()){
+            return redirect('/vote/'.$request->vote_id)->with('true','添加成功');
+        }else{
+            return back()->with('false','添加失败');
+        }
     }
 
     /**

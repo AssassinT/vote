@@ -5,30 +5,32 @@
             height:40px;
         }
     </style>
-	<form class="am-form tpl-form-line-form" method="post" action="/proposal" onSubmit="return check(this);">
-        <div class="input-group col-md-6" style="margin-left:70px; padding-top:10px;!important">
+	<form class="am-form tpl-form-line-form" method="post" action="/home/proposal" onSubmit="return check(this);">
+        <div session='{{session("id")}}' id="userid">
+        </div><br>
+        
+        <div class="input-group col-md-6" style="m padding-top:10px;!important">
 			<span class="input-group-addon" id="basic-addon1">建议标题</span>
 			<input type="text" name='proposal_name' class="form-control" placeholder="请填写建议标题" aria-describedby="basic-addon1">
 		</div><br>
 
-		<div class="input-group col-md-6" style="margin-left:70px; padding-top:10px;!important">
+		<div class="input-group col-md-6" style=" padding-top:10px;!important">
 			<span class="input-group-addon" name='vote_explain' id="basic-addon1">建议内容</span>
             <textarea class="form-control" name="proposal_content" rows="5" cols="59" placeholder="请填写建议内容"></textarea>
 		</div><br>
 
                     
 		{{csrf_field()}}
-        <div class="am-form-group">
-           	<div class="am-u-sm-9 am-u-sm-push-3" style="margin-left:300px; padding-top:10px;!important">
-                <button class="am-btn am-btn-primary tpl-btn-bg-color-success btn" style="background-color:#1E90ff;color:white;" >提交</button>
-            </div>
+        <div class="col-md-6  col-sm-12">
+           
+                <button class="btn btn-success" style="width:100%">提交</button>
        	</div>
     </form>
     <hr>
 
     <header>
-        <div style="padding-left:70px;font-size:40px!important">
-        <b style=" color:#666666;">建议LIST</b></div>
+        <div style="font-size:26px!important">
+        <b style=" color:#666666;">历史建议</b></div>
     </header>
     <hr>
 
@@ -102,7 +104,17 @@
 
 <script type="text/javascript">
 
+    
+    
+
     function check(form){
+        //判断用户登录是否存在
+        var id = $('#userid').attr('session');
+        if(id==""){
+        alert('请先登录');
+        return false;
+        }
+
         //检查建议标题是否填写
         var proposal_name = form.proposal_name.value;
         if(proposal_name.length==0){
@@ -118,6 +130,7 @@
         return false;
         }
 
+
         //提交是否成功
         if(proposal_name.length==false || proposal_content.length==false){
             alert("提交失败！");
@@ -126,5 +139,6 @@
             alert("提交成功！");
             return true;
         }
+    // return false;
     }
 </script>

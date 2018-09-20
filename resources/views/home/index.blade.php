@@ -1,21 +1,12 @@
-@extends('layouts.home.index') @section('content')
-	
-	
-   <!--    _____                                       __        
-		  /  _  \   ______ ___________    ______ _____|__| ____  
-		 /  /_\  \ /  ___//  ___/\__  \  /  ___//  ___/  |/    \ 
-		/    |    \\___ \ \___ \  / __ \_\___ \ \___ \|  |   |  \
-		\____|__  /____  >____  >(____  /____  >____  >__|___|  /
-		        \/     \/     \/      \/     \/     \/        \/  -->
 
-<a href="/vote/create">
-    <button type="button" class="btn btn-warning">创建投票</button>
-</a>
-<a href="/vote">
-    <button type="button" class="btn btn-warning">投票管理</button>
-</a>
-<div style="height:30px"></div>
-    <?php
+@extends('layouts.home.index')
+@section('content')
+		
+	<div style="height:30px"></div>
+<!-- start -->
+
+                         <?php
+
 						function time2Units ($time)
 {
    $year   = floor($time / 60 / 60 / 24 / 365);
@@ -48,6 +39,7 @@
 
    return $elapse;
 }
+
 
 
 
@@ -159,4 +151,124 @@
 </div >
 
 	@endforeach
+
+<?php
+$past = strtotime($votes[0]->end_time);      // Some timestamp in the past
+$now  = strtotime($votes[0]->created_at);     // Current timestamp
+$diff = $past-$now;
+
+$past1 = strtotime($votes[1]->end_time);      // Some timestamp in the past
+$now1  = strtotime($votes[1]->created_at);     // Current timestamp
+$diff1 = $past1-$now1;
+
+$past2 = strtotime($votes[2]->end_time);      // Some timestamp in the past
+$now2  = strtotime($votes[2]->created_at);     // Current timestamp
+$diff2 = $past2-$now2;
+echo  time2Units($diff2).'后投票结束';
+
+						?>
+					</span>
+                        </div>
+
+                        
+                        <div class="carousel-image">
+                            
+                            <div class="entry-image">
+                                
+                                <a href="/Vote/36533"><img class="image-middle" src="/login/images/0022.jpg" height="150px" width="250" alt=""></a>
+                                
+                            </div>
+                            <div class="entry-icon">
+                                <span class="fa-stack fa-lg">
+                                    <i class="fa fa-circle fa-stack-2x"></i>
+                                    
+                                    <i class="fa fa-pencil fa-stack-1x fa-inverse"></i>
+                                    
+                                </span>
+                            </div>
+                            
+                        </div>
+                        
+
+                        <div class="entry-margin">
+                            <p>
+                                创建人： {{$votes[0]->user->user_name}}<br>
+                                总票数：374<br>
+                                浏览量：1583
+                            </p>
+                        </div>
+                    </div>
+<div class="col-md-4">
+                        <div class="entry-margin">
+                            <h6 class="auto-hidden"><a href="/Vote/36533">{{$votes[1]->vote_title}}</a></h6>
+                            <span><?php echo  time2Units($diff1).'后投票结束'; ?> </span>
+                        </div>
+
+                        
+                        <div class="carousel-image">
+                            
+                            <div class="entry-image">
+                                
+                                <a href="/Vote/36533"><img class="image-middle" src="/login/images/0022.jpg" height="150px" width="250" alt=""></a>
+                                
+                            </div>
+                            <div class="entry-icon">
+                                <span class="fa-stack fa-lg">
+                                    <i class="fa fa-circle fa-stack-2x"></i>
+                                    
+                                    <i class="fa fa-pencil fa-stack-1x fa-inverse"></i>
+                                    
+                                </span>
+                            </div>
+                            
+                        </div>
+                        
+
+                        <div class="entry-margin">
+                            <p>
+                                创建人： {{$votes[1]->user->user_name}}<br>
+                                总票数：374<br>
+                                浏览量：1583
+                            </p>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="entry-margin">
+                            <h6 class="auto-hidden"><a href="/Vote/36533">{{$votes[2]->vote_title}}</a></h6>
+                            <span><?php echo  time2Units($diff2).'后投票结束'; ?></span>
+                        </div>
+
+                        
+                        <div class="carousel-image">
+                            
+                            <div class="entry-image">
+                                
+                                <a href="/Vote/36533"><img class="image-middle" src="/login/images/0022.jpg" height="150px" width="250" alt=""></a>
+                                
+                            </div>
+                            <div class="entry-icon">
+                                <span class="fa-stack fa-lg">
+                                    <i class="fa fa-circle fa-stack-2x"></i>
+                                    
+                                    <i class="fa fa-pencil fa-stack-1x fa-inverse"></i>
+                                    
+                                </span>
+                            </div>
+                            
+                        </div>
+                        
+
+                        <div class="entry-margin">
+                            <p>
+                                创建人：{{$votes[2]->user->user_name}}<br>
+                                总票数：374<br>
+                                浏览量：1583
+                            </p>
+                        </div>
+                    </div>               
+
+
+
+
 @endsection
+

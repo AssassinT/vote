@@ -5,7 +5,8 @@ namespace App\Http\Controllers;
 use App\User;
 use App\Proposal;
 use Illuminate\Http\Request;
-
+use Illuminate\Support\Facades\Session;
+use Illuminate\Broadcasting\get;
 class ProposalController extends Controller
 {
     /**
@@ -52,7 +53,7 @@ class ProposalController extends Controller
     {
         //插入数据
         $proposal = new Proposal;
-        $proposal -> user_id = 16;//16改成session
+        $proposal -> user_id = $request->session()->get('id');//10改成session/
         $proposal -> proposal_name = $request->proposal_name;
         $proposal -> proposal_content = $request->proposal_content;
         if($proposal -> save()){

@@ -6,12 +6,12 @@ use Illuminate\Http\Request;
 use EasyWeChat\Factory;
 class WechatController extends Controller
 {
-    public function index(){
+    public function indexindex(){
 
 		$config = [
-		    'app_id' => 'wxc6503c9cdfc17b02',
-		    'secret' => '8ee369c04b09bbdba74ea049334b3eba',
-		    'token' => 'wechat',
+		    'app_id' => 'wx8ed34585c55c40e3',
+		    'secret' => '4fe71cddb3bd8ce8dc892de307f726ae',
+		    'token' => 'easywechat',
 		    'response_type' => 'array',
 
 		    'log' => [
