@@ -157,12 +157,7 @@
 
 <!-- 判断允许评论 -->
 @if($votes->comment=='1')
-<<<<<<< HEAD
-<div class="col-md-12" style="height:30px;"></div>
-<form action="">
-	<div class="col-md-6">
-		<textarea name="" id="" cols="30" placeholder="留下你的评论吧" rows="4"></textarea><br><br>
-=======
+
 <form method="post" action="/home/comment" onSubmit="return check(this);">
 	<input type="hidden" name="vote_id" value="{{$votes->id}}">
 	<div session='{{session("id")}}' id="userid">
@@ -170,7 +165,6 @@
 	<div class="col-md-8">
 		<textarea name="comment_content" id="" cols="50" placeholder="留下你的评论吧" rows="4"></textarea><br>
 		{{csrf_field()}}
->>>>>>> 95ecb9bf2c50489de9c0410ce1f4823105cbbbb0
 		<button class='btn btn-success'>提交评论</button>
 	</div><br>
 </form><hr>
