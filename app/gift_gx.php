@@ -4,13 +4,13 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class gift_gx extends Model
+class Gift_gx extends Model
 {
-    public function options()
+    public function option()
     {
         return $this->belongsToMany('App\Option');
     }
-    public function gifts()
+    public function gift()
     {
         return $this->belongsTo('App\Gift');
     }

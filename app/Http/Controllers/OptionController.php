@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Option;
+use App\Vote;
 use App\Ip;
+use EasyWeChat\Factory;
 
 class OptionController extends Controller
 {
@@ -13,6 +15,17 @@ class OptionController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public $config = [
+        'app_id' => 'wx8ed34585c55c40e3',
+        'secret' => '4fe71cddb3bd8ce8dc892de307f726ae',
+        'token' => 'easywechat',
+        'response_type' => 'array',
+
+        'log' => [
+            'level' => 'debug',
+            'file' => __DIR__.'/wechat.log',
+        ],
+    ];
     public function index()
     {
         //
@@ -48,22 +61,61 @@ class OptionController extends Controller
     public function show($id)
     {
         $options = Option::findOrfail($id);
-        
-        $ipss = Ip::where([['vote_id',$options->vote_id],['openid_ip',$_SERVER["REMOTE_ADDR"]]])->get();
-        if(count($ipss)<=0){
+
+        $votes = Vote::findOrfail($options->vote_id);
+
+        if(request()->openid){
+            $nn = request()->openid;
+        }else{
+            $nn = $_SERVER["REMOTE_ADDR"];
+        }
+
+        $ipss = Ip::orderBy('id','asc')->where([['vote_id',$options->vote_id],['openid_ip',$nn]])->get();
+
+        if(count($ipss)>0){
+
+            $ctime = strtotime($ipss[0]->created_at);
+
+            if((time()-$ctime>$votes->has_repeat*3600 || $votes->has_repeat=='0')||count($ipss)<$votes->has_checkbox){
+                $zt = true;
+            }else{
+                $zt = false;
+            }
+
+            for ($j=0; $j < count($ipss); $j++) {
+                if(strtotime($ipss[$j]->created_at)<time()-$votes->has_repeat*3600){
+                    $nnn = Ip::findOrFail($ipss[$j]->id);//删除超过时间的记录
+                    $nnn->delete();
+                }
+            }
+
+        }else{
+            $zt=true;
+        }
+
+        if($zt && count($ipss)<$votes->has_checkbox){
         
             $num = $options -> vote_num;
+
             $options -> vote_num = $num+1;
+
             $options->save();
         
             $ips = new Ip;
+
             $ips -> option_id = $id;
             $ips -> vote_id = $options -> vote_id;
-            $ips -> openid_ip = $_SERVER["REMOTE_ADDR"];
+            $ips -> openid_ip = $nn;
+
             $ips->save();
-            echo '投票成功'; 
+
+            echo '投票成功';
         }else{
-            echo '您已经投过票了';
+            if(!$votes->has_repeat=='1000000'){
+                echo $votes->has_repeat.'小时后可再投票';
+            }else{
+                echo '每个微信号只能投一次';
+            }
         }
         
     }

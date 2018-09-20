@@ -63,7 +63,7 @@ class GiftController extends Controller
      */
     public function show($id)
     {
-        //
+        echo 123;
     }
 
     /**
