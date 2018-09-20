@@ -1,5 +1,86 @@
+
 @extends('layouts.home.index')
+
 @section('content')
+
+<?php
+	$users = \App\User::all();
+	$a_ds = \App\aD::where('position',3)->get();
+	$a_dss = \App\aD::where('position',2)->get();
+
+?>
+
+
+<!-- 广告3	 -->
+
+<div>
+@if(!$users[0]['has_vip']==0)
+	@if(count($a_ds)<=0)
+		<div class="three" style="display:none"></div>
+	@endif
+	@foreach($a_ds as $v )
+		@if($v['position']==3)
+		<a href="{{$v['a_d_url']}}">
+			<div class="three" style="width:300px;height:180px;border:1px solid black;">
+				<img id="" src="{{$v['a_d_pic']}}" width="100%" alt="">
+			</div>
+			</a>
+		@else
+			<div class="three" style="display:none"></div>
+		@endif
+	@endforeach
+
+	@if(count($a_ds)<=0)
+		<div id="threes" style="display:none;width:300px;height:180px;border:1px solid black;">
+			<img id="" src="/vo/广告空缺.png" width="100%" alt="">
+		</div>
+	@endif
+			<script type="text/javascript">
+				if($('.three').css('display')=='none'){
+					$('#threes').show();
+				}else{
+					$('#threes').hide();
+				}
+			</script>
+@endif
+</div>
+<!-- 广告3 end	 -->
+
+
+
+<!-- 广告2	 -->
+@if(!$users[0]['has_vip']==0)
+	@if(count($a_dss)<=0)
+		<div class="two" style="display:none"></div>
+	@endif
+	@foreach($a_dss as $v )
+		@if($v['position']==2)
+		<a href="{{$v['a_d_url']}}">
+			<div class="two" style="width:300px;height:180px;border:1px solid black;">
+				<img id="" src="{{$v['a_d_pic']}}" width="100%" alt="">
+			</div>
+			</a>
+		@else
+			<div class="two" style="display:none"></div>
+		@endif
+	@endforeach
+
+	@if(count($a_dss)<=0)
+		<div id="twos" style="display:none;width:300px;height:180px;border:1px solid black;">
+			<img id="" src="/vo/广告空缺.png" width="100%" alt="">
+		</div>
+	@endif
+			<script type="text/javascript">
+				if($('.two').css('display')=='none'){
+					$('#twos').show();
+				}else{
+					$('#twos').hide();
+				}
+			</script>
+@endif
+<!-- 广告2 end	 -->
+
+
 <!-- 密码判断 -->
 @if(!$votes->has_password==0)
 <script>
@@ -27,6 +108,8 @@
 		</script>
 </div>
 @endif
+
+
 <!-- 微信判断 -->
 
 

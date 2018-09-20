@@ -130,7 +130,7 @@ class VoteController extends Controller
     {
         $votes = Vote::findOrfail($id);
         $ipss = Ip::orderBy('id','asc')->where([['vote_id',$id],['openid_ip',$_SERVER["REMOTE_ADDR"]]])->get();
-if(count($ipss)>0){//删除超过时间段的ip表数据
+        if(count($ipss)>0){//删除超过时间段的ip表数据
         $ctime = strtotime($ipss[0]->created_at);
 
         for ($j=0; $j < count($ipss); $j++) { 
@@ -139,7 +139,7 @@ if(count($ipss)>0){//删除超过时间段的ip表数据
                     $nnn->delete();
                 }
             }
-}
+        }
 
 
         $user_agent = $_SERVER['HTTP_USER_AGENT'];
