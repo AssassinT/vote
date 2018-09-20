@@ -36,7 +36,7 @@
 					</div>
 
 					<div class="text-right p-t-8 p-b-31">
-						<a href="javascript:">忘记密码？</a>
+						<a href="/home/fp">忘记密码？</a>
 					</div>
 
 					<div class="container-login100-form-btn">

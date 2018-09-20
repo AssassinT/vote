@@ -10,7 +10,7 @@
 			</style>	
 			@if(!Session::has('id'))
 			<div class='login'>
-				<span>&nbsp; &nbsp; <a href="/home/login">登录111</a></span>
+				<span>&nbsp; &nbsp; <a href="/home/login">登录</a></span>
 			</div>
 			@else
 			<div class='login'>
