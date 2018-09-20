@@ -24,8 +24,6 @@ Route::get('/home/reg', 'LoginController@reg');
 Route::post('home/doreg', 'LoginController@doreg');
 Route::post('home/req', 'LoginController@req');
 
-
-
 Route::get('/myindex', 'MyController@index');
 Route::post('/myindex/{id}', 'MyController@store');
 
@@ -33,6 +31,7 @@ Route::post('/myindex/{id}', 'MyController@store');
 Route::get('/home/proposal', 'ProposalController@home_index');
 Route::post('/home/proposal', 'ProposalController@store');
 
+Route::post('/home/comment', 'CommentController@store');
 
 Route::get('/help/none', 'HelpController@none');
 
@@ -51,16 +50,14 @@ Route::get('/gift/brush','GiftGxController@brush');
 
 
 
-
-
-
-
-
-
-
-
 Route::get('/', 'HomeController@index');
+
+
+
 Route::resource('vote', 'VoteController');//投票
+Route::get('/wechat/redirect', 'VoteController@redirect');//投票
+Route::post('/wechat/pay/pay', 'VoteController@pay');//投票
+Route::any('/wechat/pay/redirect', 'VoteController@payRedirect');//投票
 Route::get('/vote/{id}/count', 'VoteController@count');//
 
 
@@ -89,9 +86,10 @@ Route::resource('gift', 'GiftController');//礼物
 //前台的后台
 Route::resource('comment', 'CommentController');//留言
 Route::resource('gift_gx', 'GiftGxController');//礼物关系
+
 Route::resource('option', 'OptionController');//选项
 
-Route::get('/wechat','WechatController@index');//微信
+Route::get('/wechat/wechat','WechatController@indexindex');//微信
 
 
 

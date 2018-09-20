@@ -11,7 +11,7 @@ class vote extends Model
         return $this->belongsTo('App\User');
     }
 
-    public function comments()
+    public function comment()
     {
         return $this->belongsTo('App\Comment');
     }

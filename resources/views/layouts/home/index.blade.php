@@ -17,13 +17,79 @@
     <script src="https://cdn.bootcss.com/holder/2.9.4/holder.min.js"></script>
 	<script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 	<link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
 	<link href="//netdna.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+
+	<meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">  
+<script>   
+(function (doc, win) {
+        var docEl = doc.documentElement,
+             resizeEvt = 'orientationchange' in window ? 'orientationchange' : 'resize',
+             recalc = function () {
+                var clientWidth = docEl.clientWidth;
+                if (!clientWidth) return;
+                 if(clientWidth>=640){
+                     docEl.style.fontSize = '100px';
+                 }else{
+                     docEl.style.fontSize = 100 * (clientWidth / 640) + 'px';
+                 }
+             };
+ 
+         if (!doc.addEventListener) return;
+         win.addEventListener(resizeEvt, recalc, false);
+         doc.addEventListener('DOMContentLoaded', recalc, false);
+     })(document, window);
+ </script>
+
 </head>
 <body>
+	<div id="has_login" has_login="{{Session::has('id')}}"></div>
 	<div id="big">
-		<div class='col-md-8 col-md-offset-2 top'>
+		<div class="col-md-8 col-md-offset-2 col-sm-12" id="top">
 			<div class='logo'>
 				Vote
+			</div>
+			<div id="menu" onselectstart="return false;">
+				&nbsp; <span class="glyphicon glyphicon-align-justify" aria-hidden="true"></span>
+				<span>菜单</span> &nbsp;
+			</div>
+		</div>
+		<div id="menu_top" onselectstart="return false;" class="col-md-2 col-md-offset-8">
+			<ul>
+
+				@if(Session::has('id'))
+				<a href="/myindex"><li><span class="glyphicon glyphicon-user" aria-hidden="true"></span> &nbsp;个人中心</li></a>
+				@else
+				<a href="/home/login"><li><span class="glyphicon glyphicon-user" aria-hidden="true"></span> &nbsp;点击登录</li></a>
+				@endif
+
+
+				<a id="add_vote" href="/vote/create"><li><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> &nbsp;创建投票</li></a>
+
+
+				<a href="/vote"><li><span class="glyphicon glyphicon-cog" aria-hidden="true"></span> &nbsp;投票管理</li></a>
+
+
+				<a href="/home/webset"><li><span class="glyphicon glyphicon-phone" aria-hidden="true"></span> &nbsp;联系我们</li></a>
+
+
+				<a href="/home/proposal"><li><span class="glyphicon glyphicon-heart-empty" aria-hidden="true"></span> &nbsp;给予建议</li></a>
+
+
+				<a href="/helps"><li><span class="glyphicon glyphicon-question-sign" aria-hidden="true"></span> &nbsp;查看帮助</li></a>
+
+				@if(Session::has('id'))
+				<a href="/loginout"><li><span class="glyphicon glyphicon-log-out" aria-hidden="true"></span> &nbsp;退出登录</li></a>
+				@endif
+
+			</ul>
+		</div>
+		<!-- <div class='col-md-12 top'>
+			<div class='logo'>
+				Vote
+			</div>
+			<div id="menu">
+				三
 			</div>
 			@yield('add_option')
 			<a href="/helps"><button type="button"  id="helps" class="btn btn-warning">帮助</button></a>
@@ -32,7 +98,7 @@
 			
 			@include('layouts.home.login')
 
-		</div>
+		</div> -->
 		
 		<div class='main col-md-8 col-md-offset-2'>
 

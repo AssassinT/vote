@@ -1,21 +1,16 @@
+
 @extends('layouts.home.index') @section('content')
 	
-	
-   <!--    _____                                       __        
-		  /  _  \   ______ ___________    ______ _____|__| ____  
-		 /  /_\  \ /  ___//  ___/\__  \  /  ___//  ___/  |/    \ 
-		/    |    \\___ \ \___ \  / __ \_\___ \ \___ \|  |   |  \
-		\____|__  /____  >____  >(____  /____  >____  >__|___|  /
-		        \/     \/     \/      \/     \/     \/        \/  -->
 
-<a href="/vote/create">
-    <button type="button" class="btn btn-warning">创建投票</button>
-</a>
-<a href="/vote">
-    <button type="button" class="btn btn-warning">投票管理</button>
-</a>
-<div style="height:30px"></div>
-    <?php
+		
+	<div style="height:30px"></div>
+<!-- start -->
+<!-- <div class="col-md-4"> -->
+                        <!-- <div class="entry-margin"> -->
+                           <!--  <h6 class="auto-hidden"><a href="/Vote/36533">{{$votes[0]->vote_title}}</a></h6>
+                            <span> -->
+                         <?php
+
 						function time2Units ($time)
 {
    $year   = floor($time / 60 / 60 / 24 / 365);
