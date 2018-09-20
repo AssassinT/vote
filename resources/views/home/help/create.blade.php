@@ -1,12 +1,12 @@
 @extends('layouts.home.index')
 @section('content')
 
-<div style="">
+<div class="col-md-10 col-md-offset-1 col-sm-12">
                 <header>
-                        <div style="padding-left:70px;font-size:30px!important">
+                        <div style="font-size:30px!important">
                             <b style="color:#666666">会员特权</b></div>
                 </header><hr>
-            <table style="text-align:center;margin-left:70px;!important;width:85%;">
+            <table class="" style="width:100%;text-align:center;!important;">
                 <thead style="padding-left:70px;">
                     <tr style="font-size:18px;width:85px;height:45px">
                         <th style="background: #ffffff;"></th>
@@ -96,15 +96,14 @@
                         <td>免费</td>
                         <td><h4 style="color:#33CCFF">40元/月</h4></td>
                     </tr>
-                    <tr style='background:#eee;height:40px;font-size:15px;color:#666666;height:35px'>
-                        <td> </td>
-                        <td> <a href="/vote/create"><button class="btn btn-info "style="margin-left:3%;width:38%;height:38px"><b>返回</b></button></a></td>
-                        <td >
-                        <a href="/help/nonet"><button  class="btn btn-info "style="margin-left:3%;width:38%;height:38px"><b>现在购买</b></button></a>
-                        </td>
-                    </tr>
+                        
                 </tbody>
             </table>
+            <div class="col-md-8 col-md-offset-2" >
+                <button style="float:left;" class="btn btn-info" onclick="window.history.go(-1)"><b>返回</b></button>
+                <a href="/help/nonet"><button style="float:right" class="btn btn-info">现在购买</button></a>
+            </div>
+            <div class="col-md-12" style="height:40px"></div>
         </div>
 
 

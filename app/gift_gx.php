@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Gift_gx extends Model
 {
-    public function options()
+    public function option()
     {
         return $this->belongsToMany('App\Option');
     }

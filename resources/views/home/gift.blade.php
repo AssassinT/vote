@@ -1,5 +1,25 @@
 @extends('layouts.home.index')
 @section('content')
+<meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">  
+<script>   
+(function (doc, win) {
+        var docEl = doc.documentElement,
+             resizeEvt = 'orientationchange' in window ? 'orientationchange' : 'resize',
+             recalc = function () {
+                var clientWidth = docEl.clientWidth;
+                if (!clientWidth) return;
+                 if(clientWidth>=640){
+                     docEl.style.fontSize = '100px';
+                 }else{
+                     docEl.style.fontSize = 100 * (clientWidth / 640) + 'px';
+                 }
+             };
+ 
+         if (!doc.addEventListener) return;
+         win.addEventListener(resizeEvt, recalc, false);
+         doc.addEventListener('DOMContentLoaded', recalc, false);
+     })(document, window);
+ </script>
 	<style>
 		.xuanshou{
 			height:100px;
@@ -25,7 +45,12 @@
 	</div>
 
 	<div class="gift col-md-6">
-		<form action="/gift_gx" method="post">
+		<form action="/wechat/pay/pay" method="post">
+		<input type="hidden" name="option_id" value="{{$options->id}}">
+		<input type="hidden" name="username" value="{{$username}}">
+		<input type="hidden" name="avatar" value="{{$avatar}}">
+		<input type="hidden" name="openid" value="{{$openid}}">
+
 		<table class=" table table-bordered">
 			<caption><h4>礼物列表</h4></caption>
 			<tr>
@@ -39,7 +64,7 @@
 			<tr class='active'>
 				<td>
 					<label>
-						<input type="radio" name="gift" class="a-radio" value="{{$v->id}}">
+						<input type="radio" name="gift_id" class="a-radio" value="{{$v->id}}">
 						<span class="b-radio"></span>
 					</label>
 				</td>
@@ -67,7 +92,7 @@
 			<tr class='active'>
 				<td>{{$k+1}}</td>
 				<td>{{$v->user_name}}</td>
-				<td>{{$v->gift['gift_name']}}</td>
+				<td>{{$v->gift->gift_name}}</td>
 				<td>{{$v->created_at}}</td>
 			</tr>
 			@endforeach

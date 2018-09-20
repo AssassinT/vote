@@ -58,7 +58,7 @@
 8.3 本协议解释权及修订权归本平台所有。</p>
 
 <div class="am-form-group">
-           	<div class="am-u-sm-9 am-u-sm-push-3" style="margin-left:900px; padding-top:-5px;!important">
+           	<div class="am-u-sm-9 am-u-sm-push-3" style="margin-left:200px; padding-top:-5px;!important">
                 <button class="am-btn am-btn-primary tpl-btn-bg-color-success btn" style="background-color:#1E90ff;color:white;"onclick="window.history.go(-1)">返回</button>
             </div>
        	</div>

@@ -6,9 +6,23 @@ use Illuminate\Http\Request;
 use App\Gift_gx;
 use App\Gift;
 use App\Option;
+use EasyWeChat\Factory;
 
 class GiftGxController extends Controller
 {
+    public $config = [
+        'app_id' => 'wx8ed34585c55c40e3',
+        'secret' => '4fe71cddb3bd8ce8dc892de307f726ae',
+        'token' => 'easywechat',
+        'response_type' => 'array',
+        'mch_id' => '1364808702',
+        'key' => 'lamplamplamplamplamplamplamplamp',
+
+        'log' => [
+            'level' => 'debug',
+            'file' => __DIR__.'/wechat.log',
+        ],
+    ];
     /**
      * Display a listing of the resource.
      *
@@ -49,14 +63,31 @@ class GiftGxController extends Controller
     public function show($id)
     {
 
-        $gift_gxs = Gift_gx::where('option_id',$id)->get();
+        if(!isset($_GET['code'])){
+            $app = Factory::officialAccount($this->config);
+            $response = $app->oauth->scopes(['snsapi_userinfo'])->redirect('http://ws.xiaohigh.com/gift_gx/'.$id);
+            return $response;
+        }else{
+            $app = Factory::officialAccount($this->config);
 
-        $options = Option::findOrFail($id);
+            $user = $app->oauth->user();
 
-        $gifts = Gift::all();
+            $openid = $user->id;
 
-        return view('/home/gift',compact('gift_gxs','gifts','options'));
+            $username = $user->name;
 
+            $avatar = $user->avatar;
+
+            $gift_gxs = Gift_gx::where([['option_id',$id],['zt',4]])->get();
+
+            $options = Option::findOrFail($id);
+
+            $gifts = Gift::all();
+
+            return view('/home/gift',compact('gift_gxs','gifts','options','openid','username','avatar'));
+
+        }
+        
     }
 
     /**

@@ -11,7 +11,9 @@ use Illuminate\Support\Facades\DB;
 
 use App\User;
 use App\Vote;
+use App\Gift;
 use App\Ip;
+use App\Gift_gx;
 
 
 
@@ -23,10 +25,12 @@ class VoteController extends Controller
      * @return \Illuminate\Http\Response
      */
     public $config = [
-        'app_id' => 'wxeb8503aed05a2c1a',
-        'secret' => '052836c4dde956a0644acf0607c8934d',
+        'app_id' => 'wx8ed34585c55c40e3',
+        'secret' => '4fe71cddb3bd8ce8dc892de307f726ae',
         'token' => 'easywechat',
         'response_type' => 'array',
+        'mch_id' => '1364808702',
+        'key' => 'lamplamplamplamplamplamplamplamp',
 
         'log' => [
             'level' => 'debug',
@@ -36,7 +40,7 @@ class VoteController extends Controller
     public function index()
     {
 
-        $votes = Vote::where('user_id','10')->get();//session
+        $votes = Vote::where('user_id',session('id'))->get();//session
 
         return view('/home/list',['votes'=>$votes]);
     }
@@ -77,7 +81,7 @@ class VoteController extends Controller
         //允许多选默认值
         if(empty(request() -> has_checkbox)){
 
-            $votes -> has_checkbox  = 0;
+            $votes -> has_checkbox  = 1;
 
         }else{
 
@@ -88,7 +92,7 @@ class VoteController extends Controller
         //允许重复默认值
         if(empty(request() -> has_repeat)){
 
-            $votes -> has_repeat  = 0;
+            $votes -> has_repeat  = 1000000;
 
         }else{
 
@@ -108,7 +112,7 @@ class VoteController extends Controller
         }
 
         // $votes -> vote_pic = '12345';
-        $votes -> user_id  = '10';//后期改成session
+        $votes -> user_id  = session('id');//后期改成session
 
 
         if ($request->hasFile('vote_pic')) {
@@ -119,7 +123,7 @@ class VoteController extends Controller
 
         $votes->save();
 
-        $vote_id = Vote::where([['user_id','10'],['vote_title',request()->vote_title]])->get();//10-session
+        $vote_id = Vote::where([['user_id',session('id')],['vote_title',request()->vote_title]])->get();//10-session
 
         
         for($i=1000;$i<=request()->num;$i++){
@@ -168,7 +172,7 @@ class VoteController extends Controller
         } else {
 
             $app = Factory::officialAccount($this->config);
-            $response = $app->oauth->scopes(['snsapi_userinfo'])->redirect('http://www.zczl.shop/wechat/redirect?id='.$id);
+            $response = $app->oauth->scopes(['snsapi_base'])->redirect('http://ws.xiaohigh.com/wechat/redirect?id='.$id);
             return $response;
         }
         
@@ -250,6 +254,100 @@ class VoteController extends Controller
 
         return view('/home/show',compact('votes','wechat','option_id','openid'));
 
+    }
+
+    public function pay(){
+
+        $gifts = Gift::findOrfail(request()->gift_id);
+
+        $options = Option::findOrfail(request()->option_id);
+
+        $username = request()->username;
+
+        $app = Factory::payment($this->config);
+
+        $order_id = time().mt_rand(10000,99999);
+
+        $result = $app->order->unify([
+            'body' => '购买测试',
+            'out_trade_no' => $order_id,
+            'total_fee' => $gifts->price,
+            // 'spbill_create_ip' => '123.12.12.123', // 可选，如不传该参数，SDK 将会自动获取相应 IP 地址
+            'notify_url' => 'http://ws.xiaohigh.com/wechat/pay/redirect', // 支付结果通知网址，如果不设置则会使用配置里的默认地址
+            'trade_type' => 'JSAPI',
+            'openid' => request()->openid,
+        ]);
+
+        // return $result['prepay_id'];
+
+        $app->jssdk->setUrl('http://ws.xiaohigh.com');
+
+        $baseJson = $app->jssdk->buildConfig(array('chooseWXPay'), false);
+
+        $prepayId = $result['prepay_id'];
+
+        $config = $app->jssdk->sdkConfig($prepayId);
+
+        $gift_gxs = new Gift_gx;
+
+        $gift_gxs->gift_id = request()->gift_id;
+        $gift_gxs->option_id = request()->option_id;
+        $gift_gxs->openid = request()->openid;
+        $gift_gxs->user_name = request()->username;
+        $gift_gxs->price = $gifts->price;
+        $gift_gxs->prepay_id = $prepayId;
+        $gift_gxs->order_id = $order_id;
+        $gift_gxs->head_pic = request()->avatar;
+        $gift_gxs->zt = 1;
+
+        $gift_gxs->save();
+
+        return view('home/wechatPay',compact('config','username','options','baseJson','gifts'));
+    }
+
+    public function payRedirect(){
+        // $app = Factory::officialAccount($this->config);
+        $app = Factory::payment($this->config);
+
+        $response = $app->handlePaidNotify(function($message, $fail){
+
+        $orders = Gift_gx::where('order_id',$message['out_trade_no'])->get();
+
+        $order = $orders[0];
+
+        if (!$order || $order->zt==4) { // 如果订单不存在 或者 订单已经支付过了
+            return true; // 告诉微信，我已经处理完了，订单没找到，别再通知我了
+        }
+
+    // <- 建议在这里调用微信的【订单查询】接口查一下该笔订单的情况，确认是已经支付 
+
+        if ($message['return_code'] === 'SUCCESS') { // return_code 表示通信状态，不代表支付状态
+            // 用户是否支付成功
+            if (array_get($message, 'result_code') === 'SUCCESS') {
+                $order->zt = 4; // 更新支付时间为当前时间
+                // $order->status = 'paid';
+                if(count($orders)>0){
+                    $options = Option::findOrfail($order->option_id);
+                    $options->vote_num += $message['total_fee']*0.5;
+                    $options->save();
+                }
+
+            // 用户支付失败
+            } elseif (array_get($message, 'result_code') === 'FAIL') {
+                $order->zt = 2;
+            }
+        } else {
+            $order->zt = 2;
+            // return $fail('通信失败，请稍后再通知我');
+            return false;
+        }
+
+        $order->save(); // 保存订单
+
+        return true; // 返回处理完成
+    });
+
+    return $response;
     }
 
     /**

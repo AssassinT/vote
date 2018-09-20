@@ -9,8 +9,8 @@ class WechatController extends Controller
     public function indexindex(){
 
 		$config = [
-		    'app_id' => 'wxeb8503aed05a2c1a',
-		    'secret' => '052836c4dde956a0644acf0607c8934d',
+		    'app_id' => 'wx8ed34585c55c40e3',
+		    'secret' => '4fe71cddb3bd8ce8dc892de307f726ae',
 		    'token' => 'easywechat',
 		    'response_type' => 'array',
 

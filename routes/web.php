@@ -24,8 +24,6 @@ Route::get('/home/reg', 'LoginController@reg');
 Route::post('home/doreg', 'LoginController@doreg');
 Route::post('home/req', 'LoginController@req');
 
-
-
 Route::get('/myindex', 'MyController@index');
 Route::post('/myindex/{id}', 'MyController@store');
 
@@ -57,6 +55,8 @@ Route::get('/', 'HomeController@index');
 
 Route::resource('vote', 'VoteController');//投票
 Route::get('/wechat/redirect', 'VoteController@redirect');//投票
+Route::post('/wechat/pay/pay', 'VoteController@pay');//投票
+Route::any('/wechat/pay/redirect', 'VoteController@payRedirect');//投票
 Route::get('/vote/{id}/count', 'VoteController@count');//
 
 
