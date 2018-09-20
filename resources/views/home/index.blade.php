@@ -1,7 +1,5 @@
-
-@extends('layouts.home.index') @section('content')
-	
-
+@extends('layouts.home.index')
+@section('content')
 		
 	<div style="height:30px"></div>
 <!-- start -->

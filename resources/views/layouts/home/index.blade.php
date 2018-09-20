@@ -17,6 +17,26 @@
     <script src="https://cdn.bootcss.com/holder/2.9.4/holder.min.js"></script>
 	<script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 	<link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+	<meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">  
+<script>   
+(function (doc, win) {
+        var docEl = doc.documentElement,
+             resizeEvt = 'orientationchange' in window ? 'orientationchange' : 'resize',
+             recalc = function () {
+                var clientWidth = docEl.clientWidth;
+                if (!clientWidth) return;
+                 if(clientWidth>=640){
+                     docEl.style.fontSize = '100px';
+                 }else{
+                     docEl.style.fontSize = 100 * (clientWidth / 640) + 'px';
+                 }
+             };
+ 
+         if (!doc.addEventListener) return;
+         win.addEventListener(resizeEvt, recalc, false);
+         doc.addEventListener('DOMContentLoaded', recalc, false);
+     })(document, window);
+ </script>
 
 	<link href="//netdna.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
 
