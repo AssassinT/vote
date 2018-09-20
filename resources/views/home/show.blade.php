@@ -241,6 +241,8 @@
 <!-- 判断允许评论 -->
 @if($votes->comment=='1')
 
+
+<div class="col-md-12" style="height:30px;"></div>
 <form method="post" action="/home/comment" onSubmit="return check(this);">
 	<input type="hidden" name="vote_id" value="{{$votes->id}}">
 	<div session='{{session("id")}}' id="userid">

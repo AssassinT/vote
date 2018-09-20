@@ -5,6 +5,7 @@
 
 			
 @section('content')
+<div id="has_edit" data_edit = "true"></div>
 <style>
 	.pic{
 
@@ -53,7 +54,7 @@
 			<br>
 			<span class="btn btn-default fileinput-button">
 		            <span>修改封面</span>
-		            <input type="file" name='vote_pic' id="fmpic">
+		            <input type="file" name='vote_pic' id="vote_picc">
 
 		        </span><br>
 			
@@ -387,7 +388,7 @@
 	}
 
 $(function () {
-        $("#fmpic").change(function () {
+        $("#vote_picc").change(function () {
             var fil = this.files;
             for (var i = 0; i < fil.length; i++) {
                 reads(fil[i]);
