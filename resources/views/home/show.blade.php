@@ -250,25 +250,38 @@
 	<div class="col-md-8">
 		<textarea name="comment_content" id="" cols="50" placeholder="留下你的评论吧" rows="4"></textarea><br>
 		{{csrf_field()}}
-		<button class='btn btn-success' style="margin-top:15px;">提交评论</button>
-	</div><br><hr>
+		<button class='btn btn-success' style="margin-top:15px;">提交评论</button><hr>
+	</div>
 </form>
-
+<div class="col-md-12">
 	@foreach($comments as $v)
-	        <div class="col-md-8" style="margin-top:15px;">
-	            <b style="font-size:12px;">{{$v['comment_content']}}</b>
+	        <div style="float:left;">
+	        	<strong><img src="{{$v->user->head_pic}}" style="width:60px; height:60px; border-radius:50%; overflow:hidden;"></strong>
 	        </div>
-	        <div class="col-md-4">
-	            <b style="font-size:5px;color:#666666;float:right;margin-right:70px;margin-top:15px;font-size:12px;">{{$v['created_at']}}</b>
+	        <div style="margin-left:70px;">
+	        	<strong style="font-size:25px;color:#aaa;">{{$v->user->user_name}}</strong><br>
+	        	<div style="height:30px;"></div>
+	            <b style="font-size:20px;">{{$v['comment_content']}}</b>
 	        </div>
+	        <div style="float:right;margin-bottom:0px;">
+	            <b style="font-size:10px;color:#666666;">{{$v['created_at']}}</b>
+	        </div>
+			<div style="height:15px;"></div><hr>
+			<div></div>
 	@endforeach
+	<div class="am-cf" style="height:20px;!important">
+        <div class="am-fr" style="float:right;"> 
+            {{ $comments->appends(request()->all())->links() }}
+        </div>
+    </div>
+</div>
 
 
 	<style>
         .pagination{
             padding-left: 0;
             margin: 1.5rem 0;
-           list-style: none;
+           	list-style: none;
             color: #999;
             text-align: left;
             padding: 0;
@@ -298,7 +311,7 @@
             padding: 6px 12px;
             position: relative;
             display: block;
-           text-decoration: none;
+           	text-decoration: none;
             line-height: 1.2;
             background-color: #fff;
             border: 1px solid #ddd;
@@ -311,11 +324,7 @@
             padding: 6px 12px;
     	}
     </style>
-    <div class="am-cf" style="margin-left:70px; padding-top:10px;!important">
-        <div class="am-fr" > 
-            {{ $comments->appends(request()->all())->links() }}
-        </div>
-    </div>
+    
 
 @endif
 <!-- 判断允许评论 -->

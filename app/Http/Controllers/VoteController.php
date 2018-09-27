@@ -211,9 +211,9 @@ class VoteController extends Controller
         $openid = false;
 
         $comments = Comment::orderBy('id','asc')
-            ->where('comment_content','like','%'.request()->keywords.'%')
+            ->where('vote_id',$votes->id)
             ->paginate(5);        
-
+            // dd($comments->user());
         return view('/home/show',compact('votes','wechat','option_id','openid','comments'));
 
     }
