@@ -3,10 +3,12 @@
 <head>
 	<?php
 		$links = \App\Link::all();
+		$websets = \App\Web_set::first();
 	?>
 	<meta charset="UTF-8">
-	<title>vote</title>
+	<title>{{$websets->web_title}}</title>
 	<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+	<meta name="keywords" content="{{$websets->web_keyword}}"/>
 	<link href="/login/images/T4.jpg" rel="shortcut icon" type="image/x-icon" />
 	<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
 	<link rel="stylesheet" href="/home/css/home.css" type="text/css" />
@@ -153,8 +155,8 @@ img{border:none}
 		@include('layouts.home.link')
 		
 
-	<div class='col-md-8 col-md-offset-2 bottom'>
-			
+	<div class='col-md-8 col-md-offset-2 bottom' style="line-height:40px;margin-bottom:30px">
+			<span style="font-size:14px;color:#eee">{{$websets->record}}<span>
 	
 	</div>
 <!-- 广告框 -->

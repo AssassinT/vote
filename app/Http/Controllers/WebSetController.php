@@ -60,10 +60,11 @@ class WebSetController extends Controller
          if($request->hasFile('wechat_qrcode')){
             $websets->wechat_qrcode = '/uploads/'.$request->wechat_qrcode->store('admin/'.date('Ymd'));
         }
-        $websets -> blog = $request -> blog;
+        //微博
+        // $websets -> blog = $request -> blog;
         $websets -> web_email = $request -> web_email;
         $websets -> web_qq = $request -> web_qq;
-        $websets -> web_phone = (int)$request -> web_phone;
+        $websets -> web_phone = $request -> web_phone;
 
         if($websets->save()){
             return back()->with('true','设置成功');

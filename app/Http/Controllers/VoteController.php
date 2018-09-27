@@ -56,8 +56,9 @@ class VoteController extends Controller
     public function create()
     {
         $votes = new Vote;
-
-        return view('/home/create',compact('votes'));
+        $user = User::findOrFail(session('id'));
+        
+        return view('/home/create',compact('user','votes'));
     }
 
     /**
@@ -69,6 +70,14 @@ class VoteController extends Controller
     public function store(Request $request)
     {
 
+        //积分
+        $user = User::findOrFail(session('id'));
+        if(request()->has_top){
+
+            $user->integral -= 50;
+
+        }
+        $user -> save();
         $votes = new Vote;
 
         $votes -> vote_title  = request() -> vote_title;

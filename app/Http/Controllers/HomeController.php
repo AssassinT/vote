@@ -6,6 +6,7 @@ use App\Link;
 use Illuminate\Http\Request;
 use App\Vote;
 use App\Option;
+use App\Web_set;
 class HomeController extends Controller
 {
     public function index(){
@@ -16,9 +17,9 @@ class HomeController extends Controller
     
     	// dd($options);
     	
-
+    	$websets = Web_set::first();
     	// dd($tops[1]->id);
     	$links = Link::all();
-    	return view('/home/index',compact('links','votes','tops','options'));
+    	return view('/home/index',compact('websets','links','votes','tops','options'));
     }
 }
