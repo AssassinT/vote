@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\User;
+use Mrgoon\AliSms;
 // namespace App\Http\Controllers\Ajax;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
@@ -27,7 +28,7 @@ class LoginController extends Controller
         
         //校验密码
         if(Hash::check($request->password, $user->password)){
-            session(['user_name'=>$user->user_name, 'id'=>$user->id,'head_pic'=>$user->head_pic]);
+            session(['user_name'=>$user->user_name, 'has_vip'=>$user->has_vip,'id'=>$user->id,'head_pic'=>$user->head_pic]);
             echo "<script>alert('登录成功');window.location.href='/';</script>";
            
         }else{
@@ -76,7 +77,7 @@ class LoginController extends Controller
 
     public function reqq()
     {
-      $phone = User::where([['user_phone',$_POST['user_phone']],['user_name',$_GET['user_name']]])->first();
+      $phone = User::where('user_phone',$_POST['user_phone'])->first();
         if(!count($phone)){
             echo '1';
         }else{
@@ -98,8 +99,40 @@ class LoginController extends Controller
 
 
     // 找回密码
-    public  function pass()
+    public  function verify()
     {
+
+        $aliSms = new \Mrgoon\AliSms\AliSms();
+        $code = mt_rand(100000,999999);
+        $response = $aliSms->sendSms(request()->phone, 'SMS_141565001', ['code'=>$code]);
+        if($response->Code=='OK'){
+            if(request()->session()->has('verify')){
+                request()->session()->forget('verify');
+                session(['verify' => $code]);
+            }else{
+                session(['verify' => $code]);
+            }
+            echo true;
+        }else{
+            echo false;
+        }
+    }
+
+     public  function pass()
+    {
+        if(request()->verify==session('verify')){
+            $users = User::where('user_phone',request()->user_phone)->first();
+            $users->password = Hash::make(request()->password);
+            if($users->save()){
+                request()->session()->forget('verify');
+                echo "<script>alert('修改成功');window.location.href='/home/login';</script>";
+            }else{
+                echo "<script>alert('修改失败');history.go(-1);</script>";
+            }
+        }else{
+            echo "<script>alert('验证码不正确');history.go(-1);</script>";
+        }
+        
 
     }
 

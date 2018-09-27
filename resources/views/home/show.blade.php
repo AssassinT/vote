@@ -1,8 +1,68 @@
 
 @extends('layouts.home.index')
+@section('danmu')
+<style>
+	.danmu{
+		width:100%;
+		height:50px;
+		position:fixed;
+		left:-200px;
+		right:-200px;
+		top:60px;
+		z-index:90;
+		opacity:0.6;/*透明度*/
+	}
 
+	.danmu span{
+		position:absolute;
+		border-radius:10px;
+		top:10px;
+		right:-400px;
+		padding:5px;
+		/*border:1px solid yellow;*/
+		color:yellow;
+		background: red;
+
+	}
+</style>
+
+<div class="danmu" >
+	@foreach($gift_gxs as $v)
+	<span class="one"> &nbsp; &nbsp; 
+		{{$v->user_name}}送来了一个{{$v->gift->gift_name}}
+	&nbsp; &nbsp; </span>
+	@endforeach
+</div>
+<script>
+	$(function(){
+		var timer = null,i=0;
+		$('.one').each(function(){
+			i = $(this).index();
+			var th = $(this);
+			
+				setTimeout(function(){
+					th.css('top',Math.random()*200+'px');
+					// th.css('background',`rgb(255,`+Math.random()*50+`,`+Math.random()*50+`)`);
+					timer = setInterval(function(){
+
+					left = th.css('right');
+					newleft = parseInt(left)+2;
+					th.css('right',newleft+'px');
+					
+					if(newleft>=1050){
+						th.css('right',-400+'px')
+					}
+					},40);
+
+				},i*2500+Math.random()*200);
+			
+		});
+	});
+</script>
+@endsection
 <div id="openid" openid="{{$openid}}"></div>
 @section('content')
+
 
 <?php
 	$users = \App\User::all();
@@ -12,52 +72,19 @@
 ?>
 
 
-<!-- 广告3	 -->
-
-<div>
-@if(!$users[0]['has_vip']==0)
-	@if(count($a_ds)<=0)
-		<div class="three" style="display:none"></div>
-	@endif
-	@foreach($a_ds as $v )
-		@if($v['position']==3)
-		<a href="{{$v['a_d_url']}}">
-			<div class="three" style="width:300px;height:180px;border:1px solid black;">
-				<img id="" src="{{$v['a_d_pic']}}" width="100%" alt="">
-			</div>
-			</a>
-		@else
-			<div class="three" style="display:none"></div>
-		@endif
-	@endforeach
-
-	@if(count($a_ds)<=0)
-		<div id="threes" style="display:none;width:300px;height:180px;border:1px solid black;">
-			<img id="" src="/vo/广告空缺.png" width="100%" alt="">
-		</div>
-	@endif
-			<script type="text/javascript">
-				if($('.three').css('display')=='none'){
-					$('#threes').show();
-				}else{
-					$('#threes').hide();
-				}
-			</script>
-@endif
-</div>
-<!-- 广告3 end	 -->
+	
 
 
 
 <!-- 广告2	 -->
-@if(!$users[0]['has_vip']==0)
+@if(session('has_vip')=='0')
 	@if(count($a_dss)<=0)
 		<div class="two" style="display:none"></div>
 	@endif
 	@foreach($a_dss as $v )
 		@if($v['position']==2)
 		<a href="{{$v['a_d_url']}}">
-			<div class="two" style="width:300px;height:180px;border:1px solid black;">
+			<div class="two" style="width:300px;height:180px;">
 				<img id="" src="{{$v['a_d_pic']}}" width="100%" alt="">
 			</div>
 			</a>
@@ -67,7 +94,7 @@
 	@endforeach
 
 	@if(count($a_dss)<=0)
-		<div id="twos" style="display:none;width:300px;height:180px;border:1px solid black;">
+		<div id="twos" style="display:none;width:300px;height:180px;">
 			<img id="" src="/vo/广告空缺.png" width="100%" alt="">
 		</div>
 	@endif
@@ -146,7 +173,7 @@
 			padding:10px;
 		}
 			</style>
-	<div class="col-md-12 home_title">
+	<div style="margin-top:20px" class="col-md-12 home_title">
 		<div class='home_img'>
 			<img src="{{$votes->vote_pic}}" width='160%' alt="">
 		</div>
@@ -208,7 +235,7 @@
 						@if(!in_array($v->id,$option_id))
 						<button option_id="{{$v->id}}" style="margin-right:10px;" class='tou_vote col-md-5 btn btn-success'>投票</button>
 						@else
-						<button option_id="{{$v->id}}" style="margin-right:10px;" class='tou_vote col-md-5 btn btn-active'>已投票</button>
+						<button disabled option_id="{{$v->id}}" style="margin-right:10px;" class='tou_vote col-md-5 btn btn-success'>已投票</button>
 						@endif
 						<a href="/gift_gx/{{$v->id}}"><button class='col-md-5 btn btn-success'>送礼</button></a>
 					</div>
@@ -234,7 +261,9 @@
 
 	</div>
 	@endforeach
-
+<div style="margin-top:30px;" class="col-md-6 col-md-offset-3" >
+	<a href="/vote/{{$votes->id}}/count"><button style="width:100%" class="btn btn-info">查看排行榜</button></a>
+</div>
 
 </div>
 

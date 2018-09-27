@@ -16,6 +16,13 @@
                             <input type="text" name="user_name" id="user-name" value="{{$user['user_name']}}" placeholder="">
                         </div>
                     </div>
+
+                    <div class="am-form-group">
+                        <label for="user-name" class="am-u-sm-3 am-form-label">密码 / password</label>
+                        <div class="am-u-sm-9">
+                            <input type="password" name="password" id="user-name" value="" placeholder="">
+                        </div>
+                    </div>
                     
                     <div class="am-form-group">
                         <label for="user-phone" class="am-u-sm-3 am-form-label">手机号 / Telephone</label>
