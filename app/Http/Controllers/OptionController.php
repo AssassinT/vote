@@ -72,7 +72,7 @@ class OptionController extends Controller
 
         $ipss = Ip::orderBy('id','asc')->where([['vote_id',$options->vote_id],['openid_ip',$nn]])->get();
 
-        if(count($ipss)>0){
+        if(count($ipss)>0 && $votes->has_repeat!='0'){
 
             $ctime = strtotime($ipss[0]->created_at);
 
@@ -91,6 +91,10 @@ class OptionController extends Controller
 
         }else{
             $zt=true;
+        }
+
+        if($votes->has_checkbox=='0'){
+            $votes->has_checkbox++;
         }
 
         if($zt && count($ipss)<$votes->has_checkbox){
@@ -112,9 +116,13 @@ class OptionController extends Controller
             echo '投票成功';
         }else{
             if(!$votes->has_repeat=='1000000'){
-                echo $votes->has_repeat.'小时后可再投票';
+                if(!$votes->has_repeat=='0'){
+                    echo $votes->has_repeat.'小时后可再投票';
+                }else{
+                    echo '您已经投过票了';
+                }
             }else{
-                echo '每个微信号只能投一次';
+                echo '您已经投过票了';
             }
         }
         

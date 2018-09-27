@@ -185,7 +185,7 @@ class VoteController extends Controller
 
         $ipss = Ip::orderBy('id','asc')->where([['vote_id',$id],['openid_ip',$_SERVER["REMOTE_ADDR"]]])->get();
 
-        if(count($ipss)>0){//删除超过时间段的ip表数据
+        if(count($ipss)>0 && $votes->has_repeat!=0){//删除超过时间段的ip表数据
             $ctime = strtotime($ipss[0]->created_at);
 
             for ($j=0; $j < count($ipss); $j++) {
@@ -211,10 +211,16 @@ class VoteController extends Controller
         $openid = false;
 
         $comments = Comment::orderBy('id','asc')
-            ->where('comment_content','like','%'.request()->keywords.'%')
+            ->where('vote_id',$votes->id)
+<<<<<<< HEAD
             ->paginate(5);        
-
+            // dd($comments->user());
         return view('/home/show',compact('votes','wechat','option_id','openid','comments'));
+=======
+            ->paginate(5);  
+        $gift_gxs = Gift_gx::orderBy('id','desc')->where('vote_id',$votes->id)->get();
+        return view('/home/show',compact('gift_gxs','votes','wechat','option_id','openid','comments'));
+>>>>>>> 2f54b87d2354d7e5f485bf92a400afd672f30bc5
 
     }
 
@@ -259,7 +265,11 @@ class VoteController extends Controller
 
         $wechat = true;
 
-        return view('/home/show',compact('votes','wechat','option_id','openid'));
+        $comments = Comment::orderBy('id','asc')
+            ->where('id',$votes->id)
+            ->paginate(5);  
+         $gift_gxs = Gift_gx::orderBy('id','desc')->where('vote_id',$votes->id)->get();
+        return view('/home/show',compact('gift_gxs','votes','wechat','option_id','comments','openid'));
 
     }
 
@@ -304,6 +314,7 @@ class VoteController extends Controller
         $gift_gxs->price = $gifts->price;
         $gift_gxs->prepay_id = $prepayId;
         $gift_gxs->order_id = $order_id;
+        $gift_gxs->vote_id = $options->vote_id;
         $gift_gxs->head_pic = request()->avatar;
         $gift_gxs->zt = 1;
 
@@ -470,6 +481,25 @@ class VoteController extends Controller
 
         }
 
+        //删除保存的Ip以及openid信息
+        $ips = Ip::where('vote_id',$id)->get(); 
+
+        for($i=0;$i<count($ips);$i++){
+
+            Ip::findOrFail($ips[$i]['id'])->delete();  
+
+        }
+
+        //删除对应的评论信息表
+        $comments = Comment::where('vote_id',$id)->get(); 
+
+        for($i=0;$i<count($comments);$i++){
+
+            Comment::findOrFail($comments[$i]['id'])->delete();  
+
+        }
+
+
         $vote = Vote::findOrFail($id);
 
         if($vote->delete()){
@@ -491,15 +521,17 @@ class VoteController extends Controller
         
         $arry = DB::select('select  sum(vote_num) as total from options where vote_id ='.$id);
 
+        $giftnum = DB::select('select sum(price) as total from gift_gxes where zt = 4 and vote_id ='.$id);
+
+        $giftnums = $giftnum[0]->total;
+
         $arrys = $arry[0]->total;
 
         if($arrys==0){
-
             $arrys = 0.1;
-
         }
 
-        return view('/home/option/index',['options'=>$options,'arrys'=>$arrys]);
+        return view('/home/option/index',['options'=>$options,'giftnums'=>$giftnums,'arrys'=>$arrys]);
         
     }
 }

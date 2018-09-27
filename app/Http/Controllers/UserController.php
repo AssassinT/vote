@@ -102,10 +102,12 @@ class UserController extends Controller
     {
         //
         
-        $user = User::findorfail($id);
+        $user = User::findOrFail($id);
         // 更新
         $user -> user_name = $request->user_name;
-        $user -> password = Hash::make($request->password);
+        if(!empty($request->password)){
+            $user -> password = Hash::make($request->password);
+        }
         $user -> user_phone = $request->user_phone;
         $user -> has_vip = $request->has_vip;
         $user -> integral = $request->integral;

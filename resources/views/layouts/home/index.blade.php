@@ -6,6 +6,7 @@
 	?>
 	<meta charset="UTF-8">
 	<title>vote</title>
+	<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
 	<link href="/login/images/T4.jpg" rel="shortcut icon" type="image/x-icon" />
 	<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
 	<link rel="stylesheet" href="/home/css/home.css" type="text/css" />
@@ -135,7 +136,9 @@ img{border:none}
 			@include('layouts.home.login')
 
 		</div> -->
-		
+		<div class="col-md-12">
+			@yield('danmu')
+		</div>
 		<div class='main col-md-8 col-md-offset-2'>
 
 			@yield('content')

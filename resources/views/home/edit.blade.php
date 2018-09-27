@@ -1,11 +1,8 @@
 @extends('layouts.home.index')
-@section('add_option')
-			<button type="button" id="add" class="btn btn-warning">增加选项</button>
-@endsection
 
 			
 @section('content')
-<div id="has_edit" data_edit = "true"></div>
+<div id="has_edit" data_edit = "1"></div>
 <style>
 	.pic{
 
@@ -23,15 +20,15 @@
 			<form action="/vote/{{$votes->id}}" method='post' enctype="multipart/form-data">
 
 			<div class='leixing' style="color:#888;margin-bottom:10px" >
-				<span style="font-size:16px">请选择投票类型：</span> 
+				<span style="font-size:16px">投票类型：</span> 
 				<label>
 			        <input type="radio" name="vote_type" id="" value='0' class="a-radio" disabled {{$votes -> vote_type == 0 ? 'checked' : ''}}>
 			        <span class="b-radio"></span>文字类型
-				</label> &nbsp; &nbsp;
+				</label> &nbsp; 
 				<label>
 			        <input type="radio" name="vote_type" id="" value='1' class="a-radio" disabled {{$votes -> vote_type == 1 ? 'checked' : ''}}>
 			        <span class="b-radio"></span>图片类型
-				</label> &nbsp; &nbsp;
+				</label> &nbsp; 
 				<label>
 			        <input type="radio" name="vote_type" id=""   value='2' class="a-radio" disabled {{$votes -> vote_type == 2 ? 'checked' : ''}}>
 			        <span class="b-radio"></span>视频类型
@@ -52,7 +49,7 @@
 			</div><br>
               <div><img src ="{{$votes->vote_pic}}" height='200px' id="fmpicc"></div>
 			<br>
-			<span class="btn btn-default fileinput-button">
+			<span class="btn btn-success fileinput-button">
 		            <span>修改封面</span>
 		            <input type="file" name='vote_pic' id="vote_picc">
 
@@ -92,23 +89,27 @@
 				
 
 				<img src="{{$v->option_pic}}" alt="" height=200  width="362" ;>
-		        <span class="btn btn-default pic fileinput-button" >
+		        <span class="btn btn-info pic fileinput-button" >
 		            <span>修改图片</span>
 		            <input type="file" name='option{{$k}}[option_pic]' class="img">
 		        </span>
 				
 				
-				<button type="button" class="add_video btn option_video btn-default">修改视频</button>
-				<button type="button" class="modify_content btn btn-default">修改说明</button>
+				<button type="button" class="add_video btn option_video btn-info">修改视频</button>
+				<button type="button" class="modify_content btn btn-info">修改说明</button>
 				
-				<button type="button" class="remove btn btn-default">删除该项</button><br>
+				<button type="button" class="removee btn btn-danger">删除该项</button><br>
 				
 			</div>
 
 			<br> 
 	@endforeach
 
-		</div>			
+		</div>		
+		<div class="col-md-7">
+	<button type="button" id="add" class="btn btn-success"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> 增加选项</button>
+
+</div>	
 		</div>
 		
 
@@ -142,8 +143,8 @@
 				<td>允许刷礼物</td>
 				<td>
 					<label>
-				        <input type="radio"  name="has_gift" value="1" id="" class="a-radio" {{$votes['has_gift']==1 ? 'checked' : ''}}>
-				        <span class="b-radio"></span>
+				        <input type="radio" {{$votes['has_gift']==1 ? 'checked' : ''}} name="has_gift" value="1" id="" class="a-radio">
+				        <span class="b-radio"></span><a href="/gift/brush" style="font-size:13px;">同意礼物协议</a>
 				    </label>
 				</td>
 				<td>
@@ -172,11 +173,8 @@
 		 @if($votes->user->has_vip)
 		  <tr class='active'>
 				<td>去除广告</td>
-				<td>				
-					<label>
-				        <input type="radio" name="has_a_d" id="" value='1' class="a-radio" {{$votes['has_a_d']==1 ? 'checked' : ''}}>
-				        <span class="b-radio"></span>
-				    </label>
+				<td >
+				 <a href="/help/none"><span style="color:#FFCC00;">★去除广告</span></a>
 				</td>
 				<td>
 					<label>
@@ -189,11 +187,8 @@
 		   @if(!$votes->user->has_vip)
 		  <tr class='active'>
 				<td>去除广告</td>
-				<td>				
-					<label>
-				        <input type="radio" name="has_a_d" id="" value='1' class="a-radio" {{$votes['has_a_d']==1 ? 'checked' : ''}} disabled>
-				        <span class="b-radio"></span>
-				    </label>
+				<td >
+				 <a href="/help/none"><span style="color:#FFCC00;">★去除广告</span></a>
 				</td>
 				<td>
 					<label>
@@ -219,31 +214,6 @@
 				</td>
 		  </tr>
 
-			<tr class='active'>
-				<td>单选</td>
-				<td>
-					<label>
-				        <input type="radio"  name="has_checkbox" value="0" id="one" class="a-radio" {{$votes['has_checkbox']== 0? 'checked' : ''}}>
-				        <span class="b-radio"></span>
-				    </label>
-				</td>
-				<td>
-					<label>
-				        <input type="radio" name="has_checkbox" value="1" id="many" class="a-radio" {{$votes['has_checkbox']==1? 'checked' : ''}}>
-				        <span class="b-radio"></span> 
-				        <span class="duoxuan" >
-				        	<select name=""  > 
-					        	<option value="">1</option>
-					        	<option value="">2</option>
-					        	<option value="">3</option>
-				  		   </select>    
-				     </span> 
-				    </label>
-					
-				</td>
-				
-		  </tr>
-			
 		  <tr class='success'>
 		<script>
 			$('#many').click(function(){
@@ -265,17 +235,22 @@
 				  <input type="select" name="has_checkbox" class="form-control" placeholder="默认为最多允许投一个选项" aria-describedby="basic-addon1">
 				   
 				</div><br> -->
+
+				<div class="input-group col-md-12">
+				  <span class="input-group-addon" id="basic-addon1">单选多选</span>
+				  <input type="text" class="form-control" name='has_checkbox' placeholder="" aria-describedby="basic-addon1" value="{{$votes->has_checkbox}}">
+				</div><span style="color:red;font-size:12px;display:block"  >可以在规定间隔时间内给几个选项投票,默认只能给一个选项投票</span><br>
 				
 
 				<div class="input-group col-md-12">
 				  <span class="input-group-addon" id="basic-addon1">重复投票</span>
 				  <input type="text" class="form-control" name='has_repeat' placeholder="间隔几小时可以再次投票,默认不允许重复投票" aria-describedby="basic-addon1" value="{{$votes->has_repeat}}">
-				</div><span style="color:red;font-size:12px;display:none"  >间隔几小时可以再次投票,默认0表示不允许再次投票</span><br>
+				</div><span style="color:red;font-size:12px;display:block"  >间隔几小时可以再次投票,默认0表示不允许再次投票</span><br>
 
 				<div class="input-group col-md-12">
 				  <span class="input-group-addon" id="basic-addon1">投票密码</span>
 				  <input type="text" class="form-control" name="has_password" placeholder="默认无密码" aria-describedby="basic-addon1" value="{{$votes->has_password}}">
-				</div><span style="color:red;font-size:12px;display:none"  >请设置投票密码,默认0表示没有密码</span><br>
+				</div><span style="color:red;font-size:12px;display:block"  >请设置投票密码,默认0表示没有密码</span><br>
 
 
 				<div class="input-group col-md-12">
@@ -283,7 +258,7 @@
 				  <input type="date" name="end_time" class="form-control" placeholder="" aria-describedby="basic-addon1" value="{{$votes->end_time}}">
 				</div><br>
 				 <input type="hidden" name="vote_type" value="{{$votes->vote_type}}">
-			<button style="margin-left:40px" id="tijiaoanliu" class="btn btn-success">修改投票</button>
+			<button style="margin-left:40px" class="btn btn-success">修改投票</button>
 			<br><br><br>
 			</div>
 			{{csrf_field()}}
@@ -369,18 +344,18 @@
 		});
 
 	//重复投票
-	$('input[name=has_repeat]').focus(function(){
-		$(this).parent().next().show();
-	}).blur(function(){
-		$(this).parent().next().hide();
+	// $('input[name=has_repeat]').focus(function(){
+	// 	$(this).parent().next().show();
+	// }).blur(function(){
+	// 	$(this).parent().next().hide();
 
-	});
+	// });
 
-	$('input[name=has_password]').focus(function(){
-		$(this).parent().next().show();
-	}).blur(function(){
-		$(this).parent().next().hide();	
-	});
+	// $('input[name=has_password]').focus(function(){
+	// 	$(this).parent().next().show();
+	// }).blur(function(){
+	// 	$(this).parent().next().hide();	
+	// });
 	});
 	function tc(str){
 		$('#tan').show();
@@ -436,39 +411,25 @@ $('.modify_content').off('click').on('click',function(){
 	        };
 
         });
-    });
-    
-    $('.remove').click(function(){
+
+    $('.removee').click(function(){
     	if(confirm('删除后不可撤销')){
     		// $(this).firstChild().next().remove();
-    		$(this).next().remove();
+    			th = $(this);
 				$.get('/del/{{$v->id}}',{},function(data){
-					
+					if(data){
+						alert('删除成功');
+						th.parent().remove();
+					}
 				});
+    	}else{
+    		$(".remove").unbind("click");
     	}
-			
-				// $.ajax({
-				// 	// url: '/vote/{{$votes->id}}',
-				// 	url: '/del/{{$votes->id}}',
-				// 	type:'POST',
-				// 	 data:{
-				// 	 	// option: v
-				// 	 '_token':'{{csrf_token()}}'	
-				// 	 },
-				// 	 dataType:'json',
-				// 	headers: {
-				//             'X-CSRF-TOKEN': $('meta[name="csrf-token"]')},	
-				// 	success: function(data){
-				// 		if(data != '1'){
-				// 			alert('删除失败');
-				// 		}else{
-				// 			alert('删除成功');
-				// 		}
-				// 	},
-				// 	async: false
-				// })
 		});
 
+    });
+    
+    
 
 
 </script>

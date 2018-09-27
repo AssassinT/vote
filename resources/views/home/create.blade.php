@@ -14,6 +14,7 @@
 		display:none;
 	}
 </style>
+<div id="has_edit" data_edit = "0"></div>
 			<h3>创建投票</h3><hr>
 			<form action="/vote" method='post' enctype="multipart/form-data" onSubmit="return check(this)";>
 

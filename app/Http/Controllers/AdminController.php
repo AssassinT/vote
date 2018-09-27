@@ -23,7 +23,7 @@ class AdminController extends Controller
 	public function dologin(Request $request)
 	{
 		//获取用户的数据
-		$user = User::where('user_name', $request->username)->first();
+		$user = User::where([['user_name', $request->username],['has_admin','1']])->first();
 // dd($user);
 		if(!$user){
 			return back()->with('false','登陆失败!');

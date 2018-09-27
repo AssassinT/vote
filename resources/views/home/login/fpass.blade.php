@@ -38,24 +38,20 @@
     }
     </style>
     <form action="/home/pass" method="post" enctype="multipart/form-data">
-        <div class=" input-group col-md-4">
-            <span class="input-group-addon" id="basic-addon1" style="width:82px">用户名</span>
-            <input type="text" id="n" class="form-control" placeholder="" aria-describedby="basic-addon1" value="" name="user_name">
-        </div>
-        <span id="aa"></span>
-        <br>
-        <div class=" input-group col-md-4">
+        <div>
+        <div class=" input-group col-md-6">
             <span class="input-group-addon" id="basic-addon1" style="width:82px">手机号</span>
-            <input type="text" class="form-control" placeholder="" aria-describedby="basic-addon1" value="" name="user_phone">
+            <input id="phone" type="text" style="width:170px;border-radius:4px;" class="form-control" placeholder="" aria-describedby="basic-addon1" value="" name="user_phone">
+            <button id="verify" style="float:right;" disabled type="button" class="btn btn-success">获取验证码</button>
         </div>
         <span id="bb"></span>
+        
+        </div>
+        
         <br>
         <div class=" input-group col-md-4">
             <span class="input-group-addon" id="basic-addon1" style="width:82px">验证码</span>
-            <div>
-                <input type="text" class="form-control" placeholder="" aria-describedby="basic-addon1" value="" name="" style="float:left;width:83px;">
-                <button class="form-control" style="float:left;width:104px">获取验证码</button>
-            </div>
+            <input type="text" class="form-control" placeholder="" aria-describedby="basic-addon1" value="" name="verify">
         </div>
         <br>
         <div class=" input-group col-md-4">
@@ -71,42 +67,18 @@
         <span id="dd"></span>
         <br>
 </div>
-    <button name="submit" style="margin-left:280px" class="btn btn-success">提交</button>
+    <button name="submit" style="margin-left:180px" class="btn btn-success">提交</button>
 
 </div>
 {{csrf_field()}}
 </form>
+
 <script>
 $(function() {
-    var CUSER = false;
     var CPHONE = false;
     var CPASS = false;
     var CREPASS = false;
-    $('input[name=user_name]').focus(function() {
-        $('#aa').html('<span style="color:#bbb;margin-left:100px">请输入用户名</span>');
-    }).blur(function() {
-        var v = $(this).val();
-        CUSER = false;
-        $.ajax({
-            url: '/home/req',
-            type: 'POST',
-            data: { user_name: v },
-            // dataType:'json',
-            headers: {
-                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-            },
-            success: function(data) {
-                if (data != '1') {
-                    $('#aa').html('<span style="color:green;font-size:16px;font-weight:bold;margin-left:100px">&nbsp;&nbsp;√</span>').show();
-                    CUSER = false;
-                } else {
-                    $('#aa').html('<span style="color:red;margin-left:100px">请输入正确的用户名</span>').show();
-
-                    CUSER = true;
-                }
-            },
-            async: false
-        })
+    
 
         //手机号
         $('input[name=user_phone]').focus(function() {
@@ -117,7 +89,7 @@ $(function() {
             var v = $('input[name=user_phone]').val();
             CPHONE = false;
             $.ajax({
-                url: '/home/reqq?user_name=' + $('#n').val(),
+                url: '/home/reqq',
                 type: 'POST',
                 data: { user_phone: v },
                 // dataType:'json',
@@ -127,11 +99,12 @@ $(function() {
                 success: function(data) {
                     if (data != '1') {
                         $('#bb').html('<span style="color:green;font-size:16px;font-weight:bold;margin-left:100px">&nbsp;&nbsp;√</span>').show();
-                        CPHONE = false;
+                        CPHONE = true;
+                        $('#verify').removeAttr('disabled');
                     } else {
                         $('#bb').html('<span style="color:red;margin-left:100px">请输入您的手机号</span>').show();
 
-                        CPHONE = true;
+                        CPHONE = false;
                     }
                 },
                 async: false
@@ -160,7 +133,7 @@ $(function() {
                 CPASS = true;
             }
         })
-    })
+
 
     // 确认密码
     $('input[name=repassword]').focus(function() {
@@ -169,12 +142,40 @@ $(function() {
         var v = $(this).val();
         if (v != $('input[name=password]').val()) {
             $('#dd').html('<span style="color:red;margin-left:100px">两次输入密码不一致</span>').show();
-            var CREPASS = false;
+            CREPASS = false;
         } else {
             $('#dd').html('<span style="color:#bbb;font-size:16px;font-weight:bold;margin-left:100px">&nbsp;&nbsp;√</span>').show();
             CREPASS = true;
         }
     })
-})
+    var num=5;
+    $('#verify').click(function(){
+            var timer = setInterval(function(){
+                num--;
+                $('#verify').html(num+'秒');
+                if(num<1){
+                    $('#verify').removeAttr('disabled');
+                    $('#verify').html('获取验证码');
+                    clearInterval(timer);
+                    num = 5;
+                }
+            },1000);
+            $('#verify').attr('disabled','true');
+
+        $.get('/home/verify?phone='+$('#phone').val(),{},function(data){
+            if(data){
+                alert('获取验证码成功,请注意查收短信,20分钟内输入有效');
+            }
+        });
+    });
+
+    $('form').submit(function(){
+        if(CPHONE && CPASS && CREPASS){
+            return true;
+        }else{
+            return false;
+        }
+    });
+});
 </script>
 @endsection
