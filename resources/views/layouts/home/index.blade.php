@@ -142,7 +142,7 @@ img{border:none}
 
 		</div>
 
-		<div class='main col-md-8 col-md-offset-2' style="margin-top: 35px">
+		<div id="contents" class='main col-md-8 col-md-offset-2' style="margin-top: 35px">
 
 			@yield('contents')
 
@@ -193,7 +193,7 @@ var popad=new Pop();
 					<h2><b>赞助广告</b></h2>
 				</div>
 				<div id="popContent">
-				<a target="_blank"><img width="100%" src="/vo/广告空缺.png"></a>
+				<a target="_blank"><img width="100%" src="/vo/微信.png"></a>
 				</div>
 			  </div>
 			<script>
@@ -212,5 +212,14 @@ var popad=new Pop();
 <!-- 广告框 end -->
 
 	</div>
+	<script>
+		$(function(){
+			if($('#index').attr('has_show')){
+				$('#contents').show();
+			}else{
+				$('#contents').hide();
+			}
+		});
+	</script>
 </body>
 </html>
