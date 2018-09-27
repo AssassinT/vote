@@ -25,6 +25,7 @@ Route::post('home/doreg', 'LoginController@doreg');
 Route::post('home/req', 'LoginController@req');
 Route::post('home/reqq', 'LoginController@reqq');
 Route::post('home/pass', 'LoginController@pass');
+Route::get('home/verify', 'LoginController@verify');
 Route::get('home/fp', 'LoginController@findp');
 
 Route::get('/myindex', 'MyController@index');

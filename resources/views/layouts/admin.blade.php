@@ -7,6 +7,7 @@
     <title>Amaze UI Admin index Examples</title>
     <meta name="description" content="这是一个 index 页面">
     <meta name="keywords" content="index">
+
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="renderer" content="webkit">
     <meta http-equiv="Cache-Control" content="no-siteapp" />
@@ -18,6 +19,7 @@
     <link rel="stylesheet" href="/admin/static/assets/css/app.css">
     <script src="/admin/static/assets/js/echarts.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
     <link href="/admin/static/assets/vendor/nucleo/css/nucleo.css" rel="stylesheet">
     <link type="text/css" href="/admin/static/assets/css/argon.css?v=1.0.0" rel="stylesheet">
 
