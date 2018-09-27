@@ -54,6 +54,7 @@ class LoginController extends Controller
         $user -> user_name = $request->user_name;
         $user -> password = Hash::make($request->password);
         $user -> user_phone = $request->user_phone;
+        $user -> head_pic = '/vo/default.jpg';
           if($user->save()){   
            	echo "<script>alert('注册成功');window.location.href='/home/login';</script>";  
         }else{
