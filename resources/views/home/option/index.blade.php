@@ -22,7 +22,13 @@
              @endforeach
              <div class="col-md-6 col-md-offset-1">
                 <p style="text-align: center;">
-                    <b style="font-size:16px;color:#666">总票数：<strong >{{floor($arrys)}}票</strong></b><br />
+                    <b style="font-size:16px;color:#666">总票数：<strong >{{floor($arrys)}}票</strong></b> &nbsp; &nbsp; 
+
+                    @if(session('id')==$options[0]->vote->user_id)
+                    <b style="font-size:16px;color:red">礼物金额累计：{{$giftnums}}<strong >元</strong></b><span style="font-size:10px">本人登陆时才会显示</span>
+                    @endif
+
+                    <br />
                 </p>
              </div>
                 

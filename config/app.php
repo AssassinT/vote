@@ -141,6 +141,8 @@ return [
         /*
          * Laravel Framework Service Providers...
          */
+        // Hyperbolaa\Alisms\AlismsServiceProvider::class,
+        Mrgoon\AliSms\ServiceProvider::class,
         Illuminate\Auth\AuthServiceProvider::class,
         Illuminate\Broadcasting\BroadcastServiceProvider::class,
         Illuminate\Bus\BusServiceProvider::class,
