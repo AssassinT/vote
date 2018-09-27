@@ -279,13 +279,15 @@
 	<div class="col-md-8">
 		<textarea name="comment_content" id="" cols="50" placeholder="留下你的评论吧" rows="4"></textarea><br>
 		{{csrf_field()}}
-		<button class='btn btn-success'>提交评论</button>
-	</div><br>
-</form><hr>
+		<button class='btn btn-success' style="margin-top:15px;">提交评论</button>
+	</div><br><hr>
+</form>
 
 	@foreach($comments as $v)
-	        <div>
-	            <b style="font-size:22px;color:#666666;">&nbsp;&nbsp;{{$v['comment_content']}}</b>
+	        <div class="col-md-8" style="margin-top:15px;">
+	            <b style="font-size:12px;">{{$v['comment_content']}}</b>
+	        </div>
+	        <div class="col-md-4">
 	            <b style="font-size:5px;color:#666666;float:right;margin-right:70px;margin-top:15px;font-size:12px;">{{$v['created_at']}}</b>
 	        </div>
 	@endforeach
