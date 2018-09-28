@@ -41,7 +41,7 @@
         <div>
         <div class=" input-group col-md-6">
             <span class="input-group-addon" id="basic-addon1" style="width:82px">手机号</span>
-            <input id="phone" type="text" style="width:170px;border-radius:4px;" class="form-control" placeholder="" aria-describedby="basic-addon1" value="" name="user_phone">
+            <input id="phone" type="text" style="width:184px;border-radius:4px;" class="form-control" placeholder="" aria-describedby="basic-addon1" value="" name="user_phone">
             <button id="verify" style="float:right;" disabled type="button" class="btn btn-success">获取验证码</button>
         </div>
         <span id="bb"></span>
