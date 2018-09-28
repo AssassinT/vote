@@ -403,6 +403,13 @@ class VoteController extends Controller
      */
     public function update(Request $request, $id)
     {  
+        $user = User::findOrFail(session('id'));
+        if(request()->has_top){
+
+            $user->integral -= 50;
+        }
+        $user->save();
+        
         $votes = Vote::findOrfail($id);
 
         $votes -> vote_title  = request() -> vote_title;  //
