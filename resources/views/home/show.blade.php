@@ -29,7 +29,7 @@
 <div class="danmu" >
 	@foreach($gift_gxs as $v)
 	<div style="display:block;" class="one"> &nbsp; &nbsp; 
-		{{$v->user_name}}送来了一个<img height="30" src="{{$v->gift->gift_pic}}"></div>
+		{{$v->user_name}}给{{$v->option->option_title}}送了一个<img height="30" src="{{$v->gift->gift_pic}}"></div>
 	@endforeach
 </div>
 <script>
@@ -109,7 +109,8 @@
 	 var psw = prompt('请输入密码进行投票');
 	 var psw2 = {{$votes->has_password}};
 	 if(psw!=psw2){
-	 	window.location.href='/vote';
+	 	alert('密码错误');
+	 	window.location.href='/';
 	 }
 </script>
 @endif
@@ -267,17 +268,19 @@
 
 <div class="col-md-12" style="height:30px;"></div>
 <form method="post" action="/home/comment" onSubmit="return check(this);">
+	<input type="hidden" id="wechat" name="wechat" value="">
 	<input type="hidden" name="vote_id" value="{{$votes->id}}">
 	<div session='{{session("id")}}' id="userid">
     </div><br>
-	<div class="col-md-6">
-		<textarea name="comment_content" id="" cols="50" placeholder="留下你的评论吧" rows="4"></textarea><br>
+	<div class="col-md-6 com-xs-7">
+		<textarea name="comment_content" id="" cols="30" placeholder="留下你的评论吧" rows="4"></textarea><br>
 		{{csrf_field()}}
 		<button class='btn btn-success' style="margin-top:15px;">提交评论</button><hr>
 	</div>
 </form>
-<div class="col-md-12">
+<div class="main col-md-12 col-xs-12">
 	@foreach($comments as $v)
+	<div class="col-md-12">
 	        <div style="float:left;">
 	        	<strong><img src="{{$v->user['head_pic']}}" style="width:60px; height:60px; border-radius:50%; overflow:hidden;"></strong>
 	        </div>
@@ -290,7 +293,7 @@
 	            <b style="font-size:10px;color:#666666;">{{$v['created_at']}}</b>
 	        </div>
 			<div style="height:15px;"></div><hr>
-			
+		</div>	
 	@endforeach
 	<style>
 		.am-cf ul{
@@ -358,6 +361,13 @@
 <!-- 判断允许评论 -->
 <script>
 	$(function(){
+
+		var ua = window.navigator.userAgent.toLowerCase(),wechat = false;
+		if(ua.match(/MicroMessenger/i) == 'micromessenger'){
+		  	wechat = true;
+		  }
+		$('#wechat').val(wechat);
+
 		$('.tou_vote').click(function(){
 			var nb = $(this);
 			var openid = $('#openid').attr('openid');
@@ -375,10 +385,12 @@
 		$('#userid').click(function(){
 			var id = $('#userid').attr('session');
 			alert('aaa');
-        	if(id==""){
-        	alert('请先登录');
-        	return false;
-        	}
+			if(!wechat){
+	        	if(id==""){
+	        	alert('请先登录');
+	        	return false;
+	        	}
+	        }
 		});
 	});
 
@@ -386,11 +398,12 @@
 	function check(form){
         //判断用户登录是否存在
         var id = $('#userid').attr('session');
-        if(id==""){
-        alert('请先登录');
-        return false;
+        if(!wechat){
+	        if(id==""){
+	        alert('请先登录');
+	        return false;
+	        }
         }
-
         //检查建议内容是否填写
         var comment_content = form.comment_content.value;
         if(comment_content.length==0){

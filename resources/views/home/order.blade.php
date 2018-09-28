@@ -42,7 +42,7 @@
  <form action="/order" method="post">
      <div class=" input-group col-md-4">
             <span class="input-group-addon" id="basic-addon1" style="width:82px">可提现金额</span>
-            <input type="text" class="form-control"  readonly aria-describedby="basic-addon1" value="{{$users->balance*0.8}}&nbsp;元" name="kt">
+            <input type="text" class="form-control"  readonly aria-describedby="basic-addon1" value="{{$users->balance*0.8}}" name="kt">
         </div>
         <br>
         <div class=" input-group col-md-4">
@@ -61,13 +61,16 @@
 
         </div>
         <br>
-         <button name="submit" style="margin-left:80px" class="btn btn-success">确认提现</button>
+         <button name="submit" style="margin-left:40px" class="btn btn-success">确认提现</button>
+         <a href="/order/dd"><button name="submit" style="margin-left:40px" class="btn btn-success" type="button">提现记录</button></a>
           {{csrf_field()}}
  </form>   
 
     <script>
         $('form').submit(function(){
-            if($('input[name=money]').val() > $('input[name=kt]').val()){
+            // alert($('input[name=money]').val());
+            // alert(typeof($('input[name=kt]').val()));
+            if(parseInt($('input[name=money]').val()) > parseInt($('input[name=kt]').val())){
                 alert('提现金额不能大于可提金额')
                return false;
 

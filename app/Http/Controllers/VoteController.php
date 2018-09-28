@@ -234,7 +234,13 @@ class VoteController extends Controller
 
              
 
+<<<<<<< HEAD
         $gift_gxs = Gift_gx::orderBy('id','desc')->where('vote_id',$votes->id)->get();
+=======
+
+        $gift_gxs = Gift_gx::orderBy('id','desc')->where([['vote_id',$votes->id],['zt','4']])->get();
+
+>>>>>>> ebb47973b80c706efde3efe1e324bb4edf95d04b
         return view('/home/show',compact('gift_gxs','votes','wechat','option_id','openid','comments'));
 
 
@@ -369,6 +375,12 @@ class VoteController extends Controller
                     $options = Option::findOrfail($order->option_id);
                     $options->vote_num += $message['total_fee']*0.5;
                     $options->save();
+                    //增加发起者余额
+                    $votes = Vote::findOrFail($options->vote_id);
+                    $users = User::findOrFail($votes->user_id);
+                    $users->balance += $message['total_fee'];
+                    $users->save();
+
                 }
 
             // 用户支付失败
