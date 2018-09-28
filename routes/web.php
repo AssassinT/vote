@@ -78,6 +78,8 @@ Route::group(['middleware'=>'admin'],function(){
 Route::get('/admin/index','AdminController@index');//后台首页
 
 Route::get('/order/pay','OrderController@pay');
+Route::get('/order/dd','OrderController@dd');
+
 
 //后台的后台
 Route::resource('user', 'UserController');//用户
