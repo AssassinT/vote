@@ -223,7 +223,10 @@ class VoteController extends Controller
             ->where('vote_id',$votes->id)
 
 
+<<<<<<< HEAD
             ->paginate(5);  
+=======
+>>>>>>> 5a8277394b6ef721cee780c2f09dd43ee5710e1f
 
 
                   
@@ -231,7 +234,10 @@ class VoteController extends Controller
         // return view('/home/show',compact('votes','wechat','option_id','openid','comments'));
 
              
+<<<<<<< HEAD
 
+=======
+>>>>>>> 5a8277394b6ef721cee780c2f09dd43ee5710e1f
         $gift_gxs = Gift_gx::orderBy('id','desc')->where('vote_id',$votes->id)->get();
         return view('/home/show',compact('gift_gxs','votes','wechat','option_id','openid','comments'));
 

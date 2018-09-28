@@ -54,6 +54,11 @@ img{border:none}
 #popHead h2{font-size:14px;color:black;line-height:32px;height:32px;}
 #popHead #popClose{position:absolute;right:10px;top:1px;}
 #popHead a#popClose:hover{color:#f00;cursor:pointer;}
+
+
+@media screen and (max-width:900px){
+#pop{height:29% !important ;width: 42%  !important;}
+}
 </style>
 <!-- 框 -->
 
@@ -162,7 +167,7 @@ img{border:none}
 		<div class="col-md-12">
 			@yield('danmu')
 		</div>
-		<div class='main col-md-8 col-md-offset-2'>
+		<div class='main col-md-8 col-md-offset-2' style="background-color:#f6f5f2">
 
 			@yield('content')
 
@@ -189,6 +194,7 @@ img{border:none}
 
 	</div>
 <!-- 广告框 -->
+<div class="wrapper">
 <?php
 		$users = \App\User::all();
 	$a_dsss = \App\aD::where('position',1)->get();
@@ -227,7 +233,7 @@ var popad=new Pop();
 					<h2><b>赞助广告</b></h2>
 				</div>
 				<div id="popContent">
-				<a target="_blank"><img width="100%" src="/vo/微信.png"></a>
+				<a target="_blank"><img width="100%" src="/vo/广告空缺.png"></a>
 				</div>
 			  </div>
 			<script>
@@ -244,7 +250,7 @@ var popad=new Pop();
 			</script>
 @endif
 <!-- 广告框 end -->
-
+</div>
 	</div>
 	<script>
 		$(function(){

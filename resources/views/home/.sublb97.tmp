@@ -54,41 +54,27 @@
 
   <!-- 轮播 -->
 <style>
-  .jssora05l  {
+  .jssora05l, .jssora05r {
     display: block;
     position: absolute;
     /* size of arrow element */
-    width: 50px;
+    width: 40px;
     height: 40px;
     cursor: pointer;
-    background: url('/home/a.png') no-repeat;
+    background: url('/home/a17.png') no-repeat;
     overflow: hidden;
-    opacity:0.3;
-
   }
-  .jssora05r{
-    display: block;
-    position: absolute;
-    /* size of arrow element */
-    width: 50px;
-    height: 40px;
-    cursor: pointer;
-    background: url('/home/b.png') no-repeat;
-    overflow: hidden;
-    opacity:0.3;
-
-  }
-  .jssora05l { background-position: -1px -1px; }
-  .jssora05r { background-position: -1px -1px; }
+  .jssora05l { background-position: -10px -40px; }
+  .jssora05r { background-position: -70px -40px; }
 
 </style>
 
-<div class="col-md-11" id="jssor_1" style="   padding-left:-100px;  padding-top:-60px;width: 970px !important; height: 365px !important;  visibility: hidden; background-color:;">
+<div class="col-md-11" id="jssor_1" style="   padding-left:-55px;  margin-top:0px;width: 870px !important; height: 310px !important;  visibility: hidden; background-color: #ddd;">
     <!-- Loading Screen -->
-    <div class="col-md-11"data-u="loading" style="position: absolute; top: 0px; margin-left:60px;width: 650px; height: 360px;  visibility: hidden; background-color: #ddd;">
+    <div class="col-md-11"data-u="loading" style="position: absolute; top: 0px; margin-left:60px;width: 850px; height: 310px;  visibility: hidden; background-color: #ddd;">
       
     </div>
-    <div class="col-md-11"data-u="slides" style="   margin-top: -40px;margin-left: -10px; width: 1080px; height: 400px; overflow: hidden;">
+    <div class="col-md-11"data-u="slides" style="   margin-top: -30px;margin-left: 5px; width: 1080px; height: 354px; overflow: hidden;">
 
 
       <div  data-p="144.50" style="display: none;">
@@ -106,26 +92,26 @@
       $diff = $past-$now;
 
   ?>
-     <div >
+      <div >
         
-        <div style="margin-left:30px !important; margin-top:10px;float:left;background-color:#fff;width:320px;height:550px;">
+        <div style="margin-left:80px !important; float:left;background-color:#fff;width:280px;height:550px;">
     <div class="entry-margin">
-        <h3 class="auto-hidden"style="padding-left:10px"><a href="/vote/{{$v->id}}" style="color:black;">{{$v->vote_title}}</a></h3>
-        <span style="padding-left:10px"class="glyphicon glyphicon-time"> <b><?php echo  time2Units($diff).'后投票结束';  ?></b></span>
+        <h3 class="auto-hidden"><a href="/vote/{{$v->id}}" style="color:black;">{{$v->vote_title}}</a></h3>
+        <span class="glyphicon glyphicon-time"> <?php echo  time2Units($diff).'后投票结束';  ?></span>
     </div>
     <div class="carousel-image">
         <div class="entry-image" style="margin-top:10px">
-            <a href="/vote/{{$v->id}}"><img class="image-middle" src="{{$v->vote_pic}}" height="220px" width="320" alt=""></a>
+            <a href="/vote/{{$v->id}}"><img class="image-middle" src="{{$v->vote_pic}}" height="180px" width="280" alt=""></a>
         </div>
         <div class="entry-icon" style="height:10px">
           
         </div>
     </div>
-    <div class="entry-margin" style="padding-left:10px;margin-top:-10px"><br>
+    <div class="entry-margin"><br>
         <p>
-            <span class="glyphicon glyphicon-user" style="margin-top:5px"> <b>创建人：{{$v->user->user_name}}</b></span>
-            <br><span class="glyphicon glyphicon-heart" style="margin-top:5px"> <b>总票数：{{$arrys}}</b></span>
-            <br><span class="glyphicon glyphicon-eye-open" style="margin-top:4px"> <b>浏览量：{{$v->id*43}}</b></span>
+            <span class="glyphicon glyphicon-user"> 创建人：{{$v->user->user_name}}</span>
+            <br><span class="glyphicon glyphicon-heart"> 总票数：{{$arrys}}</span>
+            <br><span class="glyphicon glyphicon-eye-open"> 浏览量：{{$v->id*43}}</span>
         </p>
     </div>
 </div >
@@ -154,26 +140,26 @@
       $diff = $past-$now;
 
   ?>
-     <div >
+      <div >
         
-        <div style="margin-left:30px !important; margin-top:10px;float:left;background-color:#fff;width:320px;height:550px;">
+        <div style="margin-left:80px !important; float:left;background-color:#fff;width:280px;height:550px;">
     <div class="entry-margin">
-        <h3 class="auto-hidden"style="padding-left:10px"><a href="/vote/{{$v->id}}" style="color:black;">{{$v->vote_title}}</a></h3>
-        <span style="padding-left:10px"class="glyphicon glyphicon-time"> <b><?php echo  time2Units($diff).'后投票结束';  ?></b></span>
+        <h3 class="auto-hidden"><a href="/vote/{{$v->id}}" style="color:black;">{{$v->vote_title}}</a></h3>
+        <span class="glyphicon glyphicon-time"> <?php echo  time2Units($diff).'后投票结束';  ?></span>
     </div>
     <div class="carousel-image">
         <div class="entry-image" style="margin-top:10px">
-            <a href="/vote/{{$v->id}}"><img class="image-middle" src="{{$v->vote_pic}}" height="220px" width="320" alt=""></a>
+            <a href="/vote/{{$v->id}}"><img class="image-middle" src="{{$v->vote_pic}}" height="180px" width="280" alt=""></a>
         </div>
         <div class="entry-icon" style="height:10px">
           
         </div>
     </div>
-    <div class="entry-margin" style="padding-left:10px;margin-top:-10px"><br>
+    <div class="entry-margin"><br>
         <p>
-            <span class="glyphicon glyphicon-user" style="margin-top:5px"> <b>创建人：{{$v->user->user_name}}</b></span>
-            <br><span class="glyphicon glyphicon-heart" style="margin-top:5px"> <b>总票数：{{$arrys}}</b></span>
-            <br><span class="glyphicon glyphicon-eye-open" style="margin-top:4px"> <b>浏览量：{{$v->id*43}}</b></span>
+            <span class="glyphicon glyphicon-user"> 创建人：{{$v->user->user_name}}</span>
+            <br><span class="glyphicon glyphicon-heart"> 总票数：{{$arrys}}</span>
+            <br><span class="glyphicon glyphicon-eye-open"> 浏览量：{{$v->id*43}}</span>
         </p>
     </div>
 </div >
@@ -187,22 +173,11 @@
     <!-- Thumbnail Navigator -->
     
     <!-- Arrow Navigator -->
-    <span data-u="arrowleft" class="jssora05l" style="top:138px;left:-20px;width:100px;height:100px;"></span>
-    <span data-u="arrowright" class="jssora05r" style="top:138px;right:-170px;width:100px;height:100px;"></span>
+    <span data-u="arrowleft" class="jssora05l" style="top:138px;left:78px;width:40px;height:40px;"></span>
+    <span data-u="arrowright" class="jssora05r" style="top:138px;right:4px;width:40px;height:40px;"></span>
   </div>
   <!-- #endregion Jssor Slider End -->
-<script type="text/javascript">
-   $('.jssora05l').mouseover(function(){
-      $(this).css('opacity',0.8);
-   }).mouseout(function(){
-      $(this).css('opacity',0.3);
-   });
-   $('.jssora05r').mouseover(function(){
-      $(this).css('opacity',0.8);
-   }).mouseout(function(){
-      $(this).css('opacity',0.3);
-   });
-</script>
+
 
 
 <script type="text/javascript">

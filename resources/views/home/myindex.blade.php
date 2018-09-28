@@ -50,8 +50,15 @@
                       <span style="float:right"><b>V</b></span>
                        @endif -->
         </div>
-        <br> @if(!$user['has_vip'])
-        <a href="/help/none"><span style="color:red">获取更多积分</span></a> @endif
+        <br>
+         <div class=" input-group col-md-4">
+            <span class="input-group-addon" id="basic-addon1" style="width:82px">账户余额</span>
+            <input type="text" class="form-control" readonly value="2000000&nbsp;元" name="money" style="width:66%"><a href=""><button type="button" class="btn btn-success">提现</button></a>
+        </div>
+        <br>
+        @if(!$user['has_vip'])
+            <a href="/help/none"><span style="color:red">获取更多积分</span></a>
+        @endif
         <div class=" input-group col-md-4">
             <span class="input-group-addon" id="basic-addon1" style="width:82px">积分</span>
             <img src="" alt="">
