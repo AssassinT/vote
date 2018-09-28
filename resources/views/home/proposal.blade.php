@@ -30,7 +30,7 @@
 
     <header>
         <div style="font-size:26px!important">
-        <b style=" color:#666666;">历史建议</b></div>
+        <b style=" color:#666666;margin-top:15px;">历史建议</b></div>
     </header>
     <hr>
 

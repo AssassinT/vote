@@ -3,10 +3,33 @@
 <head>
 	<?php
 		$links = \App\Link::all();
+		$websets = \App\Web_set::first();
 	?>
+<!-- 轮播图 -->
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"> 
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<style>
+	.jssora05l, .jssora05r {
+		display: block;
+		position: absolute;
+		/* size of arrow element */
+		width: 40px;
+		height: 40px;
+		cursor: pointer;
+		background: url('img/a17.png') no-repeat;
+		overflow: hidden;
+	}
+	.jssora05l { background-position: -10px -40px; }
+	.jssora05r { background-position: -70px -40px; }
+
+</style>
+<script src="/home/js/jssor.slider-21.1.6.mini.js" type="text/javascript"></script>
+<!-- 轮播图 -->
+
 	<meta charset="UTF-8">
-	<title>vote</title>
+	<title>{{$websets->web_title}}</title>
 	<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+	<meta name="keywords" content="{{$websets->web_keyword}}"/>
 	<link href="/login/images/T4.jpg" rel="shortcut icon" type="image/x-icon" />
 	<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
 	<link rel="stylesheet" href="/home/css/home.css" type="text/css" />
@@ -144,13 +167,19 @@ img{border:none}
 		<div class="col-md-12">
 			@yield('danmu')
 		</div>
-		<div class='main col-md-8 col-md-offset-2'>
+		<div class='main col-md-8 col-md-offset-2' style="background-color:#f6f5f2">
 
 			@yield('content')
 
 		</div>
 
-		<div class='main col-md-8 col-md-offset-2' style="margin-top: 35px">
+<style>
+	#tiao{
+		display:none;
+	}
+</style>
+		<div id="tiao" class='main col-md-8 col-md-offset-2' style="margin-top: 35px">
+
 
 			@yield('contents')
 
@@ -158,9 +187,11 @@ img{border:none}
 		@include('layouts.home.link')
 		
 
-	<div class='col-md-8 col-md-offset-2 bottom'>
-			
+
+	<div class='col-md-8 col-md-offset-2 bottom' style="line-height:40px;margin-bottom:30px">
+			<span style="font-size:14px;color:#eee">{{$websets->record}}<span>
 	
+
 	</div>
 <!-- 广告框 -->
 <div class="wrapper">
@@ -171,7 +202,7 @@ img{border:none}
  // dd($a_ds);
 	?>
 
-@if(!$users[0]['has_vip']==1)
+@if(session('has_vip')=='0' || !Session::has('id'))
 	@if(count($a_dsss)<=0)
 		<div class="one" style="display:none"></div>
 	@endif
@@ -221,5 +252,14 @@ var popad=new Pop();
 <!-- 广告框 end -->
 </div>
 	</div>
+	<script>
+		$(function(){
+			if($('#index').attr('has_show')){
+				$('#contents').show();
+			}else{
+				$('#contents').hide();
+			}
+		});
+	</script>
 </body>
 </html>
