@@ -16,7 +16,8 @@ class OrderController extends Controller
     {
         //
         $order = Order::all();
-        return view('admin.order.index',[]);
+
+        return view('admin.order.index',compact('order'));
     }
 
     /**
@@ -83,5 +84,17 @@ class OrderController extends Controller
     public function destroy(Order $order)
     {
         //
+    }
+
+    public function pay()
+    {
+        $id = request()->id;
+        $orders = Order::findOrFail($id);
+        $orders->statue = '1';
+        if($orders->save()){
+            echo 1;
+        }else{
+            echo 0;
+        }
     }
 }
