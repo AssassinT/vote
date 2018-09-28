@@ -39,7 +39,10 @@ class User extends Authenticatable
 
      public function vote()
     {
-        return $this->hasMany('App\vote');
+        return $this->hasMany('App\Vote');
     }
-    
+     public function order()
+    {
+        return $this->hasMany('App\Order');
+    }
 }

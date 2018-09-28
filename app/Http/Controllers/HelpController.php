@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\help;
 use Illuminate\Http\Request;
+use App\Web_set;
 
 class HelpController extends Controller
 {
@@ -16,7 +17,7 @@ class HelpController extends Controller
     {
         $helps = help::orderBy('id','desc')
             ->where('question','like', '%'.request()->keywords.'%')
-            ->paginate(10);
+            ->paginate(5);
         return view('admin.help.index', ['helps'=>$helps]);
     }
 
@@ -130,9 +131,11 @@ class HelpController extends Controller
 
      public function cont(Request $request)
     {
-       $helps = help::all();
+       $websets = Web_set::first();
 
-        return view('home.help.edit', compact('helps'));
+
+        return view('home.help.edit',compact('websets'));
+
     }
 
     public function none(Request $request)
