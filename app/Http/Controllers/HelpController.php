@@ -17,7 +17,7 @@ class HelpController extends Controller
     {
         $helps = help::orderBy('id','desc')
             ->where('question','like', '%'.request()->keywords.'%')
-            ->paginate(10);
+            ->paginate(5);
         return view('admin.help.index', ['helps'=>$helps]);
     }
 
@@ -133,7 +133,9 @@ class HelpController extends Controller
     {
        $websets = Web_set::first();
 
+
         return view('home.help.edit',compact('websets'));
+
     }
 
     public function none(Request $request)

@@ -10,27 +10,26 @@
 		right:-200px;
 		top:60px;
 		z-index:90;
-		opacity:0.6;/*透明度*/
+		opacity:0.7;/*透明度*/
 	}
 
-	.danmu span{
+	.danmu div{
 		position:absolute;
 		border-radius:10px;
 		top:10px;
 		right:-400px;
 		padding:5px;
 		/*border:1px solid yellow;*/
-		color:yellow;
-		background: red;
-
+		color:red;
+		background: white;
+		font-weight:bold;
 	}
 </style>
 
 <div class="danmu" >
 	@foreach($gift_gxs as $v)
-	<span class="one"> &nbsp; &nbsp; 
-		{{$v->user_name}}送来了一个{{$v->gift->gift_name}}
-	&nbsp; &nbsp; </span>
+	<div style="display:block;" class="one"> &nbsp; &nbsp; 
+		{{$v->user_name}}送来了一个<img height="30" src="{{$v->gift->gift_pic}}"></div>
 	@endforeach
 </div>
 <script>
@@ -71,13 +70,8 @@
 
 ?>
 
-
-	
-
-
-
 <!-- 广告2	 -->
-@if(session('has_vip')=='0')
+@if(session('has_vip')=='0' || !Session::has('id'))
 	@if(count($a_dss)<=0)
 		<div class="two" style="display:none"></div>
 	@endif
@@ -85,7 +79,7 @@
 		@if($v['position']==2)
 		<a href="{{$v['a_d_url']}}">
 			<div class="two" style="width:300px;height:180px;">
-				<img id="" src="{{$v['a_d_pic']}}" width="100%" alt="">
+				<img id="" src="{{$v['a_d_pic']}}" width="70%" alt="">
 			</div>
 			</a>
 		@else
@@ -276,7 +270,7 @@
 	<input type="hidden" name="vote_id" value="{{$votes->id}}">
 	<div session='{{session("id")}}' id="userid">
     </div><br>
-	<div class="col-md-8">
+	<div class="col-md-6">
 		<textarea name="comment_content" id="" cols="50" placeholder="留下你的评论吧" rows="4"></textarea><br>
 		{{csrf_field()}}
 		<button class='btn btn-success' style="margin-top:15px;">提交评论</button><hr>
@@ -285,10 +279,10 @@
 <div class="col-md-12">
 	@foreach($comments as $v)
 	        <div style="float:left;">
-	        	<strong><img src="{{$v->user->head_pic}}" style="width:60px; height:60px; border-radius:50%; overflow:hidden;"></strong>
+	        	<strong><img src="{{$v->user['head_pic']}}" style="width:60px; height:60px; border-radius:50%; overflow:hidden;"></strong>
 	        </div>
 	        <div style="margin-left:70px;">
-	        	<strong style="font-size:25px;color:#aaa;">{{$v->user->user_name}}</strong><br>
+	        	<strong style="font-size:25px;color:#aaa;">{{$v->user['user_name']}}</strong><br>
 	        	<div style="height:30px;"></div>
 	            <b style="font-size:20px;">{{$v['comment_content']}}</b>
 	        </div>
@@ -296,10 +290,15 @@
 	            <b style="font-size:10px;color:#666666;">{{$v['created_at']}}</b>
 	        </div>
 			<div style="height:15px;"></div><hr>
-			<div></div>
+			
 	@endforeach
-	<div class="am-cf" style="height:20px;!important">
-        <div class="am-fr" style="float:right;"> 
+	<style>
+		.am-cf ul{
+			margin-top:0px !important;
+		}
+	</style>
+	<div class="am-cf" style="height:40px !important;">
+        <div class="am-fr" style="float:right;height:40px !important;"> 
             {{ $comments->appends(request()->all())->links() }}
         </div>
     </div>

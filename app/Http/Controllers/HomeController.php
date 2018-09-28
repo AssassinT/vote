@@ -11,7 +11,7 @@ class HomeController extends Controller
 {
     public function index(){
     	//倒序取3条
-    	$votes = Vote::orderBy('id','desc')->limit(3)->get();
+    	$votes = Vote::orderBy('id','desc')->limit(6)->get();
     	  // dd($votes[0]->end_time);
     	$tops = Vote::where('has_top', '=', '1')->get();
     

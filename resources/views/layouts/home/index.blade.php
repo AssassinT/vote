@@ -5,6 +5,27 @@
 		$links = \App\Link::all();
 		$websets = \App\Web_set::first();
 	?>
+<!-- 轮播图 -->
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"> 
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<style>
+	.jssora05l, .jssora05r {
+		display: block;
+		position: absolute;
+		/* size of arrow element */
+		width: 40px;
+		height: 40px;
+		cursor: pointer;
+		background: url('img/a17.png') no-repeat;
+		overflow: hidden;
+	}
+	.jssora05l { background-position: -10px -40px; }
+	.jssora05r { background-position: -70px -40px; }
+
+</style>
+<script src="/home/js/jssor.slider-21.1.6.mini.js" type="text/javascript"></script>
+<!-- 轮播图 -->
+
 	<meta charset="UTF-8">
 	<title>{{$websets->web_title}}</title>
 	<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
@@ -147,7 +168,13 @@ img{border:none}
 
 		</div>
 
-		<div id="contents" class='main col-md-8 col-md-offset-2' style="margin-top: 35px">
+<style>
+	#tiao{
+		display:none;
+	}
+</style>
+		<div id="tiao" class='main col-md-8 col-md-offset-2' style="margin-top: 35px">
+
 
 			@yield('contents')
 
@@ -155,9 +182,11 @@ img{border:none}
 		@include('layouts.home.link')
 		
 
+
 	<div class='col-md-8 col-md-offset-2 bottom' style="line-height:40px;margin-bottom:30px">
 			<span style="font-size:14px;color:#eee">{{$websets->record}}<span>
 	
+
 	</div>
 <!-- 广告框 -->
 <?php
@@ -167,7 +196,7 @@ img{border:none}
  // dd($a_ds);
 	?>
 
-@if(!$users[0]['has_vip']==0)
+@if(session('has_vip')=='0' || !Session::has('id'))
 	@if(count($a_dsss)<=0)
 		<div class="one" style="display:none"></div>
 	@endif
