@@ -45,7 +45,7 @@
                             <th class="table-id">ID</th>
                             <th class="table-title">用户名</th>
                             <th class="table-title">金额</th>
-                            <th class="table-title">收款方式</th>
+                            <th class="table-title">收款用户名</th>
                             <th class="table-title">收款账号</th>
                             <th class="table-title">状态</th>
                             <th class="table-title">时间</th>
@@ -64,13 +64,21 @@
                             <td class="am-hide-sm-only">{{$v['money']}}</td>
                             <td class="am-hide-sm-only">{{$v['mode']}}</td>
                             <td class="am-hide-sm-only">{{$v['info']}}</td>
+<<<<<<< HEAD
+                            <td class="ai" class="am-hide-sm-only">{{($v['statue'])==0 ? '支付中' : '已支付' }}</td>
+=======
                             <td class="ai">{{($v['statue'])==0 ? '支付中' : '已支付' }}</td>
+>>>>>>> ebb47973b80c706efde3efe1e324bb4edf95d04b
                             <td class="am-hide-sm-only">{{$v['created_at']}}</td>
                             
                             <td>
                                 <div class="am-btn-toolbar">
                                     <div class="am-btn-group am-btn-group-xs">
+<<<<<<< HEAD
+                                        <a href="" data_id="{{$v['id']}}"   class="zhif">{{($v['statue'])==0 ? '支付' : '已支付' }}</a>
+=======
                                         <a href="" data_id="{{$v['id']}}"  class="zhif">{{($v['statue'])==0 ? '支付' : '已支付' }}</a>
+>>>>>>> ebb47973b80c706efde3efe1e324bb4edf95d04b
                                         
 
                                     </div>
@@ -130,7 +138,7 @@
                 </style>
                 <div class="am-cf">
                     <div class="am-fr">
-                   
+                      {{ $order->appends(request()->all())->links() }}
                     </div>
                 </div>
                 <hr>

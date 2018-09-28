@@ -20,8 +20,11 @@ class OrderController extends Controller
     public function index()
     {
         //
-        $order = Order::all();
-
+        // $order = ::all();
+        $order = Order::orderBy('id','desc')
+        // dd($user);
+        ->where('info','like','%'.request()->keywords.'%')
+        ->paginate(1);
 
         return view('admin.order.index',compact('order'));
     }
