@@ -78,24 +78,5 @@
 		{{csrf_field()}}
 	</form>
 	</div>
-<div class="col-md-7">
-	<table class="table table-bordered">
-			<caption><h4>赠送列表</h4></caption>
-			<tr>
-				<th>ID</th>
-				<th>赠送者</th>
-				<th>礼物名称</th>
-				<th>赠送时间</th>
-			</tr>
-			
-			@foreach($gift_gxs as $k=>$v)
-			<tr class='active'>
-				<td>{{$k+1}}</td>
-				<td>{{$v->user_name}}</td>
-				<td>{{$v->gift->gift_name}}</td>
-				<td>{{$v->created_at}}</td>
-			</tr>
-			@endforeach
-		</table>
-	</div>
+
 @endsection

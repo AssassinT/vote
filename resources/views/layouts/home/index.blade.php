@@ -183,7 +183,7 @@ img{border:none}
 		
 
 
-	<div class='col-md-8 col-md-offset-2 bottom' style="line-height:40px;margin-bottom:30px">
+	<div class='col-md-8 col-md-offset-2 col-xs-12 bottom' style="line-height:40px;">
 			<span style="font-size:14px;color:#eee">{{$websets->record}}<span>
 	
 
