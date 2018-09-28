@@ -53,7 +53,7 @@
         <br>
          <div class=" input-group col-md-4">
             <span class="input-group-addon" id="basic-addon1" style="width:82px">账户余额</span>
-            <input type="text" class="form-control" readonly value="2000000&nbsp;元" name="money" style="width:66%"><a href=""><button type="button" class="btn btn-success">提现</button></a>
+            <input type="text" class="form-control" readonly value="2000000&nbsp;元" name="money" style="width:66%"><a href="/order/1"><button type="button" class="btn btn-success">提现</button></a>
         </div>
         <br>
         @if(!$user['has_vip'])

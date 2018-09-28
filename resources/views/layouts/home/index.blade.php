@@ -124,6 +124,7 @@ img{border:none}
 
 				@if(Session::has('id'))
 				<a href="/myindex"><li><span class="glyphicon glyphicon-user" aria-hidden="true"></span> &nbsp;个人中心</li></a>
+				<a href="/order/1"><li><span class="glyphicon glyphicon-user" aria-hidden="true"></span> &nbsp;我的钱包</li></a>
 				@else
 				<a href="/home/login"><li><span class="glyphicon glyphicon-user" aria-hidden="true"></span> &nbsp;点击登录</li></a>
 				@endif

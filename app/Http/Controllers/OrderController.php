@@ -2,9 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Gift;
+use App\Gift_gx;
+use App\Option;
 use App\Order;
+use App\User;
+use App\Vote;
 use Illuminate\Http\Request;
-
 class OrderController extends Controller
 {
     /**
@@ -16,6 +20,7 @@ class OrderController extends Controller
     {
         //
         $order = Order::all();
+
 
         return view('admin.order.index',compact('order'));
     }
@@ -38,7 +43,17 @@ class OrderController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $orders = new Order;
+        $orders->money = $request->money;
+        $orders->user_id = session('id');
+        $orders->info = $request->info;
+        $orders->mode = $request->mode;
+        if($orders->save()){
+        $users = User::findOrFail(session('id'));
+        $users->balance -= $request->money / 0.8;
+        $users->save();
+           return redirect('/order/1');
+        }
     }
 
     /**
@@ -47,9 +62,15 @@ class OrderController extends Controller
      * @param  \App\Order  $order
      * @return \Illuminate\Http\Response
      */
-    public function show(Order $order)
+    public function show($id)
     {
-        //
+        $votes = Vote::where('user_id',session('id'))->get();
+        // $options = Option::findOrFail($id);
+         $users = User::findOrFail(session('id'));
+        // dd($user);
+
+
+       return view('home.order',compact('votes','users'));
     }
 
     /**
@@ -58,7 +79,7 @@ class OrderController extends Controller
      * @param  \App\Order  $order
      * @return \Illuminate\Http\Response
      */
-    public function edit(Order $order)
+    public function edit()
     {
         //
     }
@@ -70,7 +91,7 @@ class OrderController extends Controller
      * @param  \App\Order  $order
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Order $order)
+    public function update(Request $request)
     {
         //
     }
@@ -81,7 +102,7 @@ class OrderController extends Controller
      * @param  \App\Order  $order
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Order $order)
+    public function destroy()
     {
         //
     }
