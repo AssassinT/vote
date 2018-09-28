@@ -31,6 +31,11 @@ img{border:none}
 #popHead h2{font-size:14px;color:black;line-height:32px;height:32px;}
 #popHead #popClose{position:absolute;right:10px;top:1px;}
 #popHead a#popClose:hover{color:#f00;cursor:pointer;}
+
+
+@media screen and (max-width:900px){
+#pop{height:29% !important ;width: 42%  !important;}
+}
 </style>
 <!-- 框 -->
 
@@ -158,6 +163,7 @@ img{border:none}
 	
 	</div>
 <!-- 广告框 -->
+<div class="wrapper">
 <?php
 		$users = \App\User::all();
 	$a_dsss = \App\aD::where('position',1)->get();
@@ -165,7 +171,7 @@ img{border:none}
  // dd($a_ds);
 	?>
 
-@if(!$users[0]['has_vip']==0)
+@if(!$users[0]['has_vip']==1)
 	@if(count($a_dsss)<=0)
 		<div class="one" style="display:none"></div>
 	@endif
@@ -213,7 +219,7 @@ var popad=new Pop();
 			</script>
 @endif
 <!-- 广告框 end -->
-
+</div>
 	</div>
 </body>
 </html>

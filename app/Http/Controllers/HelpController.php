@@ -16,7 +16,7 @@ class HelpController extends Controller
     {
         $helps = help::orderBy('id','desc')
             ->where('question','like', '%'.request()->keywords.'%')
-            ->paginate(10);
+            ->paginate(5);
         return view('admin.help.index', ['helps'=>$helps]);
     }
 
