@@ -212,19 +212,15 @@ class VoteController extends Controller
 
         $comments = Comment::orderBy('id','asc')
             ->where('vote_id',$votes->id)
-<<<<<<< HEAD
-            ->paginate(5);        
-            // dd($comments->user());
-        return view('/home/show',compact('votes','wechat','option_id','openid','comments'));
-=======
             ->paginate(5);  
-        $gift_gxs = Gift_gx::orderBy('id','desc')->where('vote_id',$votes->id)->get();
+        $gift_gxs = Gift_gx::orderBy('id','desc')->where([['vote_id',$votes->id],['zt',4]])->get();
         return view('/home/show',compact('gift_gxs','votes','wechat','option_id','openid','comments'));
->>>>>>> 2f54b87d2354d7e5f485bf92a400afd672f30bc5
 
     }
 
     public function redirect(){
+        try{
+        $url = 'http://ws.xiaohigh.com/vote/'.request()->id;
         $id = $_GET['id'];
         
         $app = Factory::officialAccount($this->config);
@@ -268,8 +264,11 @@ class VoteController extends Controller
         $comments = Comment::orderBy('id','asc')
             ->where('id',$votes->id)
             ->paginate(5);  
-         $gift_gxs = Gift_gx::orderBy('id','desc')->where('vote_id',$votes->id)->get();
+         $gift_gxs = Gift_gx::orderBy('id','desc')->where([['vote_id',$votes->id],['zt',4]])->get();
         return view('/home/show',compact('gift_gxs','votes','wechat','option_id','comments','openid'));
+        }catch(\Exception $e) {
+            echo "<script>window.location.href='{$url}'</script>";
+        }
 
     }
 
