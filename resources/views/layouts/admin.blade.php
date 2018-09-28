@@ -168,13 +168,36 @@
 
         
         <div class="tpl-content-wrapper">
-        
+        <style>
+            #tishi1{
+                width:100%;
+                height:30px;
+                background:#09c;
+                text-align:center;
+                border-radius:5px;
+                margin-bottom:10px; 
+            }
+            #tishi2{
+                width:100%;
+                height:30px;
+                background:#f22;
+                text-align:center;
+                margin-bottom:10px; 
+                border-radius:5px;
+            }
+            .close{
+                font-size:20px;
+                float:right;
+                height:30px;
+                border-radius:5px;
+            }
+        </style>
                             @if(Session::has('true'))
                             <div id='tishi1' class="alert alert-success alert-dismissible fade show" role="alert">
                               <span class="alert-inner--icon"><i class="ni ni-like-2"></i></span>
                               <span class="alert-inner--text"><strong>Success!</strong> {{Session::get('true')}}</span>
-                              <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                <span class="off" aria-hidden="true">&times;</span>
+                              <button type="button" class="close btn btn-danger" data-dismiss="alert" aria-label="Close">
+                                <span class="off" aria-hidden="true">X</span>
                               </button>
                             </div>
                             @endif
