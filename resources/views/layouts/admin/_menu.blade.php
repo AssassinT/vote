@@ -68,6 +68,14 @@
                         
                     </li>
                     
+                    <li class="tpl-left-nav-item">
+                        <a href="/order" class="nav-link tpl-left-nav-link-list">
+                            <i class="am-icon-table"></i>
+                            <span>订单管理</span>
+                            <i class="am-icon-angle-right tpl-left-nav-more-ico am-fr am-margin-right"></i>
+                        </a>
+                        
+                    </li>
                 </ul>
             </div>
         </div>

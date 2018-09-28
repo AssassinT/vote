@@ -86,6 +86,7 @@ Route::resource('link', 'LinkController');//友情链接
 Route::resource('proposal', 'ProposalController');//建议
 Route::resource('help', 'HelpController');//帮助
 Route::resource('gift', 'GiftController');//礼物
+Route::resource('order','OrderController');//订单
 });
 //前台的后台
 Route::resource('comment', 'CommentController');//留言
