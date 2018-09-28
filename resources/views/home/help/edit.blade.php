@@ -10,7 +10,7 @@
         <div class="col-md-12">               
            
                     <div class="col-md-4" style="text-align:center"> <p ><img src="/vo/qq.png" width="58%" /></p><p  style="font-size:105%;color:#666666;margin-left:10%;margin-right:10%">关注QQ</p></div>
-                    <div class="col-md-4" style="text-align:center"> <p ><img src="/vo/微信.jpg" width="58%" /></p><p  style="font-size:105%;color:#666666;margin-left:8.5%;margin-right:10%">关注微信</p></div>
+                    <div class="col-md-4" style="text-align:center"> <p ><img src="{{$websets->wechat_qrcode}}" width="58%" /></p><p  style="font-size:105%;color:#666666;margin-left:8.5%;margin-right:10%">关注微信</p></div>
                     <div class="col-md-4" style="text-align:center"> <p ><img src="/vo/微博.png" width="58%" /></p><p  style="font-size:105%;color:#666666;margin-left:7%;margin-right:10%">关注微博</p></div>
 
                 
@@ -18,7 +18,11 @@
         </div>
             <div  style="margin-left:0px; margin-top:10px"class="col-md-7 item">
                     <h4 style="color:#666666"><b>客服电话</b></h4>
-                    <a style="color:#666666"><b>15234356666</b></a>
+                    <a style="color:#666666"><b>{{$websets->web_phone}}</b></a>
+            </div>
+            <div  style="margin-left:0px; margin-top:10px"class="col-md-7 item">
+                    <h4 style="color:#666666"><b>客服QQ</b></h4>
+                    <a style="color:#666666"><b>{{$websets->web_qq}}</b></a>
             </div>
             <div  style="margin-left:0px; margin-top:10px"class="col-md-7 item">
                     <h4 style="color:#666666"><b>工作时间</b></h4>

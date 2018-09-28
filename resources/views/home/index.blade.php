@@ -5,7 +5,12 @@
 </style>
 @extends('layouts.home.index')
 @section('content')
-		
+<div id="index" has_show="1"></div>
+		<style>
+    #contens{
+        display:block !important;
+    }
+  </style>
 	<div style="height:30px"></div>
 
                          <?php

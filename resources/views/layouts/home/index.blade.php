@@ -3,6 +3,7 @@
 <head>
 	<?php
 		$links = \App\Link::all();
+		$websets = \App\Web_set::first();
 	?>
 <!-- 轮播图 -->
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"> 
@@ -26,8 +27,9 @@
 <!-- 轮播图 -->
 
 	<meta charset="UTF-8">
-	<title>vote</title>
+	<title>{{$websets->web_title}}</title>
 	<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+	<meta name="keywords" content="{{$websets->web_keyword}}"/>
 	<link href="/login/images/T4.jpg" rel="shortcut icon" type="image/x-icon" />
 	<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
 	<link rel="stylesheet" href="/home/css/home.css" type="text/css" />
@@ -165,6 +167,7 @@ img{border:none}
 			@yield('content')
 
 		</div>
+
 <style>
 	#tiao{
 		display:none;
@@ -172,14 +175,18 @@ img{border:none}
 </style>
 		<div id="tiao" class='main col-md-8 col-md-offset-2' style="margin-top: 35px">
 
+
 			@yield('contents')
 
 		</div>
 		@include('layouts.home.link')
 		
 
-	<div class='col-md-8 col-md-offset-2 bottom'>
-			
+
+	<div class='col-md-8 col-md-offset-2 bottom' style="line-height:40px;margin-bottom:30px">
+			<span style="font-size:14px;color:#eee">{{$websets->record}}<span>
+	
+
 	</div>
 <!-- 广告框 -->
 <?php
@@ -220,7 +227,7 @@ var popad=new Pop();
 					<h2><b>赞助广告</b></h2>
 				</div>
 				<div id="popContent">
-				<a target="_blank"><img width="100%" src="/vo/广告空缺.png"></a>
+				<a target="_blank"><img width="100%" src="/vo/微信.png"></a>
 				</div>
 			  </div>
 			<script>
@@ -239,5 +246,14 @@ var popad=new Pop();
 <!-- 广告框 end -->
 
 	</div>
+	<script>
+		$(function(){
+			if($('#index').attr('has_show')){
+				$('#contents').show();
+			}else{
+				$('#contents').hide();
+			}
+		});
+	</script>
 </body>
 </html>
