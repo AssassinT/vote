@@ -9,6 +9,7 @@ use App\Order;
 use App\User;
 use App\Vote;
 use Illuminate\Http\Request;
+use phpDocumentor\Reflection\DocBlock\Tags\Link;
 class OrderController extends Controller
 {
     /**
@@ -19,8 +20,11 @@ class OrderController extends Controller
     public function index()
     {
         //
-        $order = Order::all();
-
+        // $order = ::all();
+        $order = Order::orderBy('id','desc')
+        // dd($user);
+        ->where('info','like','%'.request()->keywords.'%')
+        ->paginate(1);
 
         return view('admin.order.index',compact('order'));
     }
@@ -117,5 +121,17 @@ class OrderController extends Controller
         }else{
             echo 0;
         }
+    }
+
+      public function dd(Request $request)
+    {
+       
+        $orders = Order::where('user_id',session('id'))->get();
+
+         $orders = Order::orderBy('id','desc')
+            ->where('info','like','%'.request()->keywords.'%')
+            ->paginate(10);
+
+        return view('home.dd',compact('orders','links'));
     }
 }
