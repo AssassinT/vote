@@ -6,16 +6,16 @@
 @extends('layouts.home.index')
 @section('content')
 <div id="index" has_show="1"></div>
-		<style>
+    <style>
     #contens{
         display:block !important;
     }
   </style>
-	<div style="height:30px"></div>
+  <div style="height:30px"></div>
 
                          <?php
 
-						function time2Units ($time)
+            function time2Units ($time)
 {
    $year   = floor($time / 60 / 60 / 24 / 365);
    $time  -= $year * 60 * 60 * 24 * 365;
@@ -50,7 +50,7 @@
 
 
 
-	?>
+  ?>
 
   <!-- 轮播 -->
 <style>
@@ -267,37 +267,37 @@
 <!-- 置顶 -->
 
 @section('contents')
-	@foreach($tops as $val)
+  @foreach($tops as $val)
 
-		<?php
-			$arry1 = DB::select('select  sum(vote_num) as total from options where vote_id ='.$v->id);
-	        $arrys1 = $arry1[0]->total;
+    <?php
+      $arry1 = DB::select('select  sum(vote_num) as total from options where vote_id ='.$v->id);
+          $arrys1 = $arry1[0]->total;
 
-	        $past1 = strtotime($val->end_time);      
-			$now1  = strtotime($val->created_at);     
-			$diff1 = $past1-$now1;
+          $past1 = strtotime($val->end_time);      
+      $now1  = strtotime($val->created_at);     
+      $diff1 = $past1-$now1;
 
-	?>
+  ?>
 <div class="col-md-12" style="margin-top:30px">
     <div class="entry-margin" style="width:100px;float:left">
-    	<img src="{{$val->user->head_pic}}" alt="" height="80px" width="80">
+      <img src="{{$val->user->head_pic}}" alt="" height="80px" width="80">
        
         
     </div>
     <div style="float:left" > <h1 class="auto-hidden"><a href="/vote/{{$val->id}}"  style="color:black">{{$val->vote_title}}</a></h1>
     </div>
-	
-	<div style="margin-top: 100px;">
-		<hr>
-		<span class="glyphicon glyphicon-user"> {{$val->user->user_name}}
-		</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-		<span class="glyphicon glyphicon-time"> <?php echo  time2Units($diff).'后投票结束';  ?>
-		</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-		<span class="glyphicon glyphicon-eye-open"> {{$val->id*267}}</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-		 
-		 <a href="/vote/{{$val->id}}"><span class="fa fa-commenting-o" style="color:green"> {{$val->id*7+9}}</span>
-		</a><hr>
-	</div>
+  
+  <div style="margin-top: 100px;">
+    <hr>
+    <span class="glyphicon glyphicon-user"> {{$val->user->user_name}}
+    </span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <span class="glyphicon glyphicon-time"> <?php echo  time2Units($diff).'后投票结束';  ?>
+    </span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <span class="glyphicon glyphicon-eye-open"> {{$val->id*267}}</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+     
+     <a href="/vote/{{$val->id}}"><span class="fa fa-commenting-o" style="color:green"> {{$val->id*7+9}}</span>
+    </a><hr>
+  </div>
     <div class="carousel-image" style="margin-top:50px;margin-left: 12%;margin-bottom:60px" >
         <div class="entry-image" >
             <a href="/vote/{{$val->id}}"><img class="image-middle" src="{{$val->vote_pic}}" height="100%" width="600" alt=""></a>
@@ -334,5 +334,5 @@
     <span class="fa fa-minus" style="margin-bottom: 66px"></span> &nbsp;
 </div >
 
-	@endforeach
+  @endforeach
 @endsection
