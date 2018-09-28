@@ -66,7 +66,7 @@
                     <td  class="hide_phone">{{$v->mode}}</td>
                     <td  class="hide_phone">{{$v->info}}</td>
                     
-                    <td  class="hide_phone">{!!$v->statue == 0 ? '<span style="color:red"><b>支付中</b></span>' : '<span style="color:green"><b>已支付</b></span>' !!}</td>
+                    <td  class="hide_phone">{!!$v->statue == 0 ? '<span style="color:red"><b>支付中</b></span>' : '<span style="color:#2ecc71"><b>已支付</b></span>' !!}</td>
                     
                     <td class="hide_phone">{{$v->updated_at}}</td>
                 </tr>
