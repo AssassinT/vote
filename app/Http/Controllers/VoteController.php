@@ -14,7 +14,7 @@ use App\Vote;
 use App\Gift;
 use App\Ip;
 
-use App\Gift_gx;
+use App\Gift_gx; 
 
 use App\Comment;
 
@@ -56,8 +56,9 @@ class VoteController extends Controller
     public function create()
     {
         $votes = new Vote;
-
-        return view('/home/create',compact('votes'));
+        $user = User::findOrFail(session('id'));
+        
+        return view('/home/create',compact('user','votes'));
     }
 
     /**
@@ -69,6 +70,14 @@ class VoteController extends Controller
     public function store(Request $request)
     {
 
+        //积分
+        $user = User::findOrFail(session('id'));
+        if(request()->has_top){
+
+            $user->integral -= 50;
+
+        }
+        $user -> save();
         $votes = new Vote;
 
         $votes -> vote_title  = request() -> vote_title;
@@ -213,7 +222,16 @@ class VoteController extends Controller
         $comments = Comment::orderBy('id','asc')
             ->where('vote_id',$votes->id)
 
+<<<<<<< HEAD
             ->paginate(5);  
+=======
+
+             ->paginate(5);       
+            // dd($comments->user());
+        // return view('/home/show',compact('votes','wechat','option_id','openid','comments'));
+
+             
+>>>>>>> 0cbae34bbcbd79361e018fba9f367b5b4f5d929d
         $gift_gxs = Gift_gx::orderBy('id','desc')->where('vote_id',$votes->id)->get();
         return view('/home/show',compact('gift_gxs','votes','wechat','option_id','openid','comments'));
 
@@ -221,6 +239,8 @@ class VoteController extends Controller
     }
 
     public function redirect(){
+        try{
+        $url = 'http://ws.xiaohigh.com/vote/'.request()->id;
         $id = $_GET['id'];
         
         $app = Factory::officialAccount($this->config);
@@ -264,8 +284,11 @@ class VoteController extends Controller
         $comments = Comment::orderBy('id','asc')
             ->where('id',$votes->id)
             ->paginate(5);  
-         $gift_gxs = Gift_gx::orderBy('id','desc')->where('vote_id',$votes->id)->get();
+         $gift_gxs = Gift_gx::orderBy('id','desc')->where([['vote_id',$votes->id],['zt',4]])->get();
         return view('/home/show',compact('gift_gxs','votes','wechat','option_id','comments','openid'));
+        }catch(\Exception $e) {
+            echo "<script>window.location.href='{$url}'</script>";
+        }
 
     }
 

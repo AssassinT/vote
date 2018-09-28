@@ -129,7 +129,7 @@
 			//提示语显示
 			$('#bb').show().html('<span style="color:#bbb;margin-left:43px">输入6~16数字、字母、特殊字符</span>');
 		}).blur(function(){
-			$('#aa').hide().html();
+			// $('#aa').hide().html();
 			var v = $(this).val();
 			//正则
 			var reg = /^[0-9a-zA-Z!@#$^]{6,18}$/;
@@ -140,7 +140,7 @@
 				CPASS = false;
 			}else{
 				//文字提醒
-				$('#bb').html('<span style="color:#bbb;font-size:16px;font-weight:bold;margin-left:43px">&nbsp;&nbsp;√</span>').show();
+				$('#bb').html('<span style="color:green;font-size:16px;font-weight:bold;margin-left:43px">&nbsp;&nbsp;√</span>').show();
 				CPASS = true;
 
 			}
@@ -162,7 +162,7 @@
 				CPHONE = false;
 			}else{
 				//文字提醒
-				$('#cc').html('<span style="color:#bbb;font-size:16px;font-weight:bold;margin-left:43px">&nbsp;&nbsp;√</span>').show();
+				$('#cc').html('<span style="color:green;font-size:16px;font-weight:bold;margin-left:43px">&nbsp;&nbsp;√</span>').show();
 				CPHONE = true;
 
 			}

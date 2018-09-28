@@ -220,11 +220,19 @@
 		  <tr class='success'>
 				<td>首页置顶</td>
 				<td>
-					<label>
+					<label id="jf">
 				        <input type="radio" name="has_top" value='1' id="" class="a-radio">
-				        <span class="b-radio"></span>
-				    </label>
+				        <span class="b-radio" ></span><span style="font-size: 12px;color:#337ab7">消耗50积分</span>
+				    </label>   
 				</td>
+					 <script>
+				   		$('#jf').click(function(){
+				   			if({{$user->integral < 50}})
+				   				alert('积分不足,办理会员每月可领取500积分哦! ^^');
+				   				return false;
+				   		})
+
+					</script>
 				<td>
 					<label>
 				        <input type="radio" checked name="has_top" value='0' id="" class="a-radio">
