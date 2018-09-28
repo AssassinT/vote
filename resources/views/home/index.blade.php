@@ -108,14 +108,14 @@
   ?>
      <div >
         
-        <div style="margin-left:30px !important; margin-top:10px;float:left;background-color:#fff;width:320px;height:550px;">
+        <div style=" margin-top:10px;float:left;background-color:#fff;width:320px;height:550px;">
     <div class="entry-margin">
         <h3 class="auto-hidden"style="padding-left:10px"><a href="/vote/{{$v->id}}" style="color:black;">{{$v->vote_title}}</a></h3>
         <span style="padding-left:10px"class="glyphicon glyphicon-time"> <b><?php echo  time2Units($diff).'后投票结束';  ?></b></span>
     </div>
     <div class="carousel-image">
         <div class="entry-image" style="margin-top:10px">
-            <a href="/vote/{{$v->id}}"><img class="image-middle" src="{{$v->vote_pic}}" height="220px" width="320" alt=""></a>
+            <a href="/vote/{{$v->id}}"><img style="padding:20px" class="image-middle" src="{{$v->vote_pic}}" height="220px" width="100%" alt=""></a>
         </div>
         <div class="entry-icon" style="height:10px">
           
@@ -154,16 +154,16 @@
       $diff = $past-$now;
 
   ?>
-     <div >
+     <div>
         
-        <div style="margin-left:30px !important; margin-top:10px;float:left;background-color:#fff;width:320px;height:550px;">
+        <div style="margin-top:10px;float:left;background-color:#fff;width:320px;height:550px;">
     <div class="entry-margin">
         <h3 class="auto-hidden"style="padding-left:10px"><a href="/vote/{{$v->id}}" style="color:black;">{{$v->vote_title}}</a></h3>
         <span style="padding-left:10px"class="glyphicon glyphicon-time"> <b><?php echo  time2Units($diff).'后投票结束';  ?></b></span>
     </div>
     <div class="carousel-image">
         <div class="entry-image" style="margin-top:10px">
-            <a href="/vote/{{$v->id}}"><img class="image-middle" src="{{$v->vote_pic}}" height="220px" width="320" alt=""></a>
+            <a href="/vote/{{$v->id}}"><img style="padding:20px" class="image-middle" src="{{$v->vote_pic}}" height="220px" width="100%" alt=""></a>
         </div>
         <div class="entry-icon" style="height:10px">
           
