@@ -14,7 +14,7 @@ use App\Vote;
 use App\Gift;
 use App\Ip;
 
-use App\Gift_gx;
+use App\Gift_gx; 
 
 use App\Comment;
 
@@ -223,12 +223,19 @@ class VoteController extends Controller
             ->where('vote_id',$votes->id)
 
 
-             ->paginate(5);       
+
+            ->paginate(5);  
+
+
+
+                  
             // dd($comments->user());
         // return view('/home/show',compact('votes','wechat','option_id','openid','comments'));
 
              
+
         $gift_gxs = Gift_gx::orderBy('id','desc')->where([['vote_id',$votes->id],['zt','4']])->get();
+
         return view('/home/show',compact('gift_gxs','votes','wechat','option_id','openid','comments'));
 
 
@@ -415,6 +422,13 @@ class VoteController extends Controller
      */
     public function update(Request $request, $id)
     {  
+        $user = User::findOrFail(session('id'));
+        if(request()->has_top){
+
+            $user->integral -= 50;
+        }
+        $user->save();
+        
         $votes = Vote::findOrfail($id);
 
         $votes -> vote_title  = request() -> vote_title;  //
