@@ -10,11 +10,13 @@ use App\Web_set;
 class HomeController extends Controller
 {
     public function index(){
-    	//倒序取3条
+    	//轮播倒序取3条
     	$votes = Vote::orderBy('id','desc')->limit(6)->get();
     	  // dd($votes[0]->end_time);
-    	$tops = Vote::where('has_top', '=', '1')->get();
-    
+        //获取所有置顶
+    	$top = Vote::where('has_top', '=', '1')->get();
+        //置顶倒序排序
+        $tops = Vote::orderBy('id','desc')->get();
     	// dd($options);
     	
     	$websets = Web_set::first();

@@ -319,9 +319,11 @@
   </div>
     <div class="carousel-image" style="margin-top:50px;margin-left: 12%;margin-bottom:60px" >
         <div class="entry-image" >
+
             <a href="/vote/{{$val->id}}"><img class="image-middle" src="{{$val->vote_pic}}"  width="100%" alt=""></a>
         </div>     
     </div><hr>
+
 </div >
 
   @endforeach
