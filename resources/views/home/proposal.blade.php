@@ -46,59 +46,63 @@
         </div>
     @endforeach
 
+    
     <style>
-                    .pagination{
-                        padding-left: 0;
-                        margin: 1.5rem 0;
-                        list-style: none;
-                        color: #999;
-                        text-align: left;
-                        padding: 0;
-                    }
+        .pagination{
+            padding-left: 0;
+            margin: 1.5rem 0;
+            list-style: none;
+            color: #999;
+            text-align: left;
+            padding: 0;
+        }
 
-                    .pagination li{
-                        display: inline-block;
-                    }
+        .pagination li{
+            display: inline-block;
+        }
+        .pagination li a, .pagination li span{
+            color: #23abf0;
+            border-radius: 3px;
+            padding: 6px 12px;
+            position: relative;
+            display: block;
+            text-decoration: none;
+            line-height: 1.2;
+            background-color: #fff;
+            border: 1px solid #ddd;
+            border-radius: 0;
+            margin-bottom: 5px;
+            margin-right: 5px;
+        }
 
-                    .pagination li a, .pagination li span{
-                        color: #23abf0;
-                        border-radius: 3px;
-                        padding: 6px 12px;
-                        position: relative;
-                        display: block;
-                        text-decoration: none;
-                        line-height: 1.2;
-                        background-color: #fff;
-                        border: 1px solid #ddd;
-                        border-radius: 0;
-                        margin-bottom: 5px;
-                        margin-right: 5px;
-                    }
-
-                    .pagination .active span{
-                        color: #23abf0;
-                        border-radius: 3px;
-                        padding: 6px 12px;
-                        position: relative;
-                        display: block;
-                        text-decoration: none;
-                        line-height: 1.2;
-                        background-color: #fff;
-                        border: 1px solid #ddd;
-                        border-radius: 0;
-                        margin-bottom: 5px;
-                        margin-right: 5px;
-                        background: #23abf0;
-                        color: #fff;
-                        border: 1px solid #23abf0;
-                        padding: 6px 12px;
-                    }
-                </style>
-                <div class="am-cf" style="margin-left:70px; padding-top:10px;!important">
-                    <div class="am-fr" > 
-                        {{ $proposals->appends(request()->all())->links() }}
-                    </div>
-                </div>
+        .pagination .active span{
+            color: #23abf0;
+            border-radius: 3px;
+            padding: 6px 12px;
+            position: relative;
+            display: block;
+            text-decoration: none;
+            line-height: 1.2;
+            background-color: #fff;
+            border: 1px solid #ddd;
+            border-radius: 0;
+            margin-bottom: 5px;
+            margin-right: 5px;
+            background: #23abf0;
+            color: #fff;
+            border: 1px solid #23abf0;
+            padding: 6px 12px;
+        }
+        .am-cf ul{
+            margin-top:0px !important;
+        }
+    </style>
+      
+    <div class="am-cf" style="height:40px !important;">
+        <div class="am-fr" style="float:right;height:40px !important;"> 
+            {{$proposals->appends(request()->all())->links() }}
+        </div>
+    </div>
 
 @endsection
 

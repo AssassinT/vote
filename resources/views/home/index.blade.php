@@ -320,38 +320,11 @@
   </div>
     <div class="carousel-image" style="margin-top:50px;margin-left: 12%;margin-bottom:60px" >
         <div class="entry-image" >
-            <a href="/vote/{{$val->id}}"><img class="image-middle" src="{{$val->vote_pic}}" height="100%" width="600" alt=""></a>
+            <a href="/vote/{{$val->id}}"><img class="image-middle"  src="{{$val->vote_pic}}" height="100%" width="600" alt=""></a>
         </div>     
     </div>
-    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-    <span class="fa fa-minus"></span> &nbsp;
-    <span class="fa fa-minus"></span> &nbsp;
-    <span class="fa fa-minus"></span> &nbsp;
-    <span class="fa fa-minus"></span> &nbsp;
-    <span class="fa fa-minus"></span> &nbsp;
-    <span class="fa fa-minus"></span> &nbsp;
-    <span class="fa fa-minus"></span> &nbsp;
-    <span class="fa fa-minus"></span> &nbsp;
-    <span class="fa fa-minus"></span> &nbsp;
-    <span class="fa fa-minus"></span> &nbsp;
-    <span class="fa fa-minus"></span> &nbsp;
-    <span class="fa fa-minus"></span> &nbsp;
-    &nbsp; 无情分割线&nbsp; &nbsp;
-    <span class="fa fa-minus"></span> &nbsp;
-    <span class="fa fa-minus"></span> &nbsp;
-    <span class="fa fa-minus"></span> &nbsp;
-    <span class="fa fa-minus"></span> &nbsp;
-    <span class="fa fa-minus"></span> &nbsp;
-    <span class="fa fa-minus"></span> &nbsp;
-    <span class="fa fa-minus"></span> &nbsp;
-    <span class="fa fa-minus"></span> &nbsp;
-    <span class="fa fa-minus"></span> &nbsp;
-    <span class="fa fa-minus"></span> &nbsp;
-    <span class="fa fa-minus"></span> &nbsp;
-    <span class="fa fa-minus"></span> &nbsp;
-    <span class="fa fa-minus" style="margin-bottom: 66px"></span> &nbsp;
+   <hr style="margin-bottom: 50px">
+
 </div >
 
   @endforeach

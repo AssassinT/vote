@@ -18,6 +18,7 @@
 
         $giftnums = $giftnum[0]->total;
 
+
 ?>                 
 
                 <tr class="active">
@@ -34,7 +35,7 @@
                     ?>
                     <td class="hide_phone">{!!$str!!}</td>
 
-                    <td class="hide_phone">{{$giftnums}}</td>
+                    <td class="hide_phone">{{ !empty($giftnums) ? $giftnums : 0}}</td>
                     </td>
                 </tr>
 @endforeach
@@ -46,13 +47,13 @@
         </div>
         <br>
         <div class=" input-group col-md-4">
-            <span class="input-group-addon" id="basic-addon1" style="width:82px">支付宝账号</span>
-            <input type="text" class="form-control"   aria-describedby="basic-addon1" value="" name="info">
+            <span class="input-group-addon" id="basic-addon1" style="width:82px">支付宝姓名</span>
+            <input type="text" class="form-control"   aria-describedby="basic-addon1" value="" name="mode">
         </div>
         <br>
         <div class=" input-group col-md-4">
-            <span class="input-group-addon" id="basic-addon1" style="width:82px">支付宝姓名</span>
-            <input type="text" class="form-control"   aria-describedby="basic-addon1" value="" name="mode">
+            <span class="input-group-addon" id="basic-addon1" style="width:82px">支付宝账号</span>
+            <input type="text" class="form-control"   aria-describedby="basic-addon1" value="" name="info">
         </div>
         <br>
         <div class=" input-group col-md-4">
