@@ -54,6 +54,11 @@ img{border:none}
 #popHead h2{font-size:14px;color:black;line-height:32px;height:32px;}
 #popHead #popClose{position:absolute;right:10px;top:1px;}
 #popHead a#popClose:hover{color:#f00;cursor:pointer;}
+
+
+@media screen and (max-width:900px){
+#pop{height:29% !important ;width: 42%  !important;}
+}
 </style>
 <!-- 框 -->
 
@@ -119,6 +124,7 @@ img{border:none}
 
 				@if(Session::has('id'))
 				<a href="/myindex"><li><span class="glyphicon glyphicon-user" aria-hidden="true"></span> &nbsp;个人中心</li></a>
+				<a href="/order/1"><li><span class="glyphicon glyphicon-usd" aria-hidden="true"></span> &nbsp;我的钱包</li></a>
 				@else
 				<a href="/home/login"><li><span class="glyphicon glyphicon-user" aria-hidden="true"></span> &nbsp;点击登录</li></a>
 				@endif
@@ -162,7 +168,7 @@ img{border:none}
 		<div class="col-md-12">
 			@yield('danmu')
 		</div>
-		<div class='main col-md-8 col-md-offset-2'>
+		<div class='main col-md-8 col-md-offset-2' style="background-color:#f6f5f2">
 
 			@yield('content')
 
@@ -183,12 +189,13 @@ img{border:none}
 		
 
 
-	<div class='col-md-8 col-md-offset-2 bottom' style="line-height:40px;margin-bottom:30px">
+	<div class='col-md-8 col-md-offset-2 col-xs-12 bottom' style="line-height:40px;">
 			<span style="font-size:14px;color:#eee">{{$websets->record}}<span>
 	
 
 	</div>
 <!-- 广告框 -->
+<div class="wrapper">
 <?php
 		$users = \App\User::all();
 	$a_dsss = \App\aD::where('position',1)->get();
@@ -227,7 +234,7 @@ var popad=new Pop();
 					<h2><b>赞助广告</b></h2>
 				</div>
 				<div id="popContent">
-				<a target="_blank"><img width="100%" src="/vo/微信.png"></a>
+				<a target="_blank"><img width="100%" src="/vo/广告空缺.png"></a>
 				</div>
 			  </div>
 			<script>
@@ -244,7 +251,7 @@ var popad=new Pop();
 			</script>
 @endif
 <!-- 广告框 end -->
-
+</div>
 	</div>
 	<script>
 		$(function(){

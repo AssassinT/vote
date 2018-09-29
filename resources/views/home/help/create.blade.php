@@ -97,9 +97,14 @@
                         <td><h4 style="color:#33CCFF">40元/月</h4></td>
                     </tr>
                         
+                    <tr style='background:#eee;height:40px;font-size:15px;color:#666666;height:35px'>
+                        <td>积分</td>
+                        <td>签到领取30积分</td>
+                        <td><h4 style="color:#33CCFF">每月赠送500积分</h4></td>
+                    </tr>
                 </tbody>
             </table>
-            <div class="col-md-8 col-md-offset-2" >
+            <div class="col-md-8 col-md-offset-2" style="margin-top:5px">
                 <button style="float:left;" class="btn btn-info" onclick="window.history.go(-1)"><b>返回</b></button>
                 <a href="/help/nonet"><button style="float:right" class="btn btn-info">现在购买</button></a>
             </div>

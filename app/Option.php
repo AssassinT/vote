@@ -8,7 +8,7 @@ class Option extends Model
 {
     public function gift_gx()
     {
-        return $this->belongsToMany('App\Gift_gx');
+        return $this->hasMany('App\Gift_gx');
     }
 
 
