@@ -222,16 +222,14 @@ class VoteController extends Controller
         $comments = Comment::orderBy('id','asc')
             ->where('vote_id',$votes->id)
 
-<<<<<<< HEAD
-            ->paginate(5);  
-=======
+
 
              ->paginate(5);       
             // dd($comments->user());
         // return view('/home/show',compact('votes','wechat','option_id','openid','comments'));
 
              
->>>>>>> 0cbae34bbcbd79361e018fba9f367b5b4f5d929d
+
         $gift_gxs = Gift_gx::orderBy('id','desc')->where('vote_id',$votes->id)->get();
         return view('/home/show',compact('gift_gxs','votes','wechat','option_id','openid','comments'));
 
