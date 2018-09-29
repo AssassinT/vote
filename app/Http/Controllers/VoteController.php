@@ -224,7 +224,9 @@ class VoteController extends Controller
 
 
 
+
             ->paginate(5);  
+
 
 
 
