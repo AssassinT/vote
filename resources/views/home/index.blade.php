@@ -83,16 +83,17 @@
 
 </style>
 
-<div class="col-md-11" id="jssor_1" style="   padding-left:-100px;  padding-top:-60px;width: 970px !important; height: 365px !important;  visibility: hidden; background-color:;">
+<div id="jssor_1" style="width:900px;position: relative; margin: 0 auto; top: 0px; left: -15px;  height: 376px; overflow: hidden; visibility: hidden; background-color: #f6f5f2;">
     <!-- Loading Screen -->
-    <div class="col-md-11"data-u="loading" style="position: absolute; top: 0px; margin-left:60px;width: 650px; height: 360px;  visibility: hidden; background-color: #ddd;">
+    <div data-u="loading" style="position: absolute; top: 0px; left: 0px;">
+      <div style="filter: alpha(opacity=70); opacity: 0.7; position: absolute; display: block; top: 0px; left: 0px; width: 100%; height: 100%;"></div>
       
     </div>
-    <div class="col-md-11"data-u="slides" style="   margin-top: -40px;margin-left: -10px; width: 1080px; height: 400px; overflow: hidden;">
+    <div data-u="slides"  id="nnn" style="width:880px;cursor: default; position:relative; top: 0px; left: 0px; height: 656px; overflow: hidden;">
 
 
       <div  data-p="144.50" style="display: none;">
-        @foreach($votes as $k=>$v)
+@foreach($votes as $k=>$v)
 
         <?php
         if($k==3){
@@ -106,9 +107,9 @@
       $diff = $past-$now;
 
   ?>
-     <div >
         
-        <div style=" margin-top:10px;float:left;background-color:#fff;width:320px;height:550px;">
+                
+        <div style="padding:10px; margin-top:-30px;float:left;background-color:#fff;width:270px;height:540px;">
     <div class="entry-margin">
         <h3 class="auto-hidden"style="padding-left:10px"><a href="/vote/{{$v->id}}" style="color:black;">{{$v->vote_title}}</a></h3>
         <span style="padding-left:10px"class="glyphicon glyphicon-time"> <b><?php echo  time2Units($diff).'后投票结束';  ?></b></span>
@@ -129,7 +130,6 @@
         </p>
     </div>
 </div >
-      </div>
       @endforeach
       </div>
       
@@ -154,9 +154,9 @@
       $diff = $past-$now;
 
   ?>
-     <div>
+ 
         
-        <div style="margin-top:10px;float:left;background-color:#fff;width:320px;height:550px;">
+        <div style="padding:10px; margin-top:-30px;float:left;background-color:#fff;width:270px;height:540px;">
     <div class="entry-margin">
         <h3 class="auto-hidden"style="padding-left:10px"><a href="/vote/{{$v->id}}" style="color:black;">{{$v->vote_title}}</a></h3>
         <span style="padding-left:10px"class="glyphicon glyphicon-time"> <b><?php echo  time2Units($diff).'后投票结束';  ?></b></span>
@@ -177,7 +177,6 @@
         </p>
     </div>
 </div >
-      </div>
       @endforeach
 
       </div>
@@ -320,38 +319,9 @@
   </div>
     <div class="carousel-image" style="margin-top:50px;margin-left: 12%;margin-bottom:60px" >
         <div class="entry-image" >
-            <a href="/vote/{{$val->id}}"><img class="image-middle" src="{{$val->vote_pic}}" height="100%" width="600" alt=""></a>
+            <a href="/vote/{{$val->id}}"><img class="image-middle" src="{{$val->vote_pic}}"  width="100%" alt=""></a>
         </div>     
-    </div>
-    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-    <span class="fa fa-minus"></span> &nbsp;
-    <span class="fa fa-minus"></span> &nbsp;
-    <span class="fa fa-minus"></span> &nbsp;
-    <span class="fa fa-minus"></span> &nbsp;
-    <span class="fa fa-minus"></span> &nbsp;
-    <span class="fa fa-minus"></span> &nbsp;
-    <span class="fa fa-minus"></span> &nbsp;
-    <span class="fa fa-minus"></span> &nbsp;
-    <span class="fa fa-minus"></span> &nbsp;
-    <span class="fa fa-minus"></span> &nbsp;
-    <span class="fa fa-minus"></span> &nbsp;
-    <span class="fa fa-minus"></span> &nbsp;
-    &nbsp; 无情分割线&nbsp; &nbsp;
-    <span class="fa fa-minus"></span> &nbsp;
-    <span class="fa fa-minus"></span> &nbsp;
-    <span class="fa fa-minus"></span> &nbsp;
-    <span class="fa fa-minus"></span> &nbsp;
-    <span class="fa fa-minus"></span> &nbsp;
-    <span class="fa fa-minus"></span> &nbsp;
-    <span class="fa fa-minus"></span> &nbsp;
-    <span class="fa fa-minus"></span> &nbsp;
-    <span class="fa fa-minus"></span> &nbsp;
-    <span class="fa fa-minus"></span> &nbsp;
-    <span class="fa fa-minus"></span> &nbsp;
-    <span class="fa fa-minus"></span> &nbsp;
-    <span class="fa fa-minus" style="margin-bottom: 66px"></span> &nbsp;
+    </div><hr>
 </div >
 
   @endforeach
